@@ -33,7 +33,7 @@ struct LoginView: View {
             HStack {
                 Text("Hey") +
                 Text("\nPet Lovers!")
-                    .foregroundStyle(.accent)
+                    .foregroundColor(.accent)
                 
                 Spacer()
             }
@@ -44,7 +44,7 @@ struct LoginView: View {
             
             HStack {
                 Text("Welcome! Find your perfect companion at our pet shop")
-                    .foregroundStyle(.textSecondary)
+                    .foregroundColor(.textSecondary)
                     .font(.system(size: 18))
                 Spacer()
             }
@@ -62,7 +62,7 @@ struct LoginView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(!isValidEmail ? .red : focusedField == .email ? .accent : .clear, lineWidth: 2)
                 )
-                .onChange(of: emailText) { oldValue, newValue in
+                .onChange(of: emailText) { newValue in
                     isValidEmail = newValue.isValidEmail
                 }
                 .padding(.top, 34)
@@ -110,7 +110,7 @@ struct LoginView: View {
             HStack {
                 Spacer()
                 Text(viewModel.haveAccountMessage)
-                    .foregroundStyle(.textSecondary)
+                    .foregroundColor(.textSecondary)
                     .font(.body)
                 
                 Button {

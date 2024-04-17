@@ -13,7 +13,7 @@ struct PrimaryButton: ButtonStyle {
             .frame(maxWidth: .infinity, maxHeight: 54, alignment: .center)
             .font(.system(size: 17, weight: .bold))
             .background(Color.accentColor)
-            .foregroundStyle(.white)
+            .foregroundColor(.white)
             .cornerRadius(16)
     }
 }

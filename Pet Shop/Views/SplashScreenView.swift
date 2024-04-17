@@ -20,7 +20,7 @@ struct SplashScreenView: View {
                 VStack {
                     Image(systemName: "dog.fill")
                         .font(.system(size: 70))
-                        .foregroundStyle(.accent)
+                        .foregroundColor(.accent)
                 }
                 .scaleEffect(logoSize)
                 .opacity(logoOpacity)
