@@ -9,6 +9,7 @@ import Foundation
 
 enum PetAPI {
     case breeds(page: Int)
+    case pet(petId: String)
 }
 
 extension PetAPI: Endpoint {
@@ -35,6 +36,8 @@ extension PetAPI: Endpoint {
         switch self {
         case .breeds(_):
             return "/v1/breeds"
+        case .pet(petId: let id):
+            return "/v1/images/\(id)"
         }
     }
     
@@ -44,6 +47,10 @@ extension PetAPI: Endpoint {
             return [
                 URLQueryItem(name: "limit", value: String(10)),
                 URLQueryItem(name: "page", value: String(page)),
+            ]
+        case .pet(_):
+            return [
+                URLQueryItem(name: "limit", value: String(PetAPI.apiKey))
             ]
         }
     }

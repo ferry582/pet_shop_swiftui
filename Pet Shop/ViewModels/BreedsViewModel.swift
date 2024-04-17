@@ -8,25 +8,75 @@
 import Foundation
 
 class BreedsViewModel: ObservableObject {
-    @Published var breeds = [Breed]()
-    @Published var isLoading = false
+    @Published private(set) var breeds = [Breed]()
+    @Published private(set) var isLoading = false
+    @Published private(set) var isFetching = false
+    @Published private(set) var alertMessage = ""
+    @Published var isAlertActive = false
     
     private var page = 0
     private var service = APIService()
+    private var hasReachedMaxPage = false
     
-    func getBreedsData() {
+    @MainActor
+    func getBreedsData() async {
         isLoading = true
-        Task.init {
-            do {
-                let result: [Breed] = try await service.makeRequest(for: PetAPI.breeds(page: 0))
-                DispatchQueue.main.async {
-                    self.breeds = result
-                    self.isLoading = false
-                }
-            } catch {
-                print("Error:", error)
-                isLoading = false
-            }
+        defer { isLoading = false }
+        
+        do {
+            let result: [Breed] = try await service.makeRequest(for: PetAPI.breeds(page: page))
+            self.breeds = result
+        } catch {
+            isAlertActive = true
+            alertMessage = (error as! NetworkError).description
         }
+    }
+    
+    @MainActor
+    func getNextBreedsData() async {
+        guard !hasReachedMaxPage else {
+            return
+        }
+        
+        isFetching = true
+        defer { isFetching = false }
+        
+        page += 1
+        
+        do {
+            let result: [Breed] = try await service.makeRequest(for: PetAPI.breeds(page: page))
+            
+            if result.isEmpty {
+                hasReachedMaxPage = true
+                return
+            }
+            
+            self.breeds += result
+        } catch {
+            isAlertActive = true
+            alertMessage = (error as! NetworkError).description
+        }
+    }
+    
+    @MainActor
+    func getBreedImageData(petId: String) async -> String {
+        do {
+            let result: Pet = try await service.makeRequest(for: PetAPI.pet(petId: petId))
+            return result.url
+        } catch {
+            isAlertActive = true
+            alertMessage = (error as! NetworkError).description
+            return ""
+        }
+    }
+    
+    func hasReachedEnd(of breed: Breed) -> Bool {
+        breeds.last?.id == breed.id
+    }
+    
+    func refreshedTriggered() {
+        breeds.removeAll()
+        page = 0
+        hasReachedMaxPage = false
     }
 }

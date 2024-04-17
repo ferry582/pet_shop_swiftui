@@ -8,16 +8,27 @@
 import Foundation
 
 enum NetworkError: Error {
-    case unabeToGenerateRequest
+    case unableToGenerateRequest
     case invalidEndpoint
     case parsingError
+    
+    var description: String {
+        switch self {
+        case .unableToGenerateRequest:
+            return "Network Error! Unable to generate request"
+        case .invalidEndpoint:
+            return "Network Error! Invalid network adress"
+        case .parsingError:
+            return "Parsing Error! Errror occured when parsing data"
+        }
+    }
 }
 
 struct APIService {
     
     func makeRequest<T: Codable>(for endpoint: Endpoint) async throws -> T {
         guard let request = endpoint.generateURLRequest() else {
-            throw NetworkError.unabeToGenerateRequest
+            throw NetworkError.unableToGenerateRequest
         }
         
         let response = try? await URLSession.shared.data(for: request)

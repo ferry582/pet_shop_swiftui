@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Breed: Codable {
+struct Breed: Codable, Hashable {
     let weight, height: Size
     let id: Int
     let name, lifeSpan: String
@@ -24,6 +24,6 @@ struct Breed: Codable {
     }
 }
 
-struct Size: Codable {
+struct Size: Codable, Hashable {
     let imperial, metric: String
 }

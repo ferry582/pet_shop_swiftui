@@ -9,14 +9,13 @@ import SwiftUI
 import Security
 
 class LoginViewModel: ObservableObject {
-    
-    @Published var buttonTitle = "Log In"
-    @Published var haveAccountMessage = "Don't have an account?"
-    @Published var haveAccountButton = "Sign Up"
-    @Published var isNavigate = false
-    @Published var alertMessage = ""
+    @Published private(set) var buttonTitle = "Log In"
+    @Published private(set) var haveAccountMessage = "Don't have an account?"
+    @Published private(set) var haveAccountButton = "Sign Up"
+    @Published private(set) var alertMessage = ""
+    @Published private(set) var isUserHasAccount = true
     @Published var isAlertActive = false
-    @Published var isUserHasAccount = true
+    @Published var isNavigate = false
     
     func haveAccountClicked() {
         isUserHasAccount.toggle()
