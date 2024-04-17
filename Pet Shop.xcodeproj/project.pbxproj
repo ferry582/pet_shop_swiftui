@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E62909562BCFBB0600BEDC6A /* API-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E62909552BCFBB0600BEDC6A /* API-Info.plist */; };
+		E62909582BCFBB1300BEDC6A /* PetAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909572BCFBB1300BEDC6A /* PetAPI.swift */; };
+		E629095A2BCFBBC900BEDC6A /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909592BCFBBC900BEDC6A /* Endpoint.swift */; };
+		E629095C2BCFBC9C00BEDC6A /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E629095B2BCFBC9C00BEDC6A /* APIService.swift */; };
+		E629095E2BCFC51200BEDC6A /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E629095D2BCFC51200BEDC6A /* Breed.swift */; };
+		E62909602BCFD19400BEDC6A /* BreedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E629095F2BCFD19400BEDC6A /* BreedsViewModel.swift */; };
+		E62909622BCFD5C800BEDC6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909612BCFD5C800BEDC6A /* LoadingView.swift */; };
 		E6C6802C2BCEB65900A5A4E9 /* Pet_ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */; };
-		E6C6802E2BCEB65900A5A4E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802D2BCEB65900A5A4E9 /* ContentView.swift */; };
+		E6C6802E2BCEB65900A5A4E9 /* BreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */; };
 		E6C680302BCEB65A00A5A4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C6802F2BCEB65A00A5A4E9 /* Assets.xcassets */; };
 		E6C680332BCEB65A00A5A4E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C680322BCEB65A00A5A4E9 /* Preview Assets.xcassets */; };
 		E6C6803D2BCEB65A00A5A4E9 /* Pet_ShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6803C2BCEB65A00A5A4E9 /* Pet_ShopTests.swift */; };
@@ -20,6 +27,7 @@
 		E6C680642BCECD5100A5A4E9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C680632BCECD5100A5A4E9 /* LoginViewModel.swift */; };
 		E6C680672BCED5E200A5A4E9 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C680662BCED5E200A5A4E9 /* String+Ext.swift */; };
 		E6C680A12BCF004D00A5A4E9 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C680A02BCF004D00A5A4E9 /* KeychainHelper.swift */; };
+		E6C680A32BCFB24900A5A4E9 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C680A22BCFB24900A5A4E9 /* Color+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,9 +48,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E62909552BCFBB0600BEDC6A /* API-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "API-Info.plist"; sourceTree = "<group>"; };
+		E62909572BCFBB1300BEDC6A /* PetAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetAPI.swift; sourceTree = "<group>"; };
+		E62909592BCFBBC900BEDC6A /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		E629095B2BCFBC9C00BEDC6A /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		E629095D2BCFC51200BEDC6A /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
+		E629095F2BCFD19400BEDC6A /* BreedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsViewModel.swift; sourceTree = "<group>"; };
+		E62909612BCFD5C800BEDC6A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E6C680282BCEB65900A5A4E9 /* Pet Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pet Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet_ShopApp.swift; sourceTree = "<group>"; };
-		E6C6802D2BCEB65900A5A4E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsView.swift; sourceTree = "<group>"; };
 		E6C6802F2BCEB65A00A5A4E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6C680322BCEB65A00A5A4E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E6C680382BCEB65A00A5A4E9 /* Pet ShopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pet ShopTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +71,7 @@
 		E6C680632BCECD5100A5A4E9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E6C680662BCED5E200A5A4E9 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		E6C680A02BCF004D00A5A4E9 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		E6C680A22BCFB24900A5A4E9 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +172,7 @@
 				E6C6809F2BCF001E00A5A4E9 /* Helper */,
 				E6C680652BCED5D400A5A4E9 /* Extensions */,
 				E6C6805C2BCEB75D00A5A4E9 /* View Components */,
-				E6C6805B2BCEB6F200A5A4E9 /* Networking */,
+				E6C6805B2BCEB6F200A5A4E9 /* Network */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -164,6 +180,7 @@
 		E6C680572BCEB67A00A5A4E9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E629095D2BCFC51200BEDC6A /* Breed.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,7 +196,7 @@
 		E6C680592BCEB68C00A5A4E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E6C6802D2BCEB65900A5A4E9 /* ContentView.swift */,
+				E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */,
 				E6C6805D2BCEBD2200A5A4E9 /* SplashScreenView.swift */,
 				E6C6805F2BCEC1EB00A5A4E9 /* LoginView.swift */,
 			);
@@ -190,21 +207,27 @@
 			isa = PBXGroup;
 			children = (
 				E6C680632BCECD5100A5A4E9 /* LoginViewModel.swift */,
+				E629095F2BCFD19400BEDC6A /* BreedsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		E6C6805B2BCEB6F200A5A4E9 /* Networking */ = {
+		E6C6805B2BCEB6F200A5A4E9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E62909552BCFBB0600BEDC6A /* API-Info.plist */,
+				E62909572BCFBB1300BEDC6A /* PetAPI.swift */,
+				E62909592BCFBBC900BEDC6A /* Endpoint.swift */,
+				E629095B2BCFBC9C00BEDC6A /* APIService.swift */,
 			);
-			path = Networking;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		E6C6805C2BCEB75D00A5A4E9 /* View Components */ = {
 			isa = PBXGroup;
 			children = (
 				E6C680612BCECBB300A5A4E9 /* PrimaryButton.swift */,
+				E62909612BCFD5C800BEDC6A /* LoadingView.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -213,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				E6C680662BCED5E200A5A4E9 /* String+Ext.swift */,
+				E6C680A22BCFB24900A5A4E9 /* Color+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E62909562BCFBB0600BEDC6A /* API-Info.plist in Resources */,
 				E6C680332BCEB65A00A5A4E9 /* Preview Assets.xcassets in Resources */,
 				E6C680302BCEB65A00A5A4E9 /* Assets.xcassets in Resources */,
 			);
@@ -355,8 +380,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6C6802E2BCEB65900A5A4E9 /* ContentView.swift in Sources */,
+				E6C6802E2BCEB65900A5A4E9 /* BreedsView.swift in Sources */,
+				E62909602BCFD19400BEDC6A /* BreedsViewModel.swift in Sources */,
+				E629095E2BCFC51200BEDC6A /* Breed.swift in Sources */,
 				E6C680672BCED5E200A5A4E9 /* String+Ext.swift in Sources */,
+				E62909582BCFBB1300BEDC6A /* PetAPI.swift in Sources */,
+				E6C680A32BCFB24900A5A4E9 /* Color+Ext.swift in Sources */,
+				E629095A2BCFBBC900BEDC6A /* Endpoint.swift in Sources */,
+				E629095C2BCFBC9C00BEDC6A /* APIService.swift in Sources */,
+				E62909622BCFD5C800BEDC6A /* LoadingView.swift in Sources */,
 				E6C6802C2BCEB65900A5A4E9 /* Pet_ShopApp.swift in Sources */,
 				E6C680A12BCF004D00A5A4E9 /* KeychainHelper.swift in Sources */,
 				E6C680642BCECD5100A5A4E9 /* LoginViewModel.swift in Sources */,

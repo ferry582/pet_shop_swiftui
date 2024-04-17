@@ -33,7 +33,7 @@ struct LoginView: View {
             HStack {
                 Text("Hey") +
                 Text("\nPet Lovers!")
-                    .foregroundColor(.accent)
+                    .foregroundColor(Color.primaryColor)
                 
                 Spacer()
             }
@@ -44,7 +44,7 @@ struct LoginView: View {
             
             HStack {
                 Text("Welcome! Find your perfect companion at our pet shop")
-                    .foregroundColor(.textSecondary)
+                    .foregroundColor(Color.textSecondaryColor)
                     .font(.system(size: 18))
                 Spacer()
             }
@@ -56,11 +56,11 @@ struct LoginView: View {
                 .textInputAutocapitalization(.never)
                 .focused($focusedField, equals: .email)
                 .padding()
-                .background(.textFieldBg)
+                .background(Color.textfieldBgColor)
                 .cornerRadius(16)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(!isValidEmail ? .red : focusedField == .email ? .accent : .clear, lineWidth: 2)
+                        .stroke(!isValidEmail ? .red : focusedField == .email ? Color.primaryColor : .clear, lineWidth: 2)
                 )
                 .onChange(of: emailText) { newValue in
                     isValidEmail = newValue.isValidEmail
@@ -77,7 +77,7 @@ struct LoginView: View {
                 .cornerRadius(16)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(focusedField == .password ? .accent : .clear, lineWidth: 2)
+                        .stroke(focusedField == .password ? Color.primaryColor : .clear, lineWidth: 2)
                 )
                 .padding(.top, 16)
             
@@ -92,7 +92,7 @@ struct LoginView: View {
                     .cornerRadius(16)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(focusedField == .confirmPassword ? .accent : .clear, lineWidth: 2)
+                            .stroke(focusedField == .confirmPassword ? Color.primaryColor : .clear, lineWidth: 2)
                     )
                     .padding(.top, 16)
             }
@@ -110,7 +110,7 @@ struct LoginView: View {
             HStack {
                 Spacer()
                 Text(viewModel.haveAccountMessage)
-                    .foregroundColor(.textSecondary)
+                    .foregroundColor(Color.textSecondaryColor)
                     .font(.body)
                 
                 Button {
@@ -130,7 +130,7 @@ struct LoginView: View {
         .padding(.horizontal, 16)
         .ignoresSafeArea(edges: .bottom)
         .navigationDestination(isPresented: $viewModel.isNavigate) {
-            ContentView()
+            BreedsView()
                 .navigationTitle("Pet Shop")
         }
     }
