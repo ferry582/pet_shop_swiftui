@@ -12,7 +12,8 @@ struct Pet_ShopApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                SplashScreenView()
+//                SplashScreenView()
+                MainView()
             }
         }
     }

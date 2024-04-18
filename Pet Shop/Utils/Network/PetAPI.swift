@@ -11,6 +11,8 @@ enum PetAPI {
     case breeds(page: Int)
     case pet(petId: String)
     case pets(breedId: Int, page: Int)
+    case addFavorite(petId: String, userId: String)
+    case favorites(userId: String)
 }
 
 extension PetAPI: Endpoint {
@@ -41,6 +43,10 @@ extension PetAPI: Endpoint {
             return "/v1/images/\(id)"
         case .pets(_, _):
             return "/v1/images/search"
+        case .addFavorite(_, _):
+            return "/v1/favourites"
+        case .favorites(_):
+            return "/v1/favourites"
         }
         
     }
@@ -58,13 +64,32 @@ extension PetAPI: Endpoint {
                 URLQueryItem(name: "limit", value: String(10)),
                 URLQueryItem(name: "page", value: String(page)),
             ]
+        case .favorites(userId: let userId):
+            return [
+                URLQueryItem(name: "sub_id", value: String(userId)),
+            ]
         default:
             return []
         }
     }
     
     var method: String {
-        return "get"
+        switch self {
+        case .addFavorite(_, _):
+            return "post"
+        default:
+            return "get"
+        }
+    }
+    
+    var body: Data? {
+        switch self {
+        case .addFavorite(petId: let petId, userId: let userId):
+            let params = "{\n\t\"image_id\":\"\(petId)\",\n\t\"sub_id\": \"\(userId)\"\n}"
+            return params.data(using: .utf8)
+        default:
+            return nil
+        }
     }
     
     func generateURLRequest() -> URLRequest? {
@@ -77,6 +102,7 @@ extension PetAPI: Endpoint {
         guard let url = components.url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = method
+        request.httpBody = body
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(PetAPI.apiKey, forHTTPHeaderField: "x-api-key")
         return request

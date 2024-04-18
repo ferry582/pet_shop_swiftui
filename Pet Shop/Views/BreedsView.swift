@@ -9,62 +9,69 @@ import SwiftUI
 
 struct BreedsView: View {
     @StateObject private var viewModel = BreedsViewModel()
+    @State private var hasAppeared = false
     
     var body: some View {
         ZStack {
-            if viewModel.isLoading {
-                LoadingView()
-            } else {
-                ScrollView {
-                    LazyVStack {
-                        HStack {
-                            Text("Choose the dog breed, that you prefer!")
-                                .foregroundColor(Color.textSecondaryColor)
-                                .font(.system(size: 18))
-                            Spacer()
-                        }
-                        
-                        ForEach(viewModel.breeds, id: \.id) { breed in
-                            NavigationLink {
-                                ListPetView(breed: breed)
-                            } label: {
-                                BreedCellView(breed: breed, viewModel: viewModel)
-                                    .task {
-                                        if viewModel.hasReachedEnd(of: breed) && !viewModel.isFetching{
-                                            await viewModel.getNextBreedsData()
-                                        }
+            ScrollView {
+                LazyVStack {
+                    HStack {
+                        Text("Discover")
+                            .font(.largeTitle)
+                            .bold()
+                            .padding(.top, 42)
+                            .padding(.bottom, 2)
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Text("Choose the dog breed, that you prefer!")
+                            .foregroundColor(Color.textSecondaryColor)
+                            .font(.system(size: 18))
+                        Spacer()
+                    }
+                    
+                    ForEach(viewModel.breeds, id: \.id) { breed in
+                        NavigationLink {
+                            ListPetView(breed: breed)
+                        } label: {
+                            BreedCellView(breed: breed, viewModel: viewModel)
+                                .task {
+                                    if viewModel.hasReachedEnd(of: breed) && !viewModel.isFetching{
+                                        await viewModel.getNextBreedsData()
                                     }
-                            }
+                                }
                         }
                     }
-                }
-                .scrollIndicators(.hidden)
-                .refreshable {
-                    viewModel.refreshedTriggered()
-                    Task {
-                        await viewModel.getBreedsData()
-                    }
-                }
-                .overlay(alignment: .bottom) {
-                    if viewModel.isFetching {
-                        ProgressView()
-                            .scaleEffect(1.4, anchor: .center)
-                            .padding(.bottom, 34)
-                    }
-                }
-                .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
-                    Button("OK", role: .cancel) { }
                 }
             }
+            .scrollIndicators(.hidden)
+            .refreshable {
+                viewModel.refreshedTriggered()
+                Task {
+                    await viewModel.getBreedsData()
+                }
+            }
+            .overlay(alignment: .bottom) {
+                if viewModel.isFetching {
+                    ProgressView()
+                        .scaleEffect(1.4, anchor: .center)
+                        .padding(.bottom, 34)
+                }
+            }
+            .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
+                Button("OK", role: .cancel) { }
+            }
+            
+            if viewModel.isLoading {
+                LoadingView()
+            }
         }
-        .navigationTitle("Discover")
-        .navigationBarTitleDisplayMode(.large)
-        .navigationBarBackButtonHidden()
         .padding(.horizontal, 16)
-        .ignoresSafeArea(edges: .bottom)
-        .onAppear {
-            Task {
+        .task {
+            if !hasAppeared {
                 await viewModel.getBreedsData()
+                hasAppeared = true
             }
         }
     }

@@ -10,7 +10,7 @@ import Foundation
 struct Pet: Codable, Hashable {
     let id: String
     let url: String
-    let breeds: [Breed]
-    let width: Int
-    let height: Int
+    let breeds: [Breed]?
+    let width: Int?
+    let height: Int?
 }

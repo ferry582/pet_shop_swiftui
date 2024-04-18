@@ -16,6 +16,7 @@ class LoginViewModel: ObservableObject {
     @Published private(set) var isUserHasAccount = true
     @Published var isAlertActive = false
     @Published var isNavigate = false
+    @AppStorage("current_email") private var currentEmail = "test@gmail.com"
     
     func haveAccountClicked() {
         isUserHasAccount.toggle()
@@ -41,6 +42,7 @@ class LoginViewModel: ObservableObject {
                 if password == confirmPassword {
                     KeychainHelper.standard.save(Data(password.utf8), service: "user-auth", account: email)
                     isNavigate = true
+                    currentEmail = email
                 } else {
                     isAlertActive = true
                     alertMessage = "Password doesn't match!"
@@ -52,6 +54,7 @@ class LoginViewModel: ObservableObject {
                 
                 if password == keyChainPass {
                     isNavigate = true
+                    currentEmail = email
                 } else {
                     isAlertActive = true
                     alertMessage = "Wrong Password!"

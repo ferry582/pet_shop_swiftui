@@ -14,7 +14,7 @@ enum NetworkError: Error {
     case invalidResponseHeader
     case serverError(statusCode: Int)
     case rateLimitExceeded
-
+    case duplicateFavorite
     
     var description: String {
         switch self {
@@ -30,6 +30,8 @@ enum NetworkError: Error {
             return "Network Error! Error Occured with status code \(code)"
         case .rateLimitExceeded:
             return "Network Error! Too many request"
+        case .duplicateFavorite:
+            return "You have added to favorite"
         }
     }
 }
@@ -42,6 +44,10 @@ struct APIService {
         }
         
         let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard !(String(data: data, encoding: .utf8)!).contains("DUPLICATE_FAVOURITE") else {
+            throw NetworkError.duplicateFavorite
+        }
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidEndpoint

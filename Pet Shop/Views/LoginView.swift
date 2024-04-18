@@ -130,8 +130,7 @@ struct LoginView: View {
         .padding(.horizontal, 16)
         .ignoresSafeArea(edges: .bottom)
         .navigationDestination(isPresented: $viewModel.isNavigate) {
-            BreedsView()
-                .navigationTitle("Pet Shop")
+            MainView()
         }
     }
 }
