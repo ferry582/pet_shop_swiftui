@@ -10,6 +10,7 @@ import Foundation
 enum PetAPI {
     case breeds(page: Int)
     case pet(petId: String)
+    case pets(breedId: Int, page: Int)
 }
 
 extension PetAPI: Endpoint {
@@ -38,7 +39,10 @@ extension PetAPI: Endpoint {
             return "/v1/breeds"
         case .pet(petId: let id):
             return "/v1/images/\(id)"
+        case .pets(_, _):
+            return "/v1/images/search"
         }
+        
     }
     
     var queryItems: [URLQueryItem] {
@@ -48,10 +52,14 @@ extension PetAPI: Endpoint {
                 URLQueryItem(name: "limit", value: String(10)),
                 URLQueryItem(name: "page", value: String(page)),
             ]
-        case .pet(_):
+        case .pets(breedId: let breedId, page: let page):
             return [
-                URLQueryItem(name: "limit", value: String(PetAPI.apiKey))
+                URLQueryItem(name: "breed_ids", value: String(breedId)),
+                URLQueryItem(name: "limit", value: String(10)),
+                URLQueryItem(name: "page", value: String(page)),
             ]
+        default:
+            return []
         }
     }
     
@@ -69,6 +77,8 @@ extension PetAPI: Endpoint {
         guard let url = components.url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = method
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(PetAPI.apiKey, forHTTPHeaderField: "x-api-key")
         return request
     }
     

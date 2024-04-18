@@ -16,7 +16,7 @@ class BreedsViewModel: ObservableObject {
     
     private var page = 0
     private var service = APIService()
-    private var hasReachedMaxPage = false
+    private var totalData = 0
     
     @MainActor
     func getBreedsData() async {
@@ -24,8 +24,9 @@ class BreedsViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            let result: [Breed] = try await service.makeRequest(for: PetAPI.breeds(page: page))
-            self.breeds = result
+            let result: (data: [Breed], paginationCount: Int) = try await service.makeRequest(for: PetAPI.breeds(page: page))
+            self.breeds = result.data
+            self.totalData = result.paginationCount
         } catch {
             isAlertActive = true
             alertMessage = (error as! NetworkError).description
@@ -34,7 +35,7 @@ class BreedsViewModel: ObservableObject {
     
     @MainActor
     func getNextBreedsData() async {
-        guard !hasReachedMaxPage else {
+        guard !(breeds.count >= totalData) else {
             return
         }
         
@@ -45,16 +46,11 @@ class BreedsViewModel: ObservableObject {
         
         do {
             let result: [Breed] = try await service.makeRequest(for: PetAPI.breeds(page: page))
-            
-            if result.isEmpty {
-                hasReachedMaxPage = true
-                return
-            }
-            
             self.breeds += result
         } catch {
             isAlertActive = true
-            alertMessage = (error as! NetworkError).description
+            alertMessage = (error as? NetworkError)?.description ?? ""
+            print(error)
         }
     }
     
@@ -77,6 +73,6 @@ class BreedsViewModel: ObservableObject {
     func refreshedTriggered() {
         breeds.removeAll()
         page = 0
-        hasReachedMaxPage = false
+        totalData = 0
     }
 }

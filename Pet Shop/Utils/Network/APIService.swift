@@ -11,6 +11,10 @@ enum NetworkError: Error {
     case unableToGenerateRequest
     case invalidEndpoint
     case parsingError
+    case invalidResponseHeader
+    case serverError(statusCode: Int)
+    case rateLimitExceeded
+
     
     var description: String {
         switch self {
@@ -19,7 +23,13 @@ enum NetworkError: Error {
         case .invalidEndpoint:
             return "Network Error! Invalid network adress"
         case .parsingError:
-            return "Parsing Error! Errror occured when parsing data"
+            return "Parsing Error! Error occured when parsing data"
+        case .invalidResponseHeader:
+            return "Network Error! Invalid response header"
+        case .serverError(statusCode: let code):
+            return "Network Error! Error Occured with status code \(code)"
+        case .rateLimitExceeded:
+            return "Network Error! Too many request"
         }
     }
 }
@@ -31,14 +41,56 @@ struct APIService {
             throw NetworkError.unableToGenerateRequest
         }
         
-        let response = try? await URLSession.shared.data(for: request)
-        guard let response = response else {
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidEndpoint
         }
         
+        guard (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) else {
+            throw if httpResponse.statusCode == 429 {
+                NetworkError.rateLimitExceeded
+            } else {
+                NetworkError.serverError(statusCode: httpResponse.statusCode)
+            }
+        }
+        
         do {
-            let result = try JSONDecoder().decode(T.self, from: response.0)
+            let result = try JSONDecoder().decode(T.self, from: data)
             return result
+        } catch {
+            print(error)
+            throw NetworkError.parsingError
+        }
+    }
+    
+    func makeRequest<T: Codable>(for endpoint: Endpoint) async throws -> (data: T, paginationCount: Int) {
+        guard let request = endpoint.generateURLRequest() else {
+            throw NetworkError.unableToGenerateRequest
+        }
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.invalidEndpoint
+        }
+        
+        guard (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) else {
+            throw if httpResponse.statusCode == 429 {
+                NetworkError.rateLimitExceeded
+            } else {
+                NetworkError.serverError(statusCode: httpResponse.statusCode)
+            }
+        }
+        
+        guard let countString = httpResponse.allHeaderFields["pagination-count"] as? String,
+              let paginationCount = Int(countString) else {
+            throw NetworkError.invalidResponseHeader
+        }
+        
+        do {
+            let result = try JSONDecoder().decode(T.self, from: data)
+            return (result, paginationCount)
         } catch {
             print(error)
             throw NetworkError.parsingError

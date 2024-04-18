@@ -16,6 +16,8 @@
 		E62909622BCFD5C800BEDC6A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909612BCFD5C800BEDC6A /* LoadingView.swift */; };
 		E62909642BD0220900BEDC6A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909632BD0220900BEDC6A /* Pet.swift */; };
 		E62909662BD0282800BEDC6A /* ListPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909652BD0282800BEDC6A /* ListPetView.swift */; };
+		E62909682BD0C77500BEDC6A /* ListPetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909672BD0C77500BEDC6A /* ListPetViewModel.swift */; };
+		E629096A2BD0DBDD00BEDC6A /* PetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909692BD0DBDD00BEDC6A /* PetDetailView.swift */; };
 		E6C6802C2BCEB65900A5A4E9 /* Pet_ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */; };
 		E6C6802E2BCEB65900A5A4E9 /* BreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */; };
 		E6C680302BCEB65A00A5A4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C6802F2BCEB65A00A5A4E9 /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		E62909612BCFD5C800BEDC6A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E62909632BD0220900BEDC6A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		E62909652BD0282800BEDC6A /* ListPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPetView.swift; sourceTree = "<group>"; };
+		E62909672BD0C77500BEDC6A /* ListPetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPetViewModel.swift; sourceTree = "<group>"; };
+		E62909692BD0DBDD00BEDC6A /* PetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailView.swift; sourceTree = "<group>"; };
 		E6C680282BCEB65900A5A4E9 /* Pet Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pet Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet_ShopApp.swift; sourceTree = "<group>"; };
 		E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsView.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				E6C6805D2BCEBD2200A5A4E9 /* SplashScreenView.swift */,
 				E6C6805F2BCEC1EB00A5A4E9 /* LoginView.swift */,
 				E62909652BD0282800BEDC6A /* ListPetView.swift */,
+				E62909692BD0DBDD00BEDC6A /* PetDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			children = (
 				E6C680632BCECD5100A5A4E9 /* LoginViewModel.swift */,
 				E629095F2BCFD19400BEDC6A /* BreedsViewModel.swift */,
+				E62909672BD0C77500BEDC6A /* ListPetViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -389,7 +395,9 @@
 				E6C6802E2BCEB65900A5A4E9 /* BreedsView.swift in Sources */,
 				E62909602BCFD19400BEDC6A /* BreedsViewModel.swift in Sources */,
 				E629095E2BCFC51200BEDC6A /* Breed.swift in Sources */,
+				E629096A2BD0DBDD00BEDC6A /* PetDetailView.swift in Sources */,
 				E6C680672BCED5E200A5A4E9 /* String+Ext.swift in Sources */,
+				E62909682BD0C77500BEDC6A /* ListPetViewModel.swift in Sources */,
 				E62909582BCFBB1300BEDC6A /* PetAPI.swift in Sources */,
 				E6C680A32BCFB24900A5A4E9 /* Color+Ext.swift in Sources */,
 				E629095A2BCFBBC900BEDC6A /* Endpoint.swift in Sources */,
