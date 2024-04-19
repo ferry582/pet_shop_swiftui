@@ -45,10 +45,6 @@ struct APIService {
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
-        guard !(String(data: data, encoding: .utf8)!).contains("DUPLICATE_FAVOURITE") else {
-            throw NetworkError.duplicateFavorite
-        }
-        
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidEndpoint
         }
@@ -56,6 +52,12 @@ struct APIService {
         guard (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) else {
             throw if httpResponse.statusCode == 429 {
                 NetworkError.rateLimitExceeded
+            } else if httpResponse.statusCode == 400 {
+                if (String(data: data, encoding: .utf8)!).contains("DUPLICATE_FAVOURITE") {
+                    throw NetworkError.duplicateFavorite
+                } else {
+                    NetworkError.serverError(statusCode: httpResponse.statusCode)
+                }
             } else {
                 NetworkError.serverError(statusCode: httpResponse.statusCode)
             }

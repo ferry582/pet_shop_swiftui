@@ -21,7 +21,11 @@ struct FavoriteView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(viewModel.favorites, id: \.id) { favorite in
-                            FavoriteCellView(favorite: favorite)
+                            FavoriteCellView(favorite: favorite) {
+                                Task {
+                                    await viewModel.deleteFavorite(id: favorite.id)
+                                }
+                            }
                         }
                     }
                 }
@@ -58,9 +62,10 @@ struct FavoriteView: View {
 
 struct FavoriteCellView: View {
     var favorite: Favorite
+    var deleteAction: (() -> Void)? = nil
     
     var body: some View {
-        ZStack {
+        VStack {
             AsyncImage(url: URL(string: favorite.image.url)) { phase in
                 if let image = phase.image {
                     image
@@ -75,23 +80,36 @@ struct FavoriteCellView: View {
             }
             .frame(width: 100, height: 100)
             
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "trash.fill")
-                            .frame(width: 30, height: 30)
-                            .tint(.red)
-                    }
+            
+            Spacer()
+            
+            HStack {
+                Button {
+                    deleteAction?()
+                } label: {
+                    Image(systemName: "trash.fill")
+                        .font(.body)
                 }
+                .frame(maxWidth: 30, maxHeight: 24, alignment: .center)
+                .background(Color.accentColor)
+                .foregroundColor(.red)
+                .cornerRadius(8)
+                
+                Button("Add to Cart") {
+                    
+                }
+                .frame(maxWidth: .infinity, maxHeight: 24, alignment: .center)
+                .font(.system(size: 14, weight: .semibold))
+                .background(Color.accentColor)
+                .foregroundColor(.white)
+                .cornerRadius(8)
             }
+            .padding(.horizontal, 12)
+            .padding(. bottom, 12)
+            
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
         .background(Color.gray.opacity(0.5))
         .cornerRadius(10.0)
-        .padding(.vertical, 6)
     }
 }

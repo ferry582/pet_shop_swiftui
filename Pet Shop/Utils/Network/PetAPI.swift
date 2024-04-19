@@ -13,6 +13,7 @@ enum PetAPI {
     case pets(breedId: Int, page: Int)
     case addFavorite(petId: String, userId: String)
     case favorites(userId: String)
+    case deleteFavorite(id: Int)
 }
 
 extension PetAPI: Endpoint {
@@ -47,8 +48,9 @@ extension PetAPI: Endpoint {
             return "/v1/favourites"
         case .favorites(_):
             return "/v1/favourites"
+        case .deleteFavorite(id: let id):
+            return "/v1/favourites/\(id)"
         }
-        
     }
     
     var queryItems: [URLQueryItem] {
@@ -77,6 +79,8 @@ extension PetAPI: Endpoint {
         switch self {
         case .addFavorite(_, _):
             return "post"
+        case .deleteFavorite(_):
+            return "delete"
         default:
             return "get"
         }

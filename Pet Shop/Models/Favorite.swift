@@ -23,5 +23,5 @@ struct Favorite: Codable, Hashable {
 
 struct FavoriteResponse: Codable {
     let message: String
-    let id: Int
+    let id: Int?
 }
