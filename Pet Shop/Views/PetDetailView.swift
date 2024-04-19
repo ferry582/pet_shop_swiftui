@@ -30,12 +30,13 @@ struct PetDetailView: View {
                 .padding(.horizontal, -16)
                 
                 Text("Breed: \(pet.breeds?[0].name ?? "")")
+                Text("Price: $\(pet.price ?? 0)")
                 
                 Spacer()
                 
                 Button {
                     Task {
-                        await viewModel.addToFavorite(petId: pet.id)
+                        await viewModel.addToFavorite(pet: pet)
                     }
                 } label: {
                     HStack {

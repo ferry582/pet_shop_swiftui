@@ -10,10 +10,11 @@ import Foundation
 struct Favorite: Codable, Hashable {
     let id: Int
     let userId, imageId, subId, createdAt: String
-    let image: Pet
+    var pet: Pet
     
     enum CodingKeys: String, CodingKey {
-        case id, image
+        case id
+        case pet = "image"
         case userId = "user_id"
         case imageId = "image_id"
         case subId = "sub_id"

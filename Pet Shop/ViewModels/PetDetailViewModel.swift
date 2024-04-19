@@ -11,28 +11,35 @@ class PetDetailViewModel: ObservableObject {
     @Published private(set) var isLoading = false
     @Published private(set) var alertMessage = ""
     @Published var isAlertActive = false
-    
     @AppStorage("current_email") private var currentEmail = ""
+    
     private var service = APIService()
     
     @MainActor
-    func addToFavorite(petId: String) async {
+    func addToFavorite(pet: Pet) async {
         isLoading = true
         defer { isLoading = false }
         
         do {
-            let result: FavoriteResponse = try await service.makeRequest(for: PetAPI.addFavorite(petId: petId, userId: currentEmail))
+            let result: FavoriteResponse = try await service.makeRequest(for: PetAPI.addFavorite(petId: pet.id, userId: currentEmail))
             isAlertActive = true
-            
-            self.alertMessage = if result.message == "SUCCESS" {
-                "Added to your favorite"
+            if result.message == "SUCCESS" {
+                self.alertMessage = "Added to your favorite"
+                addFavoriteToDefaults(id: result.id ?? 0, price: pet.price ?? 0)
             } else {
-                "Can't add to your favorite"
+                self.alertMessage = "Can't add to your favorite"
             }
         } catch {
             isAlertActive = true
-            alertMessage = (error as? NetworkError)?.description ?? ""
+            alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
             print(error)
         }
+    }
+    
+    private func addFavoriteToDefaults(id: Int, price: Int) {
+        var favorites = UserDefaults.standard.dictionary(forKey: "favorite_pet") ?? [:]
+        let favorite = [String(id):price]
+        favorites.merge(favorite, uniquingKeysWith: { $1 })
+        UserDefaults.standard.set(favorites, forKey: "favorite_pet")
     }
 }

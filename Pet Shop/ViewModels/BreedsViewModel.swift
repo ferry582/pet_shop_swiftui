@@ -29,7 +29,8 @@ class BreedsViewModel: ObservableObject {
             self.totalData = result.paginationCount
         } catch {
             isAlertActive = true
-            alertMessage = (error as! NetworkError).description
+            alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
+            print(error)
         }
     }
     
@@ -49,7 +50,7 @@ class BreedsViewModel: ObservableObject {
             self.breeds += result
         } catch {
             isAlertActive = true
-            alertMessage = (error as? NetworkError)?.description ?? ""
+            alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
             print(error)
         }
     }

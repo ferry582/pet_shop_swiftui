@@ -13,4 +13,5 @@ struct Pet: Codable, Hashable {
     let breeds: [Breed]?
     let width: Int?
     let height: Int?
+    var price: Int?
 }

@@ -24,12 +24,17 @@ class ListPetViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            let result: (data: [Pet], paginationCount: Int) = try await service.makeRequest(for: PetAPI.pets(breedId: breedId, page: page))
+            var result: (data: [Pet], paginationCount: Int) = try await service.makeRequest(for: PetAPI.pets(breedId: breedId, page: page))
+            
+            for (index, _) in result.data.enumerated() {
+                result.data[index].price = Int.random(in: 50...200)
+            }
+
             self.pets = result.data
             self.totalData = result.paginationCount
         } catch {
             isAlertActive = true
-            alertMessage = (error as? NetworkError)?.description ?? ""
+            alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
             print(error)
         }
     }
@@ -46,17 +51,21 @@ class ListPetViewModel: ObservableObject {
         page += 1
         
         do {
-            let result: [Pet] = try await service.makeRequest(for: PetAPI.pets(breedId: breedId, page: page))
+            var result: [Pet] = try await service.makeRequest(for: PetAPI.pets(breedId: breedId, page: page))
+            
+            for (index, _) in result.enumerated() {
+                result[index].price = Int.random(in: 50...200)
+            }
             
             // Prevent duplicate data
-            for newPet in result {
-                if !petExists(withId: newPet.id) {
-                    pets.append(newPet)
+            for pet in result {
+                if !petExists(withId: pet.id) {
+                    pets.append(pet)
                 }
             }
         } catch {
             isAlertActive = true
-            alertMessage = (error as? NetworkError)?.description ?? ""
+            alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
             print(error)
         }
     }
