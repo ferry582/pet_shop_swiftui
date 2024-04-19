@@ -16,15 +16,6 @@ struct BreedsView: View {
             ScrollView {
                 LazyVStack {
                     HStack {
-                        Text("Discover")
-                            .font(.largeTitle)
-                            .bold()
-                            .padding(.top, 42)
-                            .padding(.bottom, 2)
-                        Spacer()
-                    }
-                    
-                    HStack {
                         Text("Choose the dog breed, that you prefer!")
                             .foregroundColor(Color.textSecondaryColor)
                             .font(.system(size: 18))

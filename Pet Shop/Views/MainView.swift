@@ -8,19 +8,28 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var selection = 1
     
     var body: some View {
         TabView {
-            BreedsView()
-                .tabItem {
-                    Label("Pets", systemImage: "dog")
-                }
+            NavigationView {
+                BreedsView()
+                    .navigationTitle("Discover")
+                    .navigationBarTitleDisplayMode(.large)
+                    .navigationBarBackButtonHidden()
+            }
+            .tabItem {
+                Label("Pets", systemImage: "dog")
+            }
             
-            FavoriteView()
-                .tabItem {
-                    Label("Favorite", systemImage: "star")
-                }
+            NavigationView {
+                FavoriteView()
+                    .navigationTitle("Favorites")
+                    .navigationBarTitleDisplayMode(.large)
+                    .navigationBarBackButtonHidden()
+            }
+            .tabItem {
+                Label("Favorite", systemImage: "star")
+            }   
         }
         .navigationBarBackButtonHidden()
     }

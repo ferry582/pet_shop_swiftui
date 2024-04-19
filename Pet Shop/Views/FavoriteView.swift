@@ -19,20 +19,9 @@ struct FavoriteView: View {
                 Text("Add your favorite pets here!")
             } else {
                 ScrollView {
-                    VStack {
-                        HStack {
-                            Text("Favorites")
-                                .font(.largeTitle)
-                                .bold()
-                                .padding(.top, 42)
-                                .padding(.bottom, 2)
-                            Spacer()
-                        }
-                        
-                        LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(viewModel.favorites, id: \.id) { favorite in
-                                FavoriteCellView(favorite: favorite)
-                            }
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(viewModel.favorites, id: \.id) { favorite in
+                            FavoriteCellView(favorite: favorite)
                         }
                     }
                 }
