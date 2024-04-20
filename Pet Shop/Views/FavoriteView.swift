@@ -100,18 +100,7 @@ struct FavoriteCellView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: favorite.pet.url)) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } else if phase.error != nil {
-                    Image(systemName: "questionmark.diamond")
-                        .imageScale(.large)
-                } else {
-                    ProgressView()
-                }
-            }
+            AsyncImageView(url: favorite.pet.url)
             .frame(width: 100, height: 100)
             
             Text("$\(favorite.pet.price ?? 0)")
@@ -141,7 +130,7 @@ struct FavoriteCellView: View {
                 .cornerRadius(8)
             }
             .padding(.horizontal, 12)
-            .padding(. bottom, 12)
+            .padding(.bottom, 12)
             
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)

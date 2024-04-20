@@ -85,19 +85,8 @@ struct BreedCellView: View {
     var body: some View {
         ZStack {
             HStack {
-                AsyncImage(url: URL(string: imageUrl)) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } else if phase.error != nil {
-                        Image(systemName: "questionmark.diamond")
-                            .imageScale(.large)
-                    } else {
-                        ProgressView()
-                    }
-                }
-                .frame(width: 100, height: 100)
+                AsyncImageView(url: imageUrl)
+                    .frame(width: 100, height: 100)
                 
                 Text("\(breed.name)")
                     .font(.title3)

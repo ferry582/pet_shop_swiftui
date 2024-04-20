@@ -30,6 +30,7 @@
 		E69B62F52BD3AA8C00145F32 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62F42BD3AA8C00145F32 /* SecondaryButton.swift */; };
 		E69B62F72BD3F15C00145F32 /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62F62BD3F15C00145F32 /* AddCardView.swift */; };
 		E69B62F92BD3F1DE00145F32 /* CardPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62F82BD3F1DE00145F32 /* CardPayment.swift */; };
+		E69B62FB2BD41D1D00145F32 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62FA2BD41D1D00145F32 /* AsyncImageView.swift */; };
 		E6C6802C2BCEB65900A5A4E9 /* Pet_ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */; };
 		E6C6802E2BCEB65900A5A4E9 /* BreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */; };
 		E6C680302BCEB65A00A5A4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C6802F2BCEB65A00A5A4E9 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		E69B62F42BD3AA8C00145F32 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		E69B62F62BD3F15C00145F32 /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
 		E69B62F82BD3F1DE00145F32 /* CardPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPayment.swift; sourceTree = "<group>"; };
+		E69B62FA2BD41D1D00145F32 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		E6C680282BCEB65900A5A4E9 /* Pet Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pet Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet_ShopApp.swift; sourceTree = "<group>"; };
 		E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsView.swift; sourceTree = "<group>"; };
@@ -201,8 +203,8 @@
 		E6C680562BCEB67600A5A4E9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E6C6809F2BCF001E00A5A4E9 /* Helper */,
 				E6C680652BCED5D400A5A4E9 /* Extensions */,
+				E6C6809F2BCF001E00A5A4E9 /* Helper */,
 				E6C6805C2BCEB75D00A5A4E9 /* View Components */,
 				E6C6805B2BCEB6F200A5A4E9 /* Network */,
 			);
@@ -276,6 +278,7 @@
 				E62909612BCFD5C800BEDC6A /* LoadingView.swift */,
 				E69B62F22BD389BB00145F32 /* EmptyStateView.swift */,
 				E69B62F42BD3AA8C00145F32 /* SecondaryButton.swift */,
+				E69B62FA2BD41D1D00145F32 /* AsyncImageView.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				E69B62462BD1A3A200145F32 /* FavoriteViewModel.swift in Sources */,
 				E69B62EF2BD2FB0A00145F32 /* CheckoutDetailViewModel.swift in Sources */,
 				E62909582BCFBB1300BEDC6A /* PetAPI.swift in Sources */,
+				E69B62FB2BD41D1D00145F32 /* AsyncImageView.swift in Sources */,
 				E69B62F12BD2FF2000145F32 /* CheckoutCompleteView.swift in Sources */,
 				E69B62422BD1890B00145F32 /* PetDetailViewModel.swift in Sources */,
 				E6C680A32BCFB24900A5A4E9 /* Color+Ext.swift in Sources */,
@@ -625,6 +629,8 @@
 				DEVELOPMENT_TEAM = 72Y28H39U9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pet Shop";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -655,6 +661,8 @@
 				DEVELOPMENT_TEAM = 72Y28H39U9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pet Shop";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

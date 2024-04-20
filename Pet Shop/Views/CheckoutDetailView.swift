@@ -145,10 +145,11 @@ struct CheckoutDetailView: View {
                     Button("Pay") {
                         isPresentCheckoutCompleteView.toggle()
                         delegate?.didCheckoutComplete(for: cart)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
                             dismiss()
                         })
                     }
+                    .disabled(cardInfo.number.isEmpty)
                     .buttonStyle(PrimaryButton())
                     .shadow(radius: 10, y: 28)
                     .padding(.bottom, 12)
@@ -177,18 +178,7 @@ struct CartItemCellView: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: item.pet.url)) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } else if phase.error != nil {
-                    Image(systemName: "questionmark.diamond")
-                        .imageScale(.large)
-                } else {
-                    ProgressView()
-                }
-            }
+            AsyncImageView(url: item.pet.url)
             .frame(width: 45, height: 45)
             
             Text("$\(item.pet.price ?? 0)")

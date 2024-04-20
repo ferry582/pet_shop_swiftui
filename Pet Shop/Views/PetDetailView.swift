@@ -12,46 +12,38 @@ struct PetDetailView: View {
     let pet: Pet
     
     var body: some View {
-        ZStack {
-            VStack {
-                AsyncImage(url: URL(string: pet.url)) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } else if phase.error != nil {
-                        Image(systemName: "questionmark.diamond")
-                            .imageScale(.large)
-                    } else {
-                        ProgressView()
+        GeometryReader { reader in
+            ZStack {
+                VStack {
+                    AsyncImageView(url: pet.url)
+                        .frame(width: reader.size.width, height: 300)
+                        .padding(.horizontal, -16)
+                    
+                    Text("Breed: \(pet.breeds?[0].name ?? "")")
+                    Text("Price: $\(pet.price ?? 0)")
+                    
+                    Spacer()
+                    
+                    Button {
+                        Task {
+                            await viewModel.addToFavorite(pet: pet)
+                        }
+                    } label: {
+                        HStack {
+                            Image(systemName: "star.fill")
+                            Text("Add to Favorite")
+                        }
                     }
+                    .padding(.bottom, 12)
+                    .buttonStyle(PrimaryButton())
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, -16)
-                
-                Text("Breed: \(pet.breeds?[0].name ?? "")")
-                Text("Price: $\(pet.price ?? 0)")
-                
-                Spacer()
-                
-                Button {
-                    Task {
-                        await viewModel.addToFavorite(pet: pet)
-                    }
-                } label: {
-                    HStack {
-                        Image(systemName: "star.fill")
-                        Text("Add to Favorite")
-                    }
+                .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
+                    Button("OK", role: .cancel) { }
                 }
-                .buttonStyle(PrimaryButton())
-            }
-            .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
-                Button("OK", role: .cancel) { }
-            }
-            
-            if viewModel.isLoading {
-                LoadingView()
+                
+                if viewModel.isLoading {
+                    LoadingView()
+                }
             }
         }
         .padding(.horizontal, 16)

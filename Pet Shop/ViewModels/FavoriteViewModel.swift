@@ -28,6 +28,8 @@ class FavoriteViewModel: ObservableObject {
             for (index, _) in result.enumerated() {
                 if let priceFromDefaults = favoritesFromDefaults[String(result[index].id)] {
                     result[index].pet.price = priceFromDefaults as? Int
+                } else {
+                    result[index].pet.price = Int.random(in: 50...200)
                 }
             }
             favorites = result
