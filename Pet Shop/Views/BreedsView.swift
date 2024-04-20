@@ -57,6 +57,10 @@ struct BreedsView: View {
             if viewModel.isLoading {
                 LoadingView()
             }
+            
+            if viewModel.breeds.isEmpty && !viewModel.isLoading {
+                EmptyStateView()
+            }
         }
         .padding(.horizontal, 16)
         .task {

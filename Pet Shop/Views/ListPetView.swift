@@ -62,6 +62,10 @@ struct ListPetView: View {
             if viewModel.isLoading {
                 LoadingView()
             }
+            
+            if viewModel.pets.isEmpty && !viewModel.isLoading {
+               EmptyStateView()
+            }
         }
         .navigationTitle(breed.name)
         .navigationBarTitleDisplayMode(.large)

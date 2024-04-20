@@ -46,14 +46,13 @@ class FavoriteViewModel: ObservableObject {
         do {
             let result: FavoriteResponse = try await service.makeRequest(for: PetAPI.deleteFavorite(id: id))
             
-            isAlertActive = true
             if result.message == "SUCCESS" {
                 if let index = favorites.firstIndex(where: {$0.id == id}) {
                     favorites.remove(at: index)
                 }
                 removeFavoriteFromDefaults(id: id)
-                self.alertMessage = "Removed from favorite"
             } else {
+                isAlertActive = true
                 self.alertMessage = "Can't remove your favorite"
             }
             cart.removeAll(where: { $0.id == id })

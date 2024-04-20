@@ -52,7 +52,15 @@ struct FavoriteView: View {
             }
             
             if viewModel.favorites.isEmpty && !viewModel.isLoading {
-                Text("Add your favorite pets here!")
+                VStack {
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 60))
+                        .padding(.bottom, 8)
+                        .foregroundColor(.gray.opacity(0.5))
+                    Text("Add your favorite pets here! \nAnd take them home with a tap")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.gray)
+                }
             }
             
             if viewModel.isLoading {
@@ -64,7 +72,17 @@ struct FavoriteView: View {
             await viewModel.getFavoritesData()
         }
         .navigationDestination(isPresented: $isNavigateToCheckout) {
-            CheckoutView()
+            CheckoutDetailView(delegate: self, cart: viewModel.cart)
+        }
+    }
+}
+
+extension FavoriteView: CheckoutDetailViewDelegate {
+    func didCheckoutComplete(for cart: [Favorite]) {
+        Task {
+            for item in cart {
+                await viewModel.deleteFavorite(id: item.id)
+            }
         }
     }
 }

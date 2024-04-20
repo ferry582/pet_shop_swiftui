@@ -19,4 +19,8 @@ extension Color {
     static var textSecondaryColor: Color {
         Color("TextSecondary")
     }
+    
+    static var cardBgColor: Color {
+        Color("CardBg")
+    }
 }

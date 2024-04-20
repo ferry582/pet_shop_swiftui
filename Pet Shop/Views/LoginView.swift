@@ -73,7 +73,7 @@ struct LoginView: View {
                 .textInputAutocapitalization(.never)
                 .focused($focusedField, equals: .password)
                 .padding()
-                .background(.textFieldBg)
+                .background(Color.textfieldBgColor)
                 .cornerRadius(16)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
@@ -88,7 +88,7 @@ struct LoginView: View {
                     .textInputAutocapitalization(.never)
                     .focused($focusedField, equals: .confirmPassword)
                     .padding()
-                    .background(.textFieldBg)
+                    .background(Color.textfieldBgColor)
                     .cornerRadius(16)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
