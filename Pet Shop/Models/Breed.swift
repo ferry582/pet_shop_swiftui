@@ -11,11 +11,11 @@ struct Breed: Codable, Hashable {
     let weight, height: Size
     let id: Int
     let name, lifeSpan: String
-    let breedGroup, bredFor: String?
+    let breedGroup, bredFor, origin: String?
     let temperament, referenceImageID: String
 
     enum CodingKeys: String, CodingKey {
-        case weight, height, id, name
+        case weight, height, id, name, origin
         case bredFor = "bred_for"
         case breedGroup = "breed_group"
         case lifeSpan = "life_span"

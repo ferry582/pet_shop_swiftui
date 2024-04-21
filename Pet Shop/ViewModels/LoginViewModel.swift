@@ -30,7 +30,6 @@ class LoginViewModel: ObservableObject {
             haveAccountMessage = "Already have an account?"
             haveAccountButton = "Log In"
         }
-        
     }
     
     func logInSignUpClicked(email: String, password: String, confirmPassword: String) {

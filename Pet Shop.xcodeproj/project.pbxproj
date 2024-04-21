@@ -31,6 +31,7 @@
 		E69B62F72BD3F15C00145F32 /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62F62BD3F15C00145F32 /* AddCardView.swift */; };
 		E69B62F92BD3F1DE00145F32 /* CardPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62F82BD3F1DE00145F32 /* CardPayment.swift */; };
 		E69B62FB2BD41D1D00145F32 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62FA2BD41D1D00145F32 /* AsyncImageView.swift */; };
+		E69B62FD2BD4D62600145F32 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62FC2BD4D62600145F32 /* View+Ext.swift */; };
 		E6C6802C2BCEB65900A5A4E9 /* Pet_ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */; };
 		E6C6802E2BCEB65900A5A4E9 /* BreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */; };
 		E6C680302BCEB65A00A5A4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C6802F2BCEB65A00A5A4E9 /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 		E69B62F62BD3F15C00145F32 /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
 		E69B62F82BD3F1DE00145F32 /* CardPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPayment.swift; sourceTree = "<group>"; };
 		E69B62FA2BD41D1D00145F32 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		E69B62FC2BD4D62600145F32 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		E6C680282BCEB65900A5A4E9 /* Pet Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pet Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet_ShopApp.swift; sourceTree = "<group>"; };
 		E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsView.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			children = (
 				E6C680662BCED5E200A5A4E9 /* String+Ext.swift */,
 				E6C680A22BCFB24900A5A4E9 /* Color+Ext.swift */,
+				E69B62FC2BD4D62600145F32 /* View+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				E6C680642BCECD5100A5A4E9 /* LoginViewModel.swift in Sources */,
 				E62909A52BD134FB00BEDC6A /* FavoriteView.swift in Sources */,
 				E6C680622BCECBB300A5A4E9 /* PrimaryButton.swift in Sources */,
+				E69B62FD2BD4D62600145F32 /* View+Ext.swift in Sources */,
 				E62909642BD0220900BEDC6A /* Pet.swift in Sources */,
 				E6C680602BCEC1EB00A5A4E9 /* LoginView.swift in Sources */,
 				E6C6805E2BCEBD2200A5A4E9 /* SplashScreenView.swift in Sources */,

@@ -99,7 +99,7 @@ struct CheckoutDetailView: View {
                                 }
                             }
                             .buttonStyle(SecondaryButton())
-                            .frame(width: reader.size.width - 32, height: 54)
+                            .frame(width: reader.size.width <= 0 ? 0 : (reader.size.width - 32), height: 54)
                             .padding(.bottom, 78)
                         } else {
                             VStack {

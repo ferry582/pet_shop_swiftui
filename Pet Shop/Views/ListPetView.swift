@@ -81,7 +81,7 @@ struct ListPetView: View {
 }
 
 #Preview {
-    ListPetView(breed: Breed(weight: Size(imperial: "", metric: ""), height: Size(imperial: "", metric: ""), id: 1, name: "", lifeSpan: "", breedGroup: "", bredFor: "", temperament: "", referenceImageID: ""))
+    ListPetView(breed: Breed(weight: Size(imperial: "", metric: ""), height: Size(imperial: "", metric: ""), id: 1, name: "", lifeSpan: "", breedGroup: "", bredFor: "", origin: "", temperament: "", referenceImageID: ""))
 }
 
 
