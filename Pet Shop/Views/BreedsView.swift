@@ -17,11 +17,15 @@ struct BreedsView: View {
             ScrollView {
                 LazyVStack {
                     HStack {
-                        Text("Find your perfect match! ")
+                        Text("Find your perfect match!")
+                            .foregroundColor(Color.textSecondaryColor)
+                            .font(.system(size: 18)) +
+                        
+                        Text(" Choose a dog breed ")
                             .foregroundColor(Color.primaryColor)
                             .font(.system(size: 18, weight: .semibold)) +
-                        
-                        Text("Choose a Dog Breed to explore available companions.")
+
+                        Text("to explore available companions.")
                             .foregroundColor(Color.textSecondaryColor)
                             .font(.system(size: 18))
                         

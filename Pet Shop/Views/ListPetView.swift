@@ -21,11 +21,11 @@ struct ListPetView: View {
                 ScrollView {
                     VStack {
                         HStack {
-                            Text("Browse through dogs! And mark your")
+                            Text("Browse through dogs!")
                                 .foregroundColor(Color.textSecondaryColor)
                                 .font(.system(size: 18)) +
                             
-                            Text(" favorites ")
+                            Text(" And mark your favorites ")
                                 .foregroundColor(Color.primaryColor)
                                 .font(.system(size: 18, weight: .semibold)) +
                             
@@ -121,7 +121,7 @@ struct PetCellView: View {
             .frame(width: 54, height: 26)
             .background(Color.primaryColor)
             .cornerRadius(6)
-            .offset(x: 36, y: 70)
+            .offset(x: (cellWidth-100)/2, y: 70)
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         .background(Color.cardBgColor)

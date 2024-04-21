@@ -62,7 +62,8 @@ class BreedsViewModel: ObservableObject {
             return result.url
         } catch {
             isAlertActive = true
-            alertMessage = (error as! NetworkError).description
+            alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
+            print(error)
             return ""
         }
     }

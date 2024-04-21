@@ -8,71 +8,95 @@
 import SwiftUI
 
 struct FavoriteView: View {
+    @Environment(\.colorScheme) var colorScheme
     @StateObject private var viewModel = FavoriteViewModel()
     @State private var isNavigateToCheckout = false
     
-    private let columns = Array(repeating: GridItem(.flexible()), count: 2)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 2)
     
     var body: some View {
-        ZStack {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(viewModel.favorites, id: \.id) { favorite in
-                        FavoriteCellView(favorite: favorite, deleteAction: {
-                            Task {
-                                await viewModel.deleteFavorite(id: favorite.id)
+        GeometryReader { reader in
+            ZStack {
+                ScrollView {
+                    VStack {
+                        HStack {
+                            Text("Ready to bring home your favorites?")
+                                .foregroundColor(Color.textSecondaryColor)
+                                .font(.system(size: 18)) +
+                            
+                            Text(" Add dogs to your cart ")
+                                .foregroundColor(Color.primaryColor)
+                                .font(.system(size: 18, weight: .semibold)) +
+                            
+                            Text("for easy checkout.")
+                                .foregroundColor(Color.textSecondaryColor)
+                                .font(.system(size: 18))
+                            
+                            Spacer()
+                        }
+                        .padding(.bottom, 16)
+                        
+                        LazyVGrid(columns: columns, spacing: 16) {
+                            ForEach(viewModel.favorites, id: \.id) { favorite in
+                                FavoriteCellView(favorite: favorite, cellWidth: (reader.size.width-46) / 2, deleteAction: {
+                                    Task {
+                                        await viewModel.deleteFavorite(id: favorite.id)
+                                    }
+                                }, addToCartAction: {
+                                    viewModel.addToCart(of: favorite)
+                                })
                             }
-                        }, addToCartAction: {
-                            viewModel.addToCart(of: favorite)
-                        })
+                        }
+                        .padding(.bottom, 78)
                     }
                 }
-                .padding(.bottom, 78)
-            }
-            .scrollIndicators(.hidden)
-            .refreshable {
-                viewModel.refreshedTriggered()
-                Task {
-                    await viewModel.getFavoritesData()
-                }
-            }
-            .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
-                Button("OK", role: .cancel) { }
-            }
-            
-            if !viewModel.cart.isEmpty {
-                VStack {
-                    Spacer ()
-                    Button("Checkout (\(viewModel.cart.count))") {
-                        isNavigateToCheckout.toggle()
+                .padding(.horizontal, 16)
+                .scrollIndicators(.hidden)
+                .refreshable {
+                    viewModel.refreshedTriggered()
+                    Task {
+                        await viewModel.getFavoritesData()
                     }
-                    .buttonStyle(PrimaryButton())
-                    .padding(.bottom, 12)
+                }
+                .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
+                    Button("OK", role: .cancel) { }
+                }
+                
+                if !viewModel.cart.isEmpty {
+                    VStack {
+                        Spacer ()
+                        Button("Checkout (\(viewModel.cart.count))") {
+                            isNavigateToCheckout.toggle()
+                        }
+                        .buttonStyle(PrimaryButton())
+                        .padding(.bottom, 12)
+                        .padding(.horizontal, 16)
+                    }
+                }
+                
+                if viewModel.favorites.isEmpty && !viewModel.isLoading {
+                    VStack {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 60))
+                            .padding(.bottom, 8)
+                            .foregroundColor(.gray.opacity(0.5))
+                        Text("Add your favorite pets here! \nAnd take them home with a tap")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                    }
+                }
+                
+                if viewModel.isLoading {
+                    LoadingView()
                 }
             }
-            
-            if viewModel.favorites.isEmpty && !viewModel.isLoading {
-                VStack {
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 60))
-                        .padding(.bottom, 8)
-                        .foregroundColor(.gray.opacity(0.5))
-                    Text("Add your favorite pets here! \nAnd take them home with a tap")
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.gray)
-                }
+            .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
+            .task {
+                await viewModel.getFavoritesData()
             }
-            
-            if viewModel.isLoading {
-                LoadingView()
+            .navigationDestination(isPresented: $isNavigateToCheckout) {
+                CheckoutDetailView(delegate: self, cart: viewModel.cart)
             }
-        }
-        .padding(.horizontal, 16)
-        .task {
-            await viewModel.getFavoritesData()
-        }
-        .navigationDestination(isPresented: $isNavigateToCheckout) {
-            CheckoutDetailView(delegate: self, cart: viewModel.cart)
         }
     }
 }
@@ -95,46 +119,59 @@ struct FavoriteCellView: View {
     @State private var isAddedToCart = false
     
     var favorite: Favorite
+    let cellWidth: CGFloat
     var deleteAction: (() -> Void)? = nil
     var addToCartAction: (() -> Void)? = nil
     
     var body: some View {
-        VStack {
-            AsyncImageView(url: favorite.pet.url)
-            .frame(width: 100, height: 100)
+        ZStack {
+            VStack {
+                AsyncImageView(url: favorite.pet.url)
+                    .frame(width: cellWidth-16, height: 160, alignment: .center)
+                    .clipped()
+                    .cornerRadius(18)
+                    .padding(.top, 8)
+                    .padding(.bottom, 4)
+                
+                HStack {
+                    Button {
+                        deleteAction?()
+                    } label: {
+                        Image(systemName: "trash")
+                            .font(.system(size: 14))
+                    }
+                    .frame(width: (cellWidth-16) * 0.25, height: 32)
+                    .background(Color.clear)
+                    .foregroundColor(Color.primaryColor)
+                    .cornerRadius(14)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.primaryColor, lineWidth: 1)
+                    )
+                    
+                    Button(isAddedToCart == false ? "Add to Cart" : "Remove") {
+                        isAddedToCart.toggle()
+                        addToCartAction?()
+                    }
+                    .frame(width: (cellWidth-16) * 0.7, height: 32)
+                    .font(.system(size: 14, weight: .semibold))
+                    .background(isAddedToCart == false ? Color.accentColor : Color.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(14)
+                }
+                .padding(.bottom, 12)
+            }
             
             Text("$\(favorite.pet.price ?? 0)")
-            
-            Spacer()
-            
-            HStack {
-                Button {
-                    deleteAction?()
-                } label: {
-                    Image(systemName: "trash.fill")
-                        .font(.body)
-                }
-                .frame(maxWidth: 30, maxHeight: 24, alignment: .center)
-                .background(Color.accentColor)
-                .foregroundColor(.red)
-                .cornerRadius(8)
-                
-                Button(isAddedToCart == false ? "Add to Cart" : "Remove from cart") {
-                    isAddedToCart.toggle()
-                    addToCartAction?()
-                }
-                .frame(maxWidth: .infinity, maxHeight: 24, alignment: .center)
-                .font(.system(size: 14, weight: .semibold))
-                .background(Color.accentColor)
-                .foregroundColor(.white)
-                .cornerRadius(8)
-            }
-            .padding(.horizontal, 12)
-            .padding(.bottom, 12)
-            
+                .foregroundColor(Color.white)
+                .font(.system(size: 16, weight: .bold))
+                .frame(width: 54, height: 26)
+                .shadow(color: .black, radius: 5)
+                .offset(x: (cellWidth-80)/2, y: -85)
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-        .background(isAddedToCart == false ? Color.gray.opacity(0.5) : Color.primaryColor.opacity(0.5))
-        .cornerRadius(10.0)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        .background(Color.cardBgColor)
+        .background(isAddedToCart == false ? Color.cardBgColor : Color.primaryColor.opacity(0.5))
+        .cornerRadius(24)
     }
 }
