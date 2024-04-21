@@ -11,16 +11,18 @@ struct CheckoutCompleteView: View {
     var body: some View {
         VStack(spacing: 10) {
             Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 60))
-                .foregroundColor(Color.green)
+                .font(.system(size: 120))
+                .foregroundColor(Color.primaryColor)
             
             Text("Congratulations")
                 .font(.title)
+                .bold()
             
-            Text("Your order has been\nsuccessfully placed.")
+            Text("Your order has been successfully placed.")
                 .multilineTextAlignment(.center)
             
-            Text("Order ID is **334390241**")
+            let orderId = String(Int.random(in: 100000...999999))
+            Text("Order ID is **\(orderId)**")
         }
     }
 }

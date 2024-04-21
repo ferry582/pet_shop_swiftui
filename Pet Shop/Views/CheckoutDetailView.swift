@@ -28,7 +28,7 @@ struct CheckoutDetailView: View {
                     Section("Items") {
                         LazyVStack {
                             ForEach(cart, id: \.id) { item in
-                                CartItemCellView(item: item)
+                                CartItemCellView(item: item, viewModel: viewModel)
                             }
                         }
                     }
@@ -156,6 +156,13 @@ struct CheckoutDetailView: View {
                     .padding(.horizontal, 16)
                 }
             }
+            
+            if viewModel.isLoading {
+                LoadingView()
+            }
+        }
+        .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
+            Button("OK", role: .cancel) { }
         }
         .navigationTitle("Order Details")
         .navigationBarTitleDisplayMode(.large)
@@ -175,20 +182,42 @@ struct CheckoutDetailView: View {
 
 struct CartItemCellView: View {
     let item: Favorite
+    var viewModel: CheckoutDetailViewModel
+    
+    @State private var name: String = ""
     
     var body: some View {
         HStack {
             AsyncImageView(url: item.pet.url)
-            .frame(width: 45, height: 45)
+                .frame(width: 70, height: 70, alignment: .center)
+                .clipped()
+                .cornerRadius(12)
+                .padding(.vertical, 12)
+                .padding(.leading, 12)
             
-            Text("$\(item.pet.price ?? 0)")
+            VStack(alignment: .leading, spacing: 4) {
+                Text(name)
+                    .font(.system(size: 18, weight: .medium))
+                    .lineLimit(2)
+                    .foregroundColor(Color.textPrimaryColor)
+                    .multilineTextAlignment(.leading)
+                
+                Text("$\(item.pet.price ?? 0)")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(Color.textSecondaryColor)
+                    .multilineTextAlignment(.leading)
+            }
+            .padding(12)
             
             Spacer()
-            
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-        .background(Color.cardBg)
+        .task {
+            name = await viewModel.getBreedNameData(petId: item.imageId)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        .background(Color.cardBgColor)
         .cornerRadius(16)
+        .padding(.bottom, 12)
     }
 }
 

@@ -8,9 +8,14 @@
 import Foundation
 
 class CheckoutDetailViewModel: ObservableObject {
-    @Published var totalPrice = 0
-    @Published var totalTax: Double = 0
-    @Published var totalFee: Double = 0
+    @Published private(set) var totalPrice = 0
+    @Published private(set) var totalTax: Double = 0
+    @Published private(set) var totalFee: Double = 0
+    @Published private(set) var isLoading = false
+    @Published private(set) var alertMessage = ""
+    @Published var isAlertActive = false
+    
+    private var service = APIService()
     
     func calculatePayment(cart: [Favorite]) {
         let total = cart.reduce(0) { $0 + ($1.pet.price ?? 0) }
@@ -19,5 +24,18 @@ class CheckoutDetailViewModel: ObservableObject {
         totalPrice = total
         totalTax = tax
         totalFee = fee
+    }
+    
+    @MainActor
+    func getBreedNameData(petId: String) async -> String {
+        do {
+            let result: Pet = try await service.makeRequest(for: PetAPI.pet(petId: petId))
+            return result.breeds?[0].name ?? "-"
+        } catch {
+            isAlertActive = true
+            alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
+            print(error)
+            return ""
+        }
     }
 }
