@@ -20,6 +20,10 @@ extension Color {
         Color("TextSecondary")
     }
     
+    static var textPrimaryColor: Color {
+        Color("TextPrimary")
+    }
+    
     static var cardBgColor: Color {
         Color("CardBg")
     }

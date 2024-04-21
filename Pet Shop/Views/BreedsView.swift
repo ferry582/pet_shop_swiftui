@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BreedsView: View {
+    @Environment(\.colorScheme) var colorScheme
     @StateObject private var viewModel = BreedsViewModel()
     @State private var hasAppeared = false
     
@@ -23,9 +24,10 @@ struct BreedsView: View {
                         Text("Choose a Dog Breed to explore available companions.")
                             .foregroundColor(Color.textSecondaryColor)
                             .font(.system(size: 18))
-
+                        
                         Spacer()
                     }
+                    .padding(.bottom, 16)
                     
                     ForEach(viewModel.breeds, id: \.id) { breed in
                         NavigationLink {
@@ -41,6 +43,7 @@ struct BreedsView: View {
                     }
                 }
             }
+            .padding(.horizontal, 16)
             .scrollIndicators(.hidden)
             .refreshable {
                 viewModel.refreshedTriggered()
@@ -67,7 +70,7 @@ struct BreedsView: View {
                 EmptyStateView()
             }
         }
-        .padding(.horizontal, 16)
+        .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
         .task {
             if !hasAppeared {
                 await viewModel.getBreedsData()
@@ -88,23 +91,45 @@ struct BreedCellView: View {
     @State private var imageUrl = ""
     
     var body: some View {
-        ZStack {
-            HStack {
-                AsyncImageView(url: imageUrl)
-                    .frame(width: 100, height: 100)
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(breed.name)
+                    .font(.system(size: 20, weight: .semibold))
+                    .lineLimit(2)
+                    .foregroundColor(Color.textPrimaryColor)
+                    .multilineTextAlignment(.leading)
+                    .padding(.top, 12)
                 
-                Text("\(breed.name)")
-                    .font(.title3)
-            }
-            .onAppear {
-                Task {
-                    imageUrl = await viewModel.getBreedImageData(petId: breed.referenceImageID)
+                Text(breed.temperament)
+                    .font(.system(size: 14, weight: .regular))
+                    .foregroundColor(Color.textSecondaryColor)
+                    .lineLimit(4)
+                    .multilineTextAlignment(.leading)
+                Spacer()
+                HStack {
+                    Image("scale")
+                    Text("\(breed.weight.imperial) lbs")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(Color.textSecondaryColor)
                 }
+                .padding(.bottom, 12)
             }
+            .padding(12)
+            
+            Spacer()
+            
+            AsyncImageView(url: imageUrl)
+                .frame(width: 140, height: 150, alignment: .center)
+                .clipped()
+                .cornerRadius(20)
+                .padding(12)
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-        .background(Color.gray.opacity(0.5))
-        .cornerRadius(10.0)
-        .padding(.vertical, 6)
+        .task {
+            imageUrl = await viewModel.getBreedImageData(petId: breed.referenceImageID)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        .background(Color.cardBgColor)
+        .cornerRadius(24)
+        .padding(.bottom, 12)
     }
 }

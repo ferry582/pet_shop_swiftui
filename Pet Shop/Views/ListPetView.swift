@@ -106,14 +106,12 @@ struct PetCellView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                AsyncImageView(url: pet.url)
-                    .frame(width: cellWidth-16, height: 160, alignment: .center)
-                    .clipped()
-                    .cornerRadius(18)
-                    .padding(.top, 8)
-                    .padding(.bottom, 24)
-            }
+            AsyncImageView(url: pet.url)
+                .frame(width: cellWidth-16, height: 160, alignment: .center)
+                .clipped()
+                .cornerRadius(18)
+                .padding(.top, 8)
+                .padding(.bottom, 24)
             
             HStack {
                 Text("$\(pet.price ?? 0)")
