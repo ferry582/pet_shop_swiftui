@@ -23,16 +23,21 @@ class FavoriteViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            var result: [Favorite] = try await service.makeRequest(for: PetAPI.favorites(userId: currentEmail))
-            let favoritesFromDefaults = getFavoriteFromDefaults()
-            for (index, _) in result.enumerated() {
-                if let priceFromDefaults = favoritesFromDefaults[String(result[index].id)] {
-                    result[index].pet.price = priceFromDefaults as? Int
-                } else {
-                    result[index].pet.price = Int.random(in: 50...200)
+            if !currentEmail.isEmpty {
+                var result: [Favorite] = try await service.makeRequest(for: PetAPI.favorites(userId: currentEmail))
+                let favoritesFromDefaults = getFavoriteFromDefaults()
+                for (index, _) in result.enumerated() {
+                    if let priceFromDefaults = favoritesFromDefaults[String(result[index].id)] {
+                        result[index].pet.price = priceFromDefaults as? Int
+                    } else {
+                        result[index].pet.price = Int.random(in: 50...200)
+                    }
                 }
+                favorites = result
+            } else {
+                isAlertActive = true
+                alertMessage = "User data not found!"
             }
-            favorites = result
         } catch {
             isAlertActive = true
             alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
