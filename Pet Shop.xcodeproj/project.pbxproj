@@ -27,7 +27,6 @@
 		E68422D22BD80CA200C9FAA7 /* MockURLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68422D12BD80CA200C9FAA7 /* MockURLSessionProtocol.swift */; };
 		E68422D62BD80F5700C9FAA7 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68422D52BD80F5700C9FAA7 /* APIServiceTests.swift */; };
 		E68422D82BD8185C00C9FAA7 /* BreedsData.json in Resources */ = {isa = PBXBuildFile; fileRef = E68422D72BD8185B00C9FAA7 /* BreedsData.json */; };
-		E68422DB2BD81B8B00C9FAA7 /* StaticJSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68422DA2BD81B8B00C9FAA7 /* StaticJSONMapper.swift */; };
 		E69B62422BD1890B00145F32 /* PetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */; };
 		E69B62442BD18D5200145F32 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62432BD18D5200145F32 /* Favorite.swift */; };
 		E69B62462BD1A3A200145F32 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */; };
@@ -94,7 +93,6 @@
 		E68422D12BD80CA200C9FAA7 /* MockURLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionProtocol.swift; sourceTree = "<group>"; };
 		E68422D52BD80F5700C9FAA7 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		E68422D72BD8185B00C9FAA7 /* BreedsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BreedsData.json; sourceTree = "<group>"; };
-		E68422DA2BD81B8B00C9FAA7 /* StaticJSONMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticJSONMapper.swift; sourceTree = "<group>"; };
 		E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewModel.swift; sourceTree = "<group>"; };
 		E69B62432BD18D5200145F32 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
@@ -178,12 +176,189 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		E68422D92BD81B7E00C9FAA7 /* Mapper */ = {
+		E68422DC2BD83B5E00C9FAA7 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				E68422DA2BD81B8B00C9FAA7 /* StaticJSONMapper.swift */,
+				E68422EE2BD83C4300C9FAA7 /* Checkout */,
+				E68422EB2BD83C2100C9FAA7 /* Favorite */,
+				E68422E82BD83BFD00C9FAA7 /* Pet Detail */,
+				E68422E52BD83BCB00C9FAA7 /* Pets */,
+				E68422E22BD83BA900C9FAA7 /* Breeds */,
+				E68422DF2BD83B8900C9FAA7 /* Login */,
+				E68422DD2BD83B7100C9FAA7 /* Main */,
 			);
-			path = Mapper;
+			path = Module;
+			sourceTree = "<group>";
+		};
+		E68422DD2BD83B7100C9FAA7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E68422DE2BD83B7800C9FAA7 /* Views */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E68422DE2BD83B7800C9FAA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E6C6805D2BCEBD2200A5A4E9 /* SplashScreenView.swift */,
+				E62909A22BD134DE00BEDC6A /* MainView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E68422DF2BD83B8900C9FAA7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E68422E12BD83B9600C9FAA7 /* Views */,
+				E68422E02BD83B8F00C9FAA7 /* View Models */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E68422E02BD83B8F00C9FAA7 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				E6C680632BCECD5100A5A4E9 /* LoginViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		E68422E12BD83B9600C9FAA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E6C6805F2BCEC1EB00A5A4E9 /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E68422E22BD83BA900C9FAA7 /* Breeds */ = {
+			isa = PBXGroup;
+			children = (
+				E68422E42BD83BB800C9FAA7 /* Views */,
+				E68422E32BD83BB200C9FAA7 /* View Models */,
+			);
+			path = Breeds;
+			sourceTree = "<group>";
+		};
+		E68422E32BD83BB200C9FAA7 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				E629095F2BCFD19400BEDC6A /* BreedsViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		E68422E42BD83BB800C9FAA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E68422E52BD83BCB00C9FAA7 /* Pets */ = {
+			isa = PBXGroup;
+			children = (
+				E68422E72BD83BEA00C9FAA7 /* Views */,
+				E68422E62BD83BE500C9FAA7 /* View Models */,
+			);
+			path = Pets;
+			sourceTree = "<group>";
+		};
+		E68422E62BD83BE500C9FAA7 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				E62909672BD0C77500BEDC6A /* ListPetViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		E68422E72BD83BEA00C9FAA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E62909652BD0282800BEDC6A /* ListPetView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E68422E82BD83BFD00C9FAA7 /* Pet Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E68422EA2BD83C0900C9FAA7 /* Views */,
+				E68422E92BD83C0300C9FAA7 /* View Models */,
+			);
+			path = "Pet Detail";
+			sourceTree = "<group>";
+		};
+		E68422E92BD83C0300C9FAA7 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		E68422EA2BD83C0900C9FAA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E62909692BD0DBDD00BEDC6A /* PetDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E68422EB2BD83C2100C9FAA7 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				E68422ED2BD83C3700C9FAA7 /* Views */,
+				E68422EC2BD83C2900C9FAA7 /* View Models */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		E68422EC2BD83C2900C9FAA7 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		E68422ED2BD83C3700C9FAA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E62909A42BD134FB00BEDC6A /* FavoriteView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E68422EE2BD83C4300C9FAA7 /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				E66187D62BD7CC04004D42E5 /* Validators */,
+				E68422F02BD83C5500C9FAA7 /* Views */,
+				E68422EF2BD83C4E00C9FAA7 /* View Models */,
+			);
+			path = Checkout;
+			sourceTree = "<group>";
+		};
+		E68422EF2BD83C4E00C9FAA7 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				E66187D92BD7D1A5004D42E5 /* AddCardViewModel.swift */,
+				E69B62EE2BD2FB0A00145F32 /* CheckoutDetailViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		E68422F02BD83C5500C9FAA7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E69B62F02BD2FF2000145F32 /* CheckoutCompleteView.swift */,
+				E69B62EC2BD2FAB900145F32 /* CheckoutDetailView.swift */,
+				E69B62F62BD3F15C00145F32 /* AddCardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E6C6801F2BCEB65900A5A4E9 = {
@@ -210,8 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				E6C680552BCEB66400A5A4E9 /* App */,
-				E6C680592BCEB68C00A5A4E9 /* Views */,
-				E6C6805A2BCEB69000A5A4E9 /* ViewModels */,
+				E68422DC2BD83B5E00C9FAA7 /* Module */,
 				E6C680572BCEB67A00A5A4E9 /* Models */,
 				E6C680562BCEB67600A5A4E9 /* Utils */,
 				E6C680582BCEB67F00A5A4E9 /* Supporting Files */,
@@ -257,8 +431,6 @@
 		E6C680562BCEB67600A5A4E9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E68422D92BD81B7E00C9FAA7 /* Mapper */,
-				E66187D62BD7CC04004D42E5 /* Validators */,
 				E6C680652BCED5D400A5A4E9 /* Extensions */,
 				E6C6809F2BCF001E00A5A4E9 /* Helper */,
 				E6C6805C2BCEB75D00A5A4E9 /* View Components */,
@@ -287,37 +459,6 @@
 				E6C6802F2BCEB65A00A5A4E9 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E6C680592BCEB68C00A5A4E9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */,
-				E6C6805D2BCEBD2200A5A4E9 /* SplashScreenView.swift */,
-				E6C6805F2BCEC1EB00A5A4E9 /* LoginView.swift */,
-				E62909652BD0282800BEDC6A /* ListPetView.swift */,
-				E62909692BD0DBDD00BEDC6A /* PetDetailView.swift */,
-				E62909A22BD134DE00BEDC6A /* MainView.swift */,
-				E62909A42BD134FB00BEDC6A /* FavoriteView.swift */,
-				E69B62EC2BD2FAB900145F32 /* CheckoutDetailView.swift */,
-				E69B62F02BD2FF2000145F32 /* CheckoutCompleteView.swift */,
-				E69B62F62BD3F15C00145F32 /* AddCardView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		E6C6805A2BCEB69000A5A4E9 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				E6C680632BCECD5100A5A4E9 /* LoginViewModel.swift */,
-				E629095F2BCFD19400BEDC6A /* BreedsViewModel.swift */,
-				E62909672BD0C77500BEDC6A /* ListPetViewModel.swift */,
-				E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */,
-				E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */,
-				E69B62EE2BD2FB0A00145F32 /* CheckoutDetailViewModel.swift */,
-				E66187D92BD7D1A5004D42E5 /* AddCardViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		E6C6805B2BCEB6F200A5A4E9 /* Network */ = {
@@ -514,7 +655,6 @@
 				E69B62F92BD3F1DE00145F32 /* CardPayment.swift in Sources */,
 				E69B62442BD18D5200145F32 /* Favorite.swift in Sources */,
 				E62909662BD0282800BEDC6A /* ListPetView.swift in Sources */,
-				E68422DB2BD81B8B00C9FAA7 /* StaticJSONMapper.swift in Sources */,
 				E629095C2BCFBC9C00BEDC6A /* APIService.swift in Sources */,
 				E69B62F52BD3AA8C00145F32 /* SecondaryButton.swift in Sources */,
 				E62909622BCFD5C800BEDC6A /* LoadingView.swift in Sources */,

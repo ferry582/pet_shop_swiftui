@@ -14,9 +14,13 @@ class BreedsViewModel: ObservableObject {
     @Published private(set) var alertMessage = ""
     @Published var isAlertActive = false
     
+    private let apiService: DataService!
     private var page = 0
-    private var service = APIService()
     private var totalData = 0
+    
+    init(apiService: DataService = APIService.shared) {
+        self.apiService = apiService
+    }
     
     @MainActor
     func getBreedsData() async {
@@ -24,7 +28,7 @@ class BreedsViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            let result: (data: [Breed], paginationCount: Int) = try await service.makeRequest(for: PetAPI.breeds(page: page))
+            let result: (data: [Breed], paginationCount: Int) = try await apiService.makeRequest(session: .shared, for: PetAPI.breeds(page: page))
             self.breeds = result.data
             self.totalData = result.paginationCount
         } catch {
@@ -46,7 +50,7 @@ class BreedsViewModel: ObservableObject {
         page += 1
         
         do {
-            let result: [Breed] = try await service.makeRequest(for: PetAPI.breeds(page: page))
+            let result: [Breed] = try await apiService.makeRequest(session: .shared, for: PetAPI.breeds(page: page))
             self.breeds += result
         } catch {
             isAlertActive = true
@@ -58,7 +62,7 @@ class BreedsViewModel: ObservableObject {
     @MainActor
     func getBreedImageData(petId: String) async -> String {
         do {
-            let result: Pet = try await service.makeRequest(for: PetAPI.pet(petId: petId))
+            let result: Pet = try await apiService.makeRequest(session: .shared, for: PetAPI.pet(petId: petId))
             return result.url
         } catch {
             isAlertActive = true

@@ -40,8 +40,13 @@ final class APIServiceTests: XCTestCase {
         
         let result: [Breed] = try await APIService.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
         
-        let staticJson = try StaticJSONMapper.decode(file: "BreedsData", type: [Breed].self)
-        XCTAssertEqual(result, staticJson)
+        do {
+            let staticJson = try JSONDecoder().decode([Breed].self, from: data)
+            XCTAssertEqual(result, staticJson)
+        } catch {
+            XCTFail("Failed to parse static json to breed data")
+        }
+        
     }
     
     func test_with_unsuccessful_response_code_in_invalid_range_is_invalid() async {
