@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: Error, Equatable {
     case unableToGenerateRequest
     case invalidEndpoint
     case parsingError
@@ -36,14 +36,21 @@ enum NetworkError: Error {
     }
 }
 
-struct APIService {
+protocol DataService {
+    func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> T
+    func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> (data: T, paginationCount: Int)
+}
+
+struct APIService: DataService {
     
-    func makeRequest<T: Codable>(for endpoint: Endpoint) async throws -> T {
+    static let shared = APIService()
+    
+    func makeRequest<T: Codable>(session: URLSession = .shared, for endpoint: Endpoint) async throws -> T {
         guard let request = endpoint.generateURLRequest() else {
             throw NetworkError.unableToGenerateRequest
         }
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidEndpoint
@@ -72,12 +79,12 @@ struct APIService {
         }
     }
     
-    func makeRequest<T: Codable>(for endpoint: Endpoint) async throws -> (data: T, paginationCount: Int) {
+    func makeRequest<T: Codable>(session: URLSession = .shared, for endpoint: Endpoint) async throws -> (data: T, paginationCount: Int) {
         guard let request = endpoint.generateURLRequest() else {
             throw NetworkError.unableToGenerateRequest
         }
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidEndpoint

@@ -89,8 +89,12 @@ extension PetAPI: Endpoint {
     var body: Data? {
         switch self {
         case .addFavorite(petId: let petId, userId: let userId):
-            let params = "{\n\t\"image_id\":\"\(petId)\",\n\t\"sub_id\": \"\(userId)\"\n}"
-            return params.data(using: .utf8)
+            let body: [String: Any] = [
+                "image_id": "\(petId)",
+                "sub_id": "\(userId)"
+            ]
+            let bodyData = try? JSONSerialization.data(withJSONObject: body)
+            return bodyData
         default:
             return nil
         }
