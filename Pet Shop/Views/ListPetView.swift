@@ -26,7 +26,7 @@ struct ListPetView: View {
                                 .font(.system(size: 18)) +
                             
                             Text(" And mark your favorites ")
-                                .foregroundColor(Color.primaryColor)
+                                .foregroundColor(Color.appPrimaryColor)
                                 .font(.system(size: 18, weight: .semibold)) +
                             
                             Text("for later purchase.")
@@ -119,7 +119,7 @@ struct PetCellView: View {
                     .font(.system(size: 13, weight: .medium))
             }
             .frame(width: 54, height: 26)
-            .background(Color.secondaryColor)
+            .background(Color.appSecondaryColor)
             .cornerRadius(6)
             .offset(x: (cellWidth-100)/2, y: 70)
         }

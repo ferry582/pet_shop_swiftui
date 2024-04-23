@@ -48,7 +48,7 @@ struct LoginView: View {
                 
                 VStack {
                     Text(viewModel.title)
-                        .foregroundColor(Color.primaryColor)
+                        .foregroundColor(Color.appPrimaryColor)
                         .font(.custom("LeckerliOne-Regular", size: 32))
                         .fontWeight(.semibold)
                         .padding(.bottom, 1)
@@ -64,7 +64,7 @@ struct LoginView: View {
                         .cornerRadius(16)
                         .background(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(!isValidEmail ? .red : focusedField == .email ? Color.primaryColor : .clear, lineWidth: 2)
+                                .stroke(!isValidEmail ? .red : focusedField == .email ? Color.appPrimaryColor : .clear, lineWidth: 2)
                         )
                         .onChange(of: emailText) { newValue in
                             isValidEmail = newValue.isValidEmail
@@ -82,7 +82,7 @@ struct LoginView: View {
                         .cornerRadius(16)
                         .background(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(focusedField == .password ? Color.primaryColor : .clear, lineWidth: 2)
+                                .stroke(focusedField == .password ? Color.appPrimaryColor : .clear, lineWidth: 2)
                         )
                         .padding(.top, 16)
                         .padding(.horizontal, 16)
@@ -98,7 +98,7 @@ struct LoginView: View {
                             .cornerRadius(16)
                             .background(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(focusedField == .confirmPassword ? Color.primaryColor : .clear, lineWidth: 2)
+                                    .stroke(focusedField == .confirmPassword ? Color.appPrimaryColor : .clear, lineWidth: 2)
                             )
                             .padding(.top, 16)
                             .padding(.horizontal, 16)

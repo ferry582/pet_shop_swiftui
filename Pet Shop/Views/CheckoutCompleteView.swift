@@ -12,7 +12,7 @@ struct CheckoutCompleteView: View {
         VStack(spacing: 10) {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 120))
-                .foregroundColor(Color.primaryColor)
+                .foregroundColor(Color.appPrimaryColor)
             
             Text("Congratulations")
                 .font(.custom("LeckerliOne-Regular", size: 32))

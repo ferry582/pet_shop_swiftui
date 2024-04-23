@@ -35,7 +35,7 @@ struct SplashScreenView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 260)
-                        .foregroundColor(Color.primaryColor)
+                        .foregroundColor(Color.appPrimaryColor)
                 }
                 .scaleEffect(logoSize)
                 .opacity(logoOpacity)

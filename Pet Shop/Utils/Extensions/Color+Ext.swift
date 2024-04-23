@@ -8,12 +8,12 @@
 import SwiftUI
 
 extension Color {
-    static var primaryColor: Color {
-        Color("PrimaryColor")
+    static var appPrimaryColor: Color {
+        Color("AppPrimaryColor")
     }
     
-    static var secondaryColor: Color {
-        Color("SecondaryColor")
+    static var appSecondaryColor: Color {
+        Color("AppSecondaryColor")
     }
     
     static var textfieldBgColor: Color {

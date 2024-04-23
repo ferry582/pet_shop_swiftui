@@ -22,7 +22,7 @@ struct BreedsView: View {
                             .font(.system(size: 18)) +
                         
                         Text(" Choose a dog breed ")
-                            .foregroundColor(Color.primaryColor)
+                            .foregroundColor(Color.appPrimaryColor)
                             .font(.system(size: 18, weight: .semibold)) +
 
                         Text("to explore available companions.")

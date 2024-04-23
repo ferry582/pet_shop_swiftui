@@ -35,7 +35,7 @@ struct AddCardView: View {
                     .cornerRadius(16)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(focusedField == .name ? Color.primaryColor : .clear, lineWidth: 2)
+                            .stroke(focusedField == .name ? Color.appPrimaryColor : .clear, lineWidth: 2)
                     )
                     .padding(.top, 16)
                 
@@ -50,7 +50,7 @@ struct AddCardView: View {
                     .cornerRadius(16)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(focusedField == .number ? Color.primaryColor : .clear, lineWidth: 2)
+                            .stroke(focusedField == .number ? Color.appPrimaryColor : .clear, lineWidth: 2)
                     )
                     .padding(.top, 16)
                     .onChange(of: tempCard.number) { newValue in
@@ -110,7 +110,7 @@ struct AddCardView: View {
                     .cornerRadius(16)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(focusedField == .expiryDate ? Color.primaryColor : .clear, lineWidth: 2)
+                            .stroke(focusedField == .expiryDate ? Color.appPrimaryColor : .clear, lineWidth: 2)
                     )
                     .padding(.top, 16)
                     .padding(.trailing, 16)
@@ -125,7 +125,7 @@ struct AddCardView: View {
                         .cornerRadius(16)
                         .background(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(focusedField == .ccv ? Color.primaryColor : .clear, lineWidth: 2)
+                                .stroke(focusedField == .ccv ? Color.appPrimaryColor : .clear, lineWidth: 2)
                         )
                         .padding(.top, 16)
                         .onChange(of: tempCard.ccv) { newValue in

@@ -76,7 +76,7 @@ struct CheckoutDetailView: View {
                                 Text("$\(Double(viewModel.totalPrice) + viewModel.totalTax + viewModel.totalTax, specifier: "%.2f")")
                                     .font(.system(size: 14))
                                     .bold()
-                                    .foregroundColor(Color.primaryColor)
+                                    .foregroundColor(Color.appPrimaryColor)
                             }
                             .bold()
                             .padding(.horizontal, 12)

@@ -26,7 +26,7 @@ struct FavoriteView: View {
                                 .font(.system(size: 18)) +
                             
                             Text(" Add dogs to your cart ")
-                                .foregroundColor(Color.primaryColor)
+                                .foregroundColor(Color.appPrimaryColor)
                                 .font(.system(size: 18, weight: .semibold)) +
                             
                             Text("for easy checkout.")
@@ -144,11 +144,11 @@ struct FavoriteCellView: View {
                     }
                     .frame(width: (cellWidth-16) * 0.25, height: 32)
                     .background(Color.clear)
-                    .foregroundColor(Color.primaryColor)
+                    .foregroundColor(Color.appPrimaryColor)
                     .cornerRadius(14)
                     .overlay(
                         RoundedRectangle(cornerRadius: 14)
-                            .stroke(Color.primaryColor, lineWidth: 1)
+                            .stroke(Color.appPrimaryColor, lineWidth: 1)
                     )
                     
                     Button(isAddedToCart == false ? "Add to Cart" : "Remove") {
@@ -173,7 +173,7 @@ struct FavoriteCellView: View {
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         .background(Color.cardBgColor)
-        .background(isAddedToCart == false ? Color.cardBgColor : Color.primaryColor.opacity(0.5))
+        .background(isAddedToCart == false ? Color.cardBgColor : Color.appPrimaryColor.opacity(0.5))
         .cornerRadius(24)
     }
 }

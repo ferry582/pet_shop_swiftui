@@ -51,7 +51,7 @@ struct PetDetailView: View {
                             
                             Text("$\(pet.price ?? 0)")
                                 .font(.system(size: 22, weight: .semibold))
-                                .foregroundColor(Color.secondaryColor)
+                                .foregroundColor(Color.appSecondaryColor)
                                 .padding(.trailing, 16)
                         }
                         .frame(width: reader.size.width <= 0 ? 0 : reader.size.width-32)
@@ -70,14 +70,14 @@ struct PetDetailView: View {
                                 
                                 Text(" \(pet.breeds?[0].height.imperial ?? "-") inches")
                                     .fontWeight(.medium)
-                                    .foregroundColor(Color.primaryColor) +
+                                    .foregroundColor(Color.appPrimaryColor) +
                                 
                                 Text(", and weight between") 
                                     .foregroundColor(Color.textSecondaryColor) +
                                 
                                 Text(" \(pet.breeds?[0].weight.imperial ?? "-") lbs") 
                                     .fontWeight(.medium)
-                                    .foregroundColor(Color.primaryColor) +
+                                    .foregroundColor(Color.appPrimaryColor) +
                                 
                                 Text(". Here are more details about this dog:")
                                     .foregroundColor(Color.textSecondaryColor)
