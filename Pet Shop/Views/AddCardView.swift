@@ -19,20 +19,8 @@ struct AddCardView: View {
     @Binding var cardInfo: CardPayment
     @FocusState private var focusedField: CardFocusedField?
     @State private var tempCard: CardPayment = CardPayment()
-    @State private var isValidNumber = true
-    @State private var isValidExpiryDate = true
-    @State private var isValidCCV = true
     
-    private var canProceed: Bool {
-        !tempCard.holderName.isEmpty &&
-        !tempCard.number.isEmpty &&
-        !tempCard.expMonth.isEmpty &&
-        !tempCard.expYear.isEmpty &&
-        !tempCard.ccv.isEmpty &&
-        isValidNumber &&
-        isValidExpiryDate &&
-        isValidCCV
-    }
+    @StateObject private var viewModel = AddCardViewModel(validator: CardValidator())
     
     var body: some View {
         NavigationStack {
@@ -62,7 +50,7 @@ struct AddCardView: View {
                     .cornerRadius(16)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(!isValidNumber ? .red : focusedField == .number ? Color.primaryColor : .clear, lineWidth: 2)
+                            .stroke(focusedField == .number ? Color.primaryColor : .clear, lineWidth: 2)
                     )
                     .padding(.top, 16)
                     .onChange(of: tempCard.number) { newValue in
@@ -73,7 +61,6 @@ struct AddCardView: View {
                         }
                         let formattedText = cleanedText.separated(by: " ", stride: 4)
                         tempCard.number = formattedText
-                        isValidNumber = cleanedText.count == 16
                     }
                 
                 HStack {
@@ -95,7 +82,6 @@ struct AddCardView: View {
                                     return
                                 }
                                 tempCard.expMonth = cleanedText
-                                isValidExpiryDate = cleanedText.count == 2
                             }
                         
                         Text("/")
@@ -117,7 +103,6 @@ struct AddCardView: View {
                                     return
                                 }
                                 tempCard.expYear = cleanedText
-                                isValidExpiryDate = cleanedText.count == 2
                             }
                         Spacer()
                     }
@@ -125,7 +110,7 @@ struct AddCardView: View {
                     .cornerRadius(16)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(!isValidExpiryDate ? .red : focusedField == .expiryDate ? Color.primaryColor : .clear, lineWidth: 2)
+                            .stroke(focusedField == .expiryDate ? Color.primaryColor : .clear, lineWidth: 2)
                     )
                     .padding(.top, 16)
                     .padding(.trailing, 16)
@@ -140,7 +125,7 @@ struct AddCardView: View {
                         .cornerRadius(16)
                         .background(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(!isValidCCV ? .red : focusedField == .ccv ? Color.primaryColor : .clear, lineWidth: 2)
+                                .stroke(focusedField == .ccv ? Color.primaryColor : .clear, lineWidth: 2)
                         )
                         .padding(.top, 16)
                         .onChange(of: tempCard.ccv) { newValue in
@@ -150,11 +135,13 @@ struct AddCardView: View {
                                 return
                             }
                             tempCard.ccv = cleanedText
-                            isValidCCV = cleanedText.count == 3
                         }
                 }
                 
                 Spacer()
+            }
+            .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
+                Button("OK", role: .cancel) { }
             }
             .navigationTitle("Card Info")
             .navigationBarTitleDisplayMode(.large)
@@ -168,10 +155,12 @@ struct AddCardView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        cardInfo = tempCard
-                        dismiss()
+                        viewModel.saveCardInfo(with: tempCard)
+                        if viewModel.isAllowSave {
+                            cardInfo = tempCard
+                            dismiss()
+                        }
                     }
-                    .disabled(!canProceed)
                 }
             }
             .onAppear {

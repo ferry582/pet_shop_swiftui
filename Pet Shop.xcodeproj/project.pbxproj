@@ -20,6 +20,8 @@
 		E629096A2BD0DBDD00BEDC6A /* PetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909692BD0DBDD00BEDC6A /* PetDetailView.swift */; };
 		E62909A32BD134DE00BEDC6A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909A22BD134DE00BEDC6A /* MainView.swift */; };
 		E62909A52BD134FB00BEDC6A /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62909A42BD134FB00BEDC6A /* FavoriteView.swift */; };
+		E66187D82BD7CC0E004D42E5 /* CardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66187D72BD7CC0E004D42E5 /* CardValidator.swift */; };
+		E66187DA2BD7D1A5004D42E5 /* AddCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66187D92BD7D1A5004D42E5 /* AddCardViewModel.swift */; };
 		E69B62422BD1890B00145F32 /* PetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */; };
 		E69B62442BD18D5200145F32 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62432BD18D5200145F32 /* Favorite.swift */; };
 		E69B62462BD1A3A200145F32 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */; };
@@ -80,6 +82,8 @@
 		E62909692BD0DBDD00BEDC6A /* PetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailView.swift; sourceTree = "<group>"; };
 		E62909A22BD134DE00BEDC6A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E62909A42BD134FB00BEDC6A /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		E66187D72BD7CC0E004D42E5 /* CardValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardValidator.swift; sourceTree = "<group>"; };
+		E66187D92BD7D1A5004D42E5 /* AddCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModel.swift; sourceTree = "<group>"; };
 		E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewModel.swift; sourceTree = "<group>"; };
 		E69B62432BD18D5200145F32 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
@@ -138,6 +142,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E66187D62BD7CC04004D42E5 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				E66187D72BD7CC0E004D42E5 /* CardValidator.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
 		E6C6801F2BCEB65900A5A4E9 = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +220,7 @@
 		E6C680562BCEB67600A5A4E9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E66187D62BD7CC04004D42E5 /* Validators */,
 				E6C680652BCED5D400A5A4E9 /* Extensions */,
 				E6C6809F2BCF001E00A5A4E9 /* Helper */,
 				E6C6805C2BCEB75D00A5A4E9 /* View Components */,
@@ -263,6 +276,7 @@
 				E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */,
 				E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */,
 				E69B62EE2BD2FB0A00145F32 /* CheckoutDetailViewModel.swift */,
+				E66187D92BD7D1A5004D42E5 /* AddCardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -466,6 +480,8 @@
 				E6C6802C2BCEB65900A5A4E9 /* Pet_ShopApp.swift in Sources */,
 				E62909A32BD134DE00BEDC6A /* MainView.swift in Sources */,
 				E6C680A12BCF004D00A5A4E9 /* KeychainHelper.swift in Sources */,
+				E66187D82BD7CC0E004D42E5 /* CardValidator.swift in Sources */,
+				E66187DA2BD7D1A5004D42E5 /* AddCardViewModel.swift in Sources */,
 				E6C680642BCECD5100A5A4E9 /* LoginViewModel.swift in Sources */,
 				E62909A52BD134FB00BEDC6A /* FavoriteView.swift in Sources */,
 				E6C680622BCECBB300A5A4E9 /* PrimaryButton.swift in Sources */,
@@ -703,7 +719,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72Y28H39U9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ferry.Pet-ShopTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -723,7 +739,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72Y28H39U9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ferry.Pet-ShopTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -742,6 +758,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72Y28H39U9;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ferry.Pet-ShopUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -760,6 +777,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72Y28H39U9;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ferry.Pet-ShopUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

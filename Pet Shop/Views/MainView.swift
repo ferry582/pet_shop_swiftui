@@ -22,6 +22,7 @@ struct MainView: View {
             .tabItem {
                 Label("Pets", systemImage: "dog")
             }
+            .tag(0)
             
             NavigationView {
                 FavoriteView(selectedTab: $selectedTab)
@@ -32,6 +33,7 @@ struct MainView: View {
             .tabItem {
                 Label("Favorite", systemImage: "star")
             }   
+            .tag(1)
         }
         .navigationBarBackButtonHidden()
     }
