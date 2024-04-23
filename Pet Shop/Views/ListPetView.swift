@@ -119,7 +119,7 @@ struct PetCellView: View {
                     .font(.system(size: 13, weight: .medium))
             }
             .frame(width: 54, height: 26)
-            .background(Color.primaryColor)
+            .background(Color.secondaryColor)
             .cornerRadius(6)
             .offset(x: (cellWidth-100)/2, y: 70)
         }

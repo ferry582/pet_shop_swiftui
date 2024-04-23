@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FavoriteView: View {
     @Environment(\.colorScheme) var colorScheme
+    @Binding var selectedTab: Int
     @StateObject private var viewModel = FavoriteViewModel()
     @State private var isNavigateToCheckout = false
     
@@ -107,12 +108,13 @@ extension FavoriteView: CheckoutDetailViewDelegate {
             for item in cart {
                 await viewModel.deleteFavorite(id: item.id)
             }
+            selectedTab = 0
         }
     }
 }
 
 #Preview {
-    FavoriteView()
+    FavoriteView(selectedTab: .constant(1))
 }
 
 struct FavoriteCellView: View {

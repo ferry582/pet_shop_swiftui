@@ -9,8 +9,10 @@ import SwiftUI
 
 struct MainView: View {
     
+    @State private var selectedTab = 0
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             NavigationView {
                 BreedsView()
                     .navigationTitle("Discover")
@@ -22,7 +24,7 @@ struct MainView: View {
             }
             
             NavigationView {
-                FavoriteView()
+                FavoriteView(selectedTab: $selectedTab)
                     .navigationTitle("Favorites")
                     .navigationBarTitleDisplayMode(.large)
                     .navigationBarBackButtonHidden()

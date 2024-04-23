@@ -25,7 +25,7 @@ struct PetDetailView: View {
                         HStack {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text("\(pet.breeds?[0].name ?? " ")")
-                                    .font(.system(size: 20))
+                                    .font(.custom("LeckerliOne-Regular", size: 20))
                                     .fontWeight(.semibold)
                                 
                                 HStack {
@@ -51,7 +51,7 @@ struct PetDetailView: View {
                             
                             Text("$\(pet.price ?? 0)")
                                 .font(.system(size: 22, weight: .semibold))
-                                .foregroundColor(Color.primaryColor)
+                                .foregroundColor(Color.secondaryColor)
                                 .padding(.trailing, 16)
                         }
                         .frame(width: reader.size.width <= 0 ? 0 : reader.size.width-32)
@@ -61,7 +61,7 @@ struct PetDetailView: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Details")
-                                .font(.system(size: 18))
+                                .font(.custom("LeckerliOne-Regular", size: 18))
                                 .fontWeight(.medium)
                             
                             HStack {
@@ -101,7 +101,7 @@ struct PetDetailView: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Temprament")
-                                .font(.system(size: 18))
+                                .font(.custom("LeckerliOne-Regular", size: 18))
                                 .fontWeight(.medium)
                             Text(pet.breeds?[0].temperament ?? "-")
                                 .font(.system(size: 16))
@@ -112,7 +112,7 @@ struct PetDetailView: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Breed For")
-                                .font(.system(size: 18))
+                                .font(.custom("LeckerliOne-Regular", size: 18))
                                 .fontWeight(.medium)
                             Text(pet.breeds?[0].bredFor ?? "-")
                                 .font(.system(size: 16))

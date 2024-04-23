@@ -11,6 +11,7 @@ import Security
 class LoginViewModel: ObservableObject {
     @Published private(set) var buttonTitle = "Log In"
     @Published private(set) var haveAccountMessage = "Don't have an account?"
+    @Published private(set) var title = "Login To Your Account"
     @Published private(set) var haveAccountButton = "Sign Up"
     @Published private(set) var alertMessage = ""
     @Published private(set) var isUserHasAccount = true
@@ -25,10 +26,12 @@ class LoginViewModel: ObservableObject {
             buttonTitle = "Log In"
             haveAccountMessage = "Don't have an account?"
             haveAccountButton = "Sign Up"
+            title = "Login To Your Account"
         } else {
             buttonTitle = "Sign Up"
             haveAccountMessage = "Already have an account?"
             haveAccountButton = "Log In"
+            title = "Create Your Account"
         }
     }
     

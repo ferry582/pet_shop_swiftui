@@ -197,7 +197,7 @@ struct CartItemCellView: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(name)
-                    .font(.system(size: 18, weight: .medium))
+                    .font(.custom("LeckerliOne-Regular", size: 18))
                     .lineLimit(2)
                     .foregroundColor(Color.textPrimaryColor)
                     .multilineTextAlignment(.leading)

@@ -32,6 +32,7 @@
 		E69B62F92BD3F1DE00145F32 /* CardPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62F82BD3F1DE00145F32 /* CardPayment.swift */; };
 		E69B62FB2BD41D1D00145F32 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62FA2BD41D1D00145F32 /* AsyncImageView.swift */; };
 		E69B62FD2BD4D62600145F32 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62FC2BD4D62600145F32 /* View+Ext.swift */; };
+		E69B63DB2BD76F9B00145F32 /* LeckerliOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E69B63DA2BD76F9B00145F32 /* LeckerliOne-Regular.ttf */; };
 		E6C6802C2BCEB65900A5A4E9 /* Pet_ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */; };
 		E6C6802E2BCEB65900A5A4E9 /* BreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */; };
 		E6C680302BCEB65A00A5A4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C6802F2BCEB65A00A5A4E9 /* Assets.xcassets */; };
@@ -91,6 +92,8 @@
 		E69B62F82BD3F1DE00145F32 /* CardPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPayment.swift; sourceTree = "<group>"; };
 		E69B62FA2BD41D1D00145F32 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		E69B62FC2BD4D62600145F32 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		E69B63DA2BD76F9B00145F32 /* LeckerliOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LeckerliOne-Regular.ttf"; sourceTree = "<group>"; };
+		E69B63DC2BD76FBC00145F32 /* Pet-Shop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pet-Shop-Info.plist"; path = "Pet Shop/Supporting Files/Pet-Shop-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E6C680282BCEB65900A5A4E9 /* Pet Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pet Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C6802B2BCEB65900A5A4E9 /* Pet_ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet_ShopApp.swift; sourceTree = "<group>"; };
 		E6C6802D2BCEB65900A5A4E9 /* BreedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsView.swift; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 		E6C680582BCEB67F00A5A4E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E69B63DC2BD76FBC00145F32 /* Pet-Shop-Info.plist */,
+				E69B63DA2BD76F9B00145F32 /* LeckerliOne-Regular.ttf */,
 				E6C6802F2BCEB65A00A5A4E9 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
@@ -410,6 +415,7 @@
 				E62909562BCFBB0600BEDC6A /* API-Info.plist in Resources */,
 				E6C680332BCEB65A00A5A4E9 /* Preview Assets.xcassets in Resources */,
 				E6C680302BCEB65A00A5A4E9 /* Assets.xcassets in Resources */,
+				E69B63DB2BD76F9B00145F32 /* LeckerliOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,7 +639,8 @@
 				DEVELOPMENT_TEAM = 72Y28H39U9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Pet Shop";
+				INFOPLIST_FILE = "Pet Shop/Supporting Files/Pet-Shop-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Paw Shop";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -665,7 +672,8 @@
 				DEVELOPMENT_TEAM = 72Y28H39U9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Pet Shop";
+				INFOPLIST_FILE = "Pet Shop/Supporting Files/Pet-Shop-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Paw Shop";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

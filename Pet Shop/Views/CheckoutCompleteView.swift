@@ -15,7 +15,7 @@ struct CheckoutCompleteView: View {
                 .foregroundColor(Color.primaryColor)
             
             Text("Congratulations")
-                .font(.title)
+                .font(.custom("LeckerliOne-Regular", size: 32))
                 .bold()
             
             Text("Your order has been successfully placed.")

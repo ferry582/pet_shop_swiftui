@@ -98,7 +98,7 @@ struct BreedCellView: View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 Text(breed.name)
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(.custom("LeckerliOne-Regular", size: 20))
                     .lineLimit(2)
                     .foregroundColor(Color.textPrimaryColor)
                     .multilineTextAlignment(.leading)

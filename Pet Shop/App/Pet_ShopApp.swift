@@ -14,6 +14,18 @@ struct Pet_ShopApp: App {
             NavigationStack {
                 SplashScreenView()
 //                MainView()
+                    .onAppear {
+                        let largeTitle = UIFont.preferredFont(forTextStyle: .largeTitle)
+                        let regularTitle = UIFont.preferredFont(forTextStyle: .body)
+
+                        let largeFont = UIFont(name: "LeckerliOne-Regular", size: largeTitle.pointSize)
+                        let regularFont = UIFont(name: "LeckerliOne-Regular", size: regularTitle.pointSize)
+                        
+                        UINavigationBar.appearance().largeTitleTextAttributes = [.font : largeFont ?? ""]
+
+                        UINavigationBar.appearance().titleTextAttributes = [.font : regularFont ?? ""]
+                    }
+                
             }
         }
     }

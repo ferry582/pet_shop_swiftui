@@ -12,6 +12,10 @@ extension Color {
         Color("PrimaryColor")
     }
     
+    static var secondaryColor: Color {
+        Color("SecondaryColor")
+    }
+    
     static var textfieldBgColor: Color {
         Color("TextFieldBg")
     }
@@ -26,5 +30,9 @@ extension Color {
     
     static var cardBgColor: Color {
         Color("CardBg")
+    }
+    
+    static var mainBgColor: Color {
+        Color("MainBg")
     }
 }
