@@ -15,7 +15,7 @@ class CheckoutDetailViewModel: ObservableObject {
     @Published private(set) var alertMessage = ""
     @Published var isAlertActive = false
     
-    private var service = APIService()
+    private var service = APIServiceImpl()
     
     func calculatePayment(cart: [Favorite]) {
         let total = cart.reduce(0) { $0 + ($1.pet.price ?? 0) }

@@ -36,14 +36,14 @@ enum NetworkError: Error, Equatable {
     }
 }
 
-protocol DataService {
+protocol APIService {
     func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> T
     func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> (data: T, paginationCount: Int)
 }
 
-struct APIService: DataService {
+struct APIServiceImpl: APIService {
     
-    static let shared = APIService()
+    static let shared = APIServiceImpl()
     
     func makeRequest<T: Codable>(session: URLSession = .shared, for endpoint: Endpoint) async throws -> T {
         guard let request = endpoint.generateURLRequest() else {

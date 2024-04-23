@@ -2,13 +2,12 @@
 //  StaticJSONMapper.swift
 //  Pet Shop
 //
-//  Created by Ferry Dwianta P on 23/04/24.
+//  Created by Ferry Dwianta P on 24/04/24.
 //
 
 import Foundation
 
 struct StaticJSONMapper {
-    
     static func decode<T: Decodable>(file: String, type: T.Type) throws -> T {
         
         guard !file.isEmpty,

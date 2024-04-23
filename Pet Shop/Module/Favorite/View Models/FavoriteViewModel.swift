@@ -15,7 +15,7 @@ class FavoriteViewModel: ObservableObject {
     @Published var isAlertActive = false
     @AppStorage("current_email") private var currentEmail = ""
     
-    private var service = APIService()
+    private var service = APIServiceImpl()
     
     @MainActor
     func getFavoritesData() async {

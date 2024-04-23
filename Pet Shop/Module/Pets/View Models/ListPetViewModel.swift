@@ -15,7 +15,7 @@ class ListPetViewModel: ObservableObject {
     @Published var isAlertActive = false
     
     private var page = 0
-    private var service = APIService()
+    private var service = APIServiceImpl()
     private var totalData = 0
     
     @MainActor

@@ -14,11 +14,11 @@ class BreedsViewModel: ObservableObject {
     @Published private(set) var alertMessage = ""
     @Published var isAlertActive = false
     
-    private let apiService: DataService!
-    private var page = 0
-    private var totalData = 0
+    private let apiService: APIService!
+    private(set) var page = 0
+    private(set) var totalData = 0
     
-    init(apiService: DataService = APIService.shared) {
+    init(apiService: APIService = APIServiceImpl.shared) {
         self.apiService = apiService
     }
     

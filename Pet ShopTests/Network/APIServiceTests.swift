@@ -38,15 +38,10 @@ final class APIServiceTests: XCTestCase {
             return (response!, data)
         }
         
-        let result: [Breed] = try await APIService.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
+        let result: [Breed] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
         
-        do {
-            let staticJson = try JSONDecoder().decode([Breed].self, from: data)
-            XCTAssertEqual(result, staticJson)
-        } catch {
-            XCTFail("Failed to parse static json to breed data")
-        }
-        
+        let staticJson = try StaticJSONMapper.decode(file: "BreedsData", type: [Breed].self)
+        XCTAssertEqual(result, staticJson)
     }
     
     func test_with_unsuccessful_response_code_in_invalid_range_is_invalid() async {
@@ -58,7 +53,7 @@ final class APIServiceTests: XCTestCase {
         }
         
         do {
-            let result: [Breed] = try await APIService.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
+            let result: [Breed] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
         } catch {
             guard let networkError = error as? NetworkError else {
                 XCTFail("Wrong type of error, expecting NetworkError")
@@ -82,7 +77,7 @@ final class APIServiceTests: XCTestCase {
         }
         
         do {
-            let result: [Pet] = try await APIService.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0)) // Wrong type
+            let result: [Pet] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0)) // Wrong type
         } catch {
             guard let networkError = error as? NetworkError else {
                 XCTFail("Wrong type of error, expecting NetworkError")
@@ -102,7 +97,7 @@ final class APIServiceTests: XCTestCase {
         }
         
         do {
-            let result: [Breed] = try await APIService.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
+            let result: [Breed] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
         } catch {
             guard let networkError = error as? NetworkError else {
                 XCTFail("Wrong type of error, expecting NetworkError")
