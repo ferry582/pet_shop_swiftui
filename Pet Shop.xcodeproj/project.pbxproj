@@ -38,6 +38,10 @@
 		E68423472BD8C73800C9FAA7 /* APIServiceAddFavoriteResponseFailureMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423462BD8C73800C9FAA7 /* APIServiceAddFavoriteResponseFailureMock.swift */; };
 		E684234A2BD8C7FB00C9FAA7 /* PetDetailViewModelSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423492BD8C7FB00C9FAA7 /* PetDetailViewModelSuccessTests.swift */; };
 		E684234C2BD8CFCF00C9FAA7 /* PetDetailViewModelFailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E684234B2BD8CFCF00C9FAA7 /* PetDetailViewModelFailureTests.swift */; };
+		E68423502BD8D62900C9FAA7 /* AddCardValidatorSuccessMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E684234F2BD8D62900C9FAA7 /* AddCardValidatorSuccessMock.swift */; };
+		E68423522BD8D68E00C9FAA7 /* AddCardViewModelSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423512BD8D68E00C9FAA7 /* AddCardViewModelSuccessTests.swift */; };
+		E68423542BD8DD2300C9FAA7 /* AddCardValidatorFailureMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423532BD8DD2300C9FAA7 /* AddCardValidatorFailureMock.swift */; };
+		E68423562BD8DDAF00C9FAA7 /* AddCardViewModelFailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423552BD8DDAF00C9FAA7 /* AddCardViewModelFailureTests.swift */; };
 		E69B62422BD1890B00145F32 /* PetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */; };
 		E69B62442BD18D5200145F32 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62432BD18D5200145F32 /* Favorite.swift */; };
 		E69B62462BD1A3A200145F32 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */; };
@@ -115,6 +119,10 @@
 		E68423462BD8C73800C9FAA7 /* APIServiceAddFavoriteResponseFailureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceAddFavoriteResponseFailureMock.swift; sourceTree = "<group>"; };
 		E68423492BD8C7FB00C9FAA7 /* PetDetailViewModelSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewModelSuccessTests.swift; sourceTree = "<group>"; };
 		E684234B2BD8CFCF00C9FAA7 /* PetDetailViewModelFailureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewModelFailureTests.swift; sourceTree = "<group>"; };
+		E684234F2BD8D62900C9FAA7 /* AddCardValidatorSuccessMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardValidatorSuccessMock.swift; sourceTree = "<group>"; };
+		E68423512BD8D68E00C9FAA7 /* AddCardViewModelSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModelSuccessTests.swift; sourceTree = "<group>"; };
+		E68423532BD8DD2300C9FAA7 /* AddCardValidatorFailureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardValidatorFailureMock.swift; sourceTree = "<group>"; };
+		E68423552BD8DDAF00C9FAA7 /* AddCardViewModelFailureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModelFailureTests.swift; sourceTree = "<group>"; };
 		E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewModel.swift; sourceTree = "<group>"; };
 		E69B62432BD18D5200145F32 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
@@ -180,12 +188,12 @@
 			path = Validators;
 			sourceTree = "<group>";
 		};
-		E68422D32BD80D0000C9FAA7 /* Validators */ = {
+		E68422D32BD80D0000C9FAA7 /* Form */ = {
 			isa = PBXGroup;
 			children = (
 				E6824F2A2BD7D9B60072CDAB /* AddCardFormValidatorTests.swift */,
 			);
-			path = Validators;
+			path = Form;
 			sourceTree = "<group>";
 		};
 		E68422D42BD80D0A00C9FAA7 /* Network */ = {
@@ -453,6 +461,25 @@
 			path = PetDetails;
 			sourceTree = "<group>";
 		};
+		E684234D2BD8D5F200C9FAA7 /* AddCard */ = {
+			isa = PBXGroup;
+			children = (
+				E684234E2BD8D60B00C9FAA7 /* Mocks */,
+				E68423512BD8D68E00C9FAA7 /* AddCardViewModelSuccessTests.swift */,
+				E68423552BD8DDAF00C9FAA7 /* AddCardViewModelFailureTests.swift */,
+			);
+			path = AddCard;
+			sourceTree = "<group>";
+		};
+		E684234E2BD8D60B00C9FAA7 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E684234F2BD8D62900C9FAA7 /* AddCardValidatorSuccessMock.swift */,
+				E68423532BD8DD2300C9FAA7 /* AddCardValidatorFailureMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		E6C6801F2BCEB65900A5A4E9 = {
 			isa = PBXGroup;
 			children = (
@@ -497,10 +524,11 @@
 		E6C6803B2BCEB65A00A5A4E9 /* Pet ShopTests */ = {
 			isa = PBXGroup;
 			children = (
+				E684234D2BD8D5F200C9FAA7 /* AddCard */,
 				E68423482BD8C7E300C9FAA7 /* PetDetails */,
 				E68422F12BD83D4400C9FAA7 /* Breeds */,
 				E68422D42BD80D0A00C9FAA7 /* Network */,
-				E68422D32BD80D0000C9FAA7 /* Validators */,
+				E68422D32BD80D0000C9FAA7 /* Form */,
 			);
 			path = "Pet ShopTests";
 			sourceTree = "<group>";
@@ -777,12 +805,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E68423542BD8DD2300C9FAA7 /* AddCardValidatorFailureMock.swift in Sources */,
 				E68422D02BD7FDA400C9FAA7 /* PetAPIEndpointTests.swift in Sources */,
 				E6824F2B2BD7D9B60072CDAB /* AddCardFormValidatorTests.swift in Sources */,
+				E68423562BD8DDAF00C9FAA7 /* AddCardViewModelFailureTests.swift in Sources */,
 				E68423472BD8C73800C9FAA7 /* APIServiceAddFavoriteResponseFailureMock.swift in Sources */,
 				E68422F62BD83E4C00C9FAA7 /* APIServiceBreedsResponseSuccessMock.swift in Sources */,
+				E68423522BD8D68E00C9FAA7 /* AddCardViewModelSuccessTests.swift in Sources */,
 				E684234A2BD8C7FB00C9FAA7 /* PetDetailViewModelSuccessTests.swift in Sources */,
 				E68423002BD84A3F00C9FAA7 /* APIServiceBreedsResponseFailureMock.swift in Sources */,
+				E68423502BD8D62900C9FAA7 /* AddCardValidatorSuccessMock.swift in Sources */,
 				E68423432BD8C14A00C9FAA7 /* APIServiceAddFavoriteResponseSuccessMock.swift in Sources */,
 				E68422FE2BD84A0F00C9FAA7 /* BreedsViewModelFailureTests.swift in Sources */,
 				E68422F32BD83D7000C9FAA7 /* BreedsViewModelSuccessTests.swift in Sources */,

@@ -12,9 +12,9 @@ class AddCardViewModel: ObservableObject {
     @Published var isAlertActive = false
     @Published var isAllowSave = false
     
-    private let validator: CardValidator
+    private let validator: CardValidator!
     
-    init(validator: CardValidator = CardValidator()) {
+    init(validator: CardValidator = CardValidatorImpl()) {
         self.validator = validator
     }
     
@@ -24,7 +24,7 @@ class AddCardViewModel: ObservableObject {
             isAllowSave = true
         } catch {
             isAlertActive = true
-            alertMessage = (error as! CardValidator.CardValidatoreError).errorDescription ?? "Validation error"
+            alertMessage = (error as! CardValidatorImpl.CardValidatoreError).localizedDescription
         }
     }
 }

@@ -13,7 +13,7 @@ final class AddCardFormValidatorTests: XCTestCase {
     private var validator: CardValidator!
     
     override func setUp() {
-        validator = CardValidator()
+        validator = CardValidatorImpl()
     }
     
     override func tearDown() {
@@ -27,12 +27,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidHolderNameEmpty, "Expecting an error of invalid empty holder name")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidHolderNameEmpty, "Expecting an error of invalid empty holder name")
         }
     }
     
@@ -43,12 +43,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidCardNumberEmpty, "Expecting an error of invalid empty card number")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidCardNumberEmpty, "Expecting an error of invalid empty card number")
         }
     }
     
@@ -59,12 +59,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidExpMonthEmpty, "Expecting an error of invalid empty exp month number")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidExpMonthEmpty, "Expecting an error of invalid empty exp month number")
         }
     }
     
@@ -75,12 +75,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidExpYearEmpty, "Expecting an error of invalid empty exp year number")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidExpYearEmpty, "Expecting an error of invalid empty exp year number")
         }
     }
     
@@ -91,12 +91,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidCCVEmpty, "Expecting an error of invalid empty cvv number")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidCCVEmpty, "Expecting an error of invalid empty cvv number")
         }
     }
     
@@ -107,12 +107,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidCardNumberDigit, "Expecting an error of invalid digit card number")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidCardNumberDigit, "Expecting an error of invalid digit card number")
         }
     }
     
@@ -123,12 +123,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidExpMonthDigit, "Expecting an error of invalid digit exp month number")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidExpMonthDigit, "Expecting an error of invalid digit exp month number")
         }
     }
     
@@ -139,12 +139,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidExpYearDigit, "Expecting an error of invalid digit exp year number")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidExpYearDigit, "Expecting an error of invalid digit exp year number")
         }
     }
     
@@ -155,12 +155,12 @@ final class AddCardFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validate(card)
         } catch {
-            guard let validatorError = error as? CardValidator.CardValidatoreError else {
+            guard let validatorError = error as? CardValidatorImpl.CardValidatoreError else {
                 XCTFail("Wrong type of error, expecting card validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, CardValidator.CardValidatoreError.invalidCCVDigit, "Expecting an error of invalid digit ccv number")
+            XCTAssertEqual(validatorError, CardValidatorImpl.CardValidatoreError.invalidCCVDigit, "Expecting an error of invalid digit ccv number")
         }
     }
     

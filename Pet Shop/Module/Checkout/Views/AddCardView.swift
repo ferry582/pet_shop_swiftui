@@ -16,16 +16,16 @@ enum CardFocusedField {
 
 struct AddCardView: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var cardInfo: CardPayment
+    @Binding var checkoutCardInfo: CardPayment
     @FocusState private var focusedField: CardFocusedField?
-    @State private var tempCard: CardPayment = CardPayment()
+    @State private var cardInfo: CardPayment = CardPayment()
     
-    @StateObject private var viewModel = AddCardViewModel(validator: CardValidator())
+    @StateObject private var viewModel = AddCardViewModel()
     
     var body: some View {
         NavigationStack {
             VStack {
-                TextField("Card Holder's Name", text: $tempCard.holderName)
+                TextField("Card Holder's Name", text: $cardInfo.holderName)
                     .textContentType(.name)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
@@ -39,7 +39,7 @@ struct AddCardView: View {
                     )
                     .padding(.top, 16)
                 
-                TextField("Card Number", text: $tempCard.number)
+                TextField("Card Number", text: $cardInfo.number)
                     .keyboardType(.numberPad)
                     .textContentType(.creditCardNumber)
                     .disableAutocorrection(true)
@@ -53,20 +53,20 @@ struct AddCardView: View {
                             .stroke(focusedField == .number ? Color.appPrimaryColor : .clear, lineWidth: 2)
                     )
                     .padding(.top, 16)
-                    .onChange(of: tempCard.number) { newValue in
+                    .onChange(of: cardInfo.number) { newValue in
                         let cleanedText = newValue.filter { $0.isNumber }
                         if cleanedText.count > 16 {
-                            tempCard.number = String(cleanedText.prefix(16))
+                            cardInfo.number = String(cleanedText.prefix(16))
                             return
                         }
                         let formattedText = cleanedText.separated(by: " ", stride: 4)
-                        tempCard.number = formattedText
+                        cardInfo.number = formattedText
                     }
                 
                 HStack {
                     HStack {
                         Spacer()
-                        TextField("08", text: $tempCard.expMonth)
+                        TextField("08", text: $cardInfo.expMonth)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.center)
                             .textContentType(.dateTime)
@@ -75,19 +75,19 @@ struct AddCardView: View {
                             .focused($focusedField, equals: .expiryDate)
                             .padding(.vertical)
                             .padding(.leading)
-                            .onChange(of: tempCard.expMonth) { newValue in
+                            .onChange(of: cardInfo.expMonth) { newValue in
                                 let cleanedText = newValue.filter { $0.isNumber }
                                 if cleanedText.count > 2 {
-                                    tempCard.expMonth = String(cleanedText.prefix(2))
+                                    cardInfo.expMonth = String(cleanedText.prefix(2))
                                     return
                                 }
-                                tempCard.expMonth = cleanedText
+                                cardInfo.expMonth = cleanedText
                             }
                         
                         Text("/")
                             .font(.title3)
                         
-                        TextField("24", text: $tempCard.expYear)
+                        TextField("24", text: $cardInfo.expYear)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.center)
                             .textContentType(.dateTime)
@@ -96,13 +96,13 @@ struct AddCardView: View {
                             .focused($focusedField, equals: .expiryDate)
                             .padding(.vertical)
                             .padding(.trailing)
-                            .onChange(of: tempCard.expYear) { newValue in
+                            .onChange(of: cardInfo.expYear) { newValue in
                                 let cleanedText = newValue.filter { $0.isNumber }
                                 if cleanedText.count > 2 {
-                                    tempCard.expYear = String(cleanedText.prefix(2))
+                                    cardInfo.expYear = String(cleanedText.prefix(2))
                                     return
                                 }
-                                tempCard.expYear = cleanedText
+                                cardInfo.expYear = cleanedText
                             }
                         Spacer()
                     }
@@ -115,7 +115,7 @@ struct AddCardView: View {
                     .padding(.top, 16)
                     .padding(.trailing, 16)
                     
-                    TextField("CCV", text: $tempCard.ccv)
+                    TextField("CCV", text: $cardInfo.ccv)
                         .keyboardType(.numberPad)
                         .disableAutocorrection(true)
                         .textInputAutocapitalization(.never)
@@ -128,13 +128,13 @@ struct AddCardView: View {
                                 .stroke(focusedField == .ccv ? Color.appPrimaryColor : .clear, lineWidth: 2)
                         )
                         .padding(.top, 16)
-                        .onChange(of: tempCard.ccv) { newValue in
+                        .onChange(of: cardInfo.ccv) { newValue in
                             let cleanedText = newValue.filter { $0.isNumber }
                             if cleanedText.count > 3 {
-                                tempCard.ccv = String(cleanedText.prefix(3))
+                                cardInfo.ccv = String(cleanedText.prefix(3))
                                 return
                             }
-                            tempCard.ccv = cleanedText
+                            cardInfo.ccv = cleanedText
                         }
                 }
                 
@@ -155,17 +155,17 @@ struct AddCardView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
-                        viewModel.saveCardInfo(with: tempCard)
+                        viewModel.saveCardInfo(with: cardInfo)
                         if viewModel.isAllowSave {
-                            cardInfo = tempCard
+                            checkoutCardInfo = cardInfo
                             dismiss()
                         }
                     }
                 }
             }
             .onAppear {
-                if !cardInfo.holderName.isEmpty {
-                    tempCard = cardInfo
+                if !checkoutCardInfo.holderName.isEmpty {
+                    cardInfo = checkoutCardInfo
                 }
             }
         }

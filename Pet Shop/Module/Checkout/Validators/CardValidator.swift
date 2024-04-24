@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct CardValidator {
+protocol CardValidator {
+    func validate(_ card: CardPayment) throws
+}
+
+struct CardValidatorImpl: CardValidator {
     func validate(_ card: CardPayment) throws {
         if card.holderName.isEmpty {
             throw CardValidatoreError.invalidHolderNameEmpty
@@ -47,7 +51,7 @@ struct CardValidator {
     }
 }
 
-extension CardValidator {
+extension CardValidatorImpl {
     enum CardValidatoreError: LocalizedError {
         case invalidHolderNameEmpty
         case invalidCardNumberEmpty
@@ -61,7 +65,7 @@ extension CardValidator {
     }
 }
 
-extension CardValidator.CardValidatoreError {
+extension CardValidatorImpl.CardValidatoreError {
     var errorDescription: String? {
         switch self {
         case .invalidHolderNameEmpty:

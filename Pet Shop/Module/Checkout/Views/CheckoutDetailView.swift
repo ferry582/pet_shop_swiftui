@@ -171,7 +171,7 @@ struct CheckoutDetailView: View {
         }
         .fullScreenCover(isPresented: $isPresentCheckoutCompleteView, content: CheckoutCompleteView.init)
         .sheet(isPresented: $isPresentAddCardView) {
-            AddCardView(cardInfo: $cardInfo)
+            AddCardView(checkoutCardInfo: $cardInfo)
         }
     }
 }
