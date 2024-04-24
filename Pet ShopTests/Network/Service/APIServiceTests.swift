@@ -53,7 +53,7 @@ final class APIServiceTests: XCTestCase {
         }
         
         do {
-            let result: [Breed] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
+            let _: [Breed] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
         } catch {
             guard let networkError = error as? NetworkError else {
                 XCTFail("Wrong type of error, expecting NetworkError")
@@ -77,7 +77,7 @@ final class APIServiceTests: XCTestCase {
         }
         
         do {
-            let result: [Pet] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0)) // Wrong type
+            let _: [Pet] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0)) // Wrong type
         } catch {
             guard let networkError = error as? NetworkError else {
                 XCTFail("Wrong type of error, expecting NetworkError")
@@ -97,7 +97,7 @@ final class APIServiceTests: XCTestCase {
         }
         
         do {
-            let result: [Breed] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
+            let _: [Breed] = try await APIServiceImpl.shared.makeRequest(session: session, for: PetAPI.breeds(page: 0))
         } catch {
             guard let networkError = error as? NetworkError else {
                 XCTFail("Wrong type of error, expecting NetworkError")

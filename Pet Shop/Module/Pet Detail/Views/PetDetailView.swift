@@ -149,7 +149,7 @@ struct PetDetailView: View {
             }
             .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
             .ignoresSafeArea(edges: .top)
-            .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
+            .alert(viewModel.alertMessage.localizedDescription, isPresented: $viewModel.isAlertActive) {
                 Button("OK", role: .cancel) { }
             }
         }

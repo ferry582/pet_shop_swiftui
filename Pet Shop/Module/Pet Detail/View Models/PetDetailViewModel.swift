@@ -8,12 +8,16 @@
 import SwiftUI
 
 class PetDetailViewModel: ObservableObject {
-    @Published private(set) var isLoading = false
-    @Published private(set) var alertMessage = ""
-    @Published var isAlertActive = false
     @AppStorage("current_email") private var currentEmail = ""
+    @Published private(set) var isLoading = false
+    @Published private(set) var alertMessage: Message = .addFail
+    @Published var isAlertActive = false
     
-    private var service = APIServiceImpl()
+    private let apiService: APIService!
+    
+    init(apiService: APIService = APIServiceImpl.shared) {
+        self.apiService = apiService
+    }
     
     @MainActor
     func addToFavorite(pet: Pet) async {
@@ -21,17 +25,17 @@ class PetDetailViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            let result: FavoriteResponse = try await service.makeRequest(for: PetAPI.addFavorite(petId: pet.id, userId: currentEmail))
+            let result: FavoriteResponse = try await apiService.makeRequest(session: .shared, for: PetAPI.addFavorite(petId: pet.id, userId: currentEmail))
             isAlertActive = true
             if result.message == "SUCCESS" {
-                self.alertMessage = "Added to your favorite"
+                self.alertMessage = .added
                 addFavoriteToDefaults(id: result.id ?? 0, price: pet.price ?? 0)
             } else {
-                self.alertMessage = "Can't add to your favorite"
+                self.alertMessage = .addFail
             }
         } catch {
             isAlertActive = true
-            alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"
+            alertMessage = .networkError(message: (error as? NetworkError)?.description ?? "Network Error! Something went wrong")
             print(error)
         }
     }
@@ -41,5 +45,24 @@ class PetDetailViewModel: ObservableObject {
         let favorite = [String(id):price]
         favorites.merge(favorite, uniquingKeysWith: { $1 })
         UserDefaults.standard.set(favorites, forKey: "favorite_pet")
+    }
+}
+
+extension PetDetailViewModel {
+    enum Message: LocalizedError, Equatable {
+        case added
+        case addFail
+        case networkError(message: String)
+        
+        var errorDescription: String? {
+            switch self {
+            case .added:
+                return "Added to your favorite"
+            case .addFail:
+                return "Can't add to your favorite"
+            case .networkError(message: let description):
+                return description
+            }
+        }
     }
 }
