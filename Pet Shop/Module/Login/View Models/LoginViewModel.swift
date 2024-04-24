@@ -19,6 +19,12 @@ class LoginViewModel: ObservableObject {
     @Published var isNavigate = false
     @AppStorage("current_email") private var currentEmail = "test@gmail.com"
     
+    private let validator: LoginValidator!
+    
+    init(validator: LoginValidator = LoginValidatorImpl()) {
+        self.validator = validator
+    }
+    
     func haveAccountClicked() {
         isUserHasAccount.toggle()
         
@@ -37,33 +43,47 @@ class LoginViewModel: ObservableObject {
     
     func logInSignUpClicked(email: String, password: String, confirmPassword: String) {
         if !isUserHasAccount {
-            if let _ = KeychainHelper.standard.read(service: "user-auth", account: email) {
-                isAlertActive = true
-                alertMessage = "Your email already exist! Please Log In with your registered email"
-            } else {
-                if password == confirmPassword {
-                    KeychainHelper.standard.save(Data(password.utf8), service: "user-auth", account: email)
-                    isNavigate = true
-                    currentEmail = email
-                } else {
+            do {
+                try validator.validateSignUp(email: email, password: password, confirmPassword: confirmPassword)
+                
+                if let _ = KeychainHelper.standard.read(service: "user-auth", account: email) {
                     isAlertActive = true
-                    alertMessage = "Password doesn't match!"
+                    alertMessage = "Your email already exist! Please Log In with your registered email"
+                } else {
+                    if password == confirmPassword {
+                        KeychainHelper.standard.save(Data(password.utf8), service: "user-auth", account: email)
+                        isNavigate = true
+                        currentEmail = email
+                    } else {
+                        isAlertActive = true
+                        alertMessage = "Password doesn't match!"
+                    }
                 }
+            } catch {
+                isAlertActive = true
+                alertMessage = (error as! LoginValidatorImpl.LoginValidatoreError).localizedDescription
             }
         } else {
-            if let data = KeychainHelper.standard.read(service: "user-auth", account: email) {
-                let keyChainPass = String(data: data, encoding: .utf8)
+            do {
+                try validator.validateLogIn(email: email, password: password)
                 
-                if password == keyChainPass {
-                    isNavigate = true
-                    currentEmail = email
+                if let data = KeychainHelper.standard.read(service: "user-auth", account: email) {
+                    let keyChainPass = String(data: data, encoding: .utf8)
+                    
+                    if password == keyChainPass {
+                        isNavigate = true
+                        currentEmail = email
+                    } else {
+                        isAlertActive = true
+                        alertMessage = "Wrong Password!"
+                    }
                 } else {
                     isAlertActive = true
-                    alertMessage = "Wrong Password!"
+                    alertMessage = "Your email is not registered! Please register your email first"
                 }
-            } else {
+            } catch {
                 isAlertActive = true
-                alertMessage = "Your email is not registered! Please register your email first"
+                alertMessage = (error as! LoginValidatorImpl.LoginValidatoreError).localizedDescription
             }
         }
     }

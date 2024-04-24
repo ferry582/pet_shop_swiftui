@@ -18,15 +18,7 @@ struct LoginView: View {
     @State private var emailText = ""
     @State private var passwordText = ""
     @State private var confirmPasswordText = ""
-    @State private var isValidEmail = true
     @FocusState private var focusedField: FocusedField?
-    
-    private var canProceed: Bool {
-        isValidEmail &&
-        !passwordText.isEmpty &&
-        !emailText.isEmpty &&
-        (!confirmPasswordText.isEmpty || viewModel.isUserHasAccount)
-    }
     
     var body: some View {
         ZStack {
@@ -64,11 +56,8 @@ struct LoginView: View {
                         .cornerRadius(16)
                         .background(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(!isValidEmail ? .red : focusedField == .email ? Color.appPrimaryColor : .clear, lineWidth: 2)
+                                .stroke(focusedField == .email ? Color.appPrimaryColor : .clear, lineWidth: 2)
                         )
-                        .onChange(of: emailText) { newValue in
-                            isValidEmail = newValue.isValidEmail
-                        }
                         .padding(.top, 34)
                         .padding(.horizontal, 16)
                     
@@ -108,7 +97,6 @@ struct LoginView: View {
                         viewModel.logInSignUpClicked(email: emailText, password: passwordText, confirmPassword: confirmPasswordText)
                     }
                     .buttonStyle(PrimaryButton())
-                    .disabled(!canProceed)
                     .padding(.top, 60)
                     .padding(.bottom, 12)
                     .padding(.horizontal, 16)
