@@ -77,4 +77,11 @@ final class BreedsViewModelSuccessTests: XCTestCase {
         
         XCTAssertTrue(hasReachedEnd, "Last breed data should match")
     }
+    
+    func test_with_successful_pet_response_image_string_url_is_returned() async throws {
+        let urlString = await viewModel.getBreedImageData(petId: "BJa4kxc4X")
+        
+        let pet = try! StaticJSONMapper.decode(file: "PetData", type: Pet.self)
+        XCTAssertEqual(urlString, pet.url, "View Model should return the same url string")
+    }
 }

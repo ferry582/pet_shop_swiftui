@@ -9,13 +9,26 @@ import SwiftUI
 
 struct BreedsView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var viewModel = BreedsViewModel()
+    @StateObject private var viewModel: BreedsViewModel
     @State private var hasAppeared = false
+    
+    init() {
+        #if DEBUG
+        if UITestingHelper.isUITesting {
+            let mock: APIService = UITestingHelper.isNetworkingSuccessful ? APIServiceBreedsResponseSuccessMock() : APIServiceBreedsResponseFailureMock()
+            _viewModel = StateObject(wrappedValue: BreedsViewModel(apiService: mock))
+        } else {
+            _viewModel = StateObject(wrappedValue: BreedsViewModel())
+        }
+        #else
+            _viewModel = StateObject(wrappedValue: BreedsViewModel())
+        #endif
+    }
     
     var body: some View {
         ZStack {
             ScrollView {
-                LazyVStack {
+                VStack {
                     HStack {
                         Text("Find your perfect match!")
                             .foregroundColor(Color.textSecondaryColor)
@@ -33,18 +46,22 @@ struct BreedsView: View {
                     }
                     .padding(.bottom, 16)
                     
-                    ForEach(viewModel.breeds, id: \.id) { breed in
-                        NavigationLink {
-                            ListPetView(breed: breed)
-                        } label: {
-                            BreedCellView(breed: breed, viewModel: viewModel)
-                                .task {
-                                    if viewModel.hasReachedEnd(of: breed) && !viewModel.isFetching{
-                                        await viewModel.getNextBreedsData()
+                    LazyVStack {
+                        ForEach(viewModel.breeds, id: \.id) { breed in
+                            NavigationLink {
+                                ListPetView(breed: breed)
+                            } label: {
+                                BreedCellView(breed: breed, viewModel: viewModel)
+                                    .accessibilityIdentifier("item_\(breed.id)")
+                                    .task {
+                                        if viewModel.hasReachedEnd(of: breed) && !viewModel.isFetching{
+                                            await viewModel.getNextBreedsData()
+                                        }
                                     }
-                                }
+                            }
                         }
                     }
+                    .accessibilityIdentifier("breedsVStack")
                 }
             }
             .padding(.horizontal, 16)

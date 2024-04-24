@@ -9,11 +9,13 @@ import SwiftUI
 
 @main
 struct Pet_ShopApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 SplashScreenView()
-//                MainView()
                     .onAppear {
                         let largeTitle = UIFont.preferredFont(forTextStyle: .largeTitle)
                         let regularTitle = UIFont.preferredFont(forTextStyle: .body)
