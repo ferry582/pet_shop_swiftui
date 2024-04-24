@@ -35,7 +35,7 @@
 		E684234C2BD8CFCF00C9FAA7 /* PetDetailViewModelFailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E684234B2BD8CFCF00C9FAA7 /* PetDetailViewModelFailureTests.swift */; };
 		E68423522BD8D68E00C9FAA7 /* AddCardViewModelSuccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423512BD8D68E00C9FAA7 /* AddCardViewModelSuccessTests.swift */; };
 		E68423562BD8DDAF00C9FAA7 /* AddCardViewModelFailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423552BD8DDAF00C9FAA7 /* AddCardViewModelFailureTests.swift */; };
-		E68424352BD92D0400C9FAA7 /* BreedsScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68424342BD92D0400C9FAA7 /* BreedsScreenUITests.swift */; };
+		E68424352BD92D0400C9FAA7 /* BreedsSuccessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68424342BD92D0400C9FAA7 /* BreedsSuccessUITests.swift */; };
 		E68424382BD92EA500C9FAA7 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68424372BD92EA500C9FAA7 /* UITestingHelper.swift */; };
 		E684243A2BD92FDA00C9FAA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68424392BD92FDA00C9FAA7 /* AppDelegate.swift */; };
 		E684243D2BD9427200C9FAA7 /* APIServiceAddFavoriteResponseSuccessMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423422BD8C14A00C9FAA7 /* APIServiceAddFavoriteResponseSuccessMock.swift */; };
@@ -46,6 +46,11 @@
 		E68424422BD9429800C9FAA7 /* AddCardValidatorSuccessMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E684234F2BD8D62900C9FAA7 /* AddCardValidatorSuccessMock.swift */; };
 		E68424432BD9429F00C9FAA7 /* AddCardValidatorFailureMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68423532BD8DD2300C9FAA7 /* AddCardValidatorFailureMock.swift */; };
 		E68424452BD9567F00C9FAA7 /* BreedsFailureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68424442BD9567F00C9FAA7 /* BreedsFailureUITests.swift */; };
+		E68424472BD9682300C9FAA7 /* PetsData.json in Resources */ = {isa = PBXBuildFile; fileRef = E68424462BD9682300C9FAA7 /* PetsData.json */; };
+		E684244A2BD9695800C9FAA7 /* APIServicePetsResponseSuccessMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68424492BD9695800C9FAA7 /* APIServicePetsResponseSuccessMock.swift */; };
+		E684244C2BD9696B00C9FAA7 /* APIServicePetsResponseFailureMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E684244B2BD9696B00C9FAA7 /* APIServicePetsResponseFailureMock.swift */; };
+		E684244F2BD96BF500C9FAA7 /* ListPetsSuccessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E684244E2BD96BF500C9FAA7 /* ListPetsSuccessUITests.swift */; };
+		E68424512BD971C200C9FAA7 /* ListPetsFailureUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68424502BD971C200C9FAA7 /* ListPetsFailureUITest.swift */; };
 		E69B62422BD1890B00145F32 /* PetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */; };
 		E69B62442BD18D5200145F32 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62432BD18D5200145F32 /* Favorite.swift */; };
 		E69B62462BD1A3A200145F32 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */; };
@@ -125,10 +130,15 @@
 		E68423512BD8D68E00C9FAA7 /* AddCardViewModelSuccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModelSuccessTests.swift; sourceTree = "<group>"; };
 		E68423532BD8DD2300C9FAA7 /* AddCardValidatorFailureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardValidatorFailureMock.swift; sourceTree = "<group>"; };
 		E68423552BD8DDAF00C9FAA7 /* AddCardViewModelFailureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModelFailureTests.swift; sourceTree = "<group>"; };
-		E68424342BD92D0400C9FAA7 /* BreedsScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsScreenUITests.swift; sourceTree = "<group>"; };
+		E68424342BD92D0400C9FAA7 /* BreedsSuccessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsSuccessUITests.swift; sourceTree = "<group>"; };
 		E68424372BD92EA500C9FAA7 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
 		E68424392BD92FDA00C9FAA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E68424442BD9567F00C9FAA7 /* BreedsFailureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsFailureUITests.swift; sourceTree = "<group>"; };
+		E68424462BD9682300C9FAA7 /* PetsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PetsData.json; sourceTree = "<group>"; };
+		E68424492BD9695800C9FAA7 /* APIServicePetsResponseSuccessMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServicePetsResponseSuccessMock.swift; sourceTree = "<group>"; };
+		E684244B2BD9696B00C9FAA7 /* APIServicePetsResponseFailureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServicePetsResponseFailureMock.swift; sourceTree = "<group>"; };
+		E684244E2BD96BF500C9FAA7 /* ListPetsSuccessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPetsSuccessUITests.swift; sourceTree = "<group>"; };
+		E68424502BD971C200C9FAA7 /* ListPetsFailureUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPetsFailureUITest.swift; sourceTree = "<group>"; };
 		E69B62412BD1890B00145F32 /* PetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailViewModel.swift; sourceTree = "<group>"; };
 		E69B62432BD18D5200145F32 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E69B62452BD1A3A200145F32 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
@@ -466,7 +476,7 @@
 		E68424332BD92CC600C9FAA7 /* Breeds */ = {
 			isa = PBXGroup;
 			children = (
-				E68424342BD92D0400C9FAA7 /* BreedsScreenUITests.swift */,
+				E68424342BD92D0400C9FAA7 /* BreedsSuccessUITests.swift */,
 				E68424442BD9567F00C9FAA7 /* BreedsFailureUITests.swift */,
 			);
 			path = Breeds;
@@ -483,6 +493,7 @@
 		E684243B2BD9325500C9FAA7 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				E68424482BD9693900C9FAA7 /* PetsResponse */,
 				E68423412BD8C11D00C9FAA7 /* AddFavoriteResponse */,
 				E68423402BD8C0AD00C9FAA7 /* BreedsResponse */,
 				E68422D12BD80CA200C9FAA7 /* MockURLSessionProtocol.swift */,
@@ -498,6 +509,24 @@
 				E68423532BD8DD2300C9FAA7 /* AddCardValidatorFailureMock.swift */,
 			);
 			path = AddCard;
+			sourceTree = "<group>";
+		};
+		E68424482BD9693900C9FAA7 /* PetsResponse */ = {
+			isa = PBXGroup;
+			children = (
+				E68424492BD9695800C9FAA7 /* APIServicePetsResponseSuccessMock.swift */,
+				E684244B2BD9696B00C9FAA7 /* APIServicePetsResponseFailureMock.swift */,
+			);
+			path = PetsResponse;
+			sourceTree = "<group>";
+		};
+		E684244D2BD96BAA00C9FAA7 /* Pets */ = {
+			isa = PBXGroup;
+			children = (
+				E684244E2BD96BF500C9FAA7 /* ListPetsSuccessUITests.swift */,
+				E68424502BD971C200C9FAA7 /* ListPetsFailureUITest.swift */,
+			);
+			path = Pets;
 			sourceTree = "<group>";
 		};
 		E6C6801F2BCEB65900A5A4E9 = {
@@ -556,6 +585,7 @@
 		E6C680452BCEB65A00A5A4E9 /* Pet ShopUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E684244D2BD96BAA00C9FAA7 /* Pets */,
 				E68424332BD92CC600C9FAA7 /* Breeds */,
 			);
 			path = "Pet ShopUITests";
@@ -598,6 +628,7 @@
 		E6C680582BCEB67F00A5A4E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E68424462BD9682300C9FAA7 /* PetsData.json */,
 				E68422D72BD8185B00C9FAA7 /* BreedsData.json */,
 				E68423442BD8C50200C9FAA7 /* FavoriteResponseData.json */,
 				E68423052BD84FBA00C9FAA7 /* PetData.json */,
@@ -756,6 +787,7 @@
 				E68423452BD8C50200C9FAA7 /* FavoriteResponseData.json in Resources */,
 				E62909562BCFBB0600BEDC6A /* API-Info.plist in Resources */,
 				E68422D82BD8185C00C9FAA7 /* BreedsData.json in Resources */,
+				E68424472BD9682300C9FAA7 /* PetsData.json in Resources */,
 				E6C680332BCEB65A00A5A4E9 /* Preview Assets.xcassets in Resources */,
 				E68423062BD84FBA00C9FAA7 /* PetData.json in Resources */,
 				E6C680302BCEB65A00A5A4E9 /* Assets.xcassets in Resources */,
@@ -791,6 +823,7 @@
 				E69B62ED2BD2FAB900145F32 /* CheckoutDetailView.swift in Sources */,
 				E629095E2BCFC51200BEDC6A /* Breed.swift in Sources */,
 				E629096A2BD0DBDD00BEDC6A /* PetDetailView.swift in Sources */,
+				E684244C2BD9696B00C9FAA7 /* APIServicePetsResponseFailureMock.swift in Sources */,
 				E6C680672BCED5E200A5A4E9 /* String+Ext.swift in Sources */,
 				E69B62F32BD389BB00145F32 /* EmptyStateView.swift in Sources */,
 				E68424382BD92EA500C9FAA7 /* UITestingHelper.swift in Sources */,
@@ -825,6 +858,7 @@
 				E6C680642BCECD5100A5A4E9 /* LoginViewModel.swift in Sources */,
 				E62909A52BD134FB00BEDC6A /* FavoriteView.swift in Sources */,
 				E6C680622BCECBB300A5A4E9 /* PrimaryButton.swift in Sources */,
+				E684244A2BD9695800C9FAA7 /* APIServicePetsResponseSuccessMock.swift in Sources */,
 				E69B62FD2BD4D62600145F32 /* View+Ext.swift in Sources */,
 				E62909642BD0220900BEDC6A /* Pet.swift in Sources */,
 				E6C680602BCEC1EB00A5A4E9 /* LoginView.swift in Sources */,
@@ -852,7 +886,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E68424352BD92D0400C9FAA7 /* BreedsScreenUITests.swift in Sources */,
+				E68424512BD971C200C9FAA7 /* ListPetsFailureUITest.swift in Sources */,
+				E68424352BD92D0400C9FAA7 /* BreedsSuccessUITests.swift in Sources */,
+				E684244F2BD96BF500C9FAA7 /* ListPetsSuccessUITests.swift in Sources */,
 				E68424452BD9567F00C9FAA7 /* BreedsFailureUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

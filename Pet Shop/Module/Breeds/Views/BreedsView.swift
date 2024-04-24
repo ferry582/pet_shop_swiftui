@@ -15,7 +15,7 @@ struct BreedsView: View {
     init() {
         #if DEBUG
         if UITestingHelper.isUITesting {
-            let mock: APIService = UITestingHelper.isNetworkingSuccessful ? APIServiceBreedsResponseSuccessMock() : APIServiceBreedsResponseFailureMock()
+            let mock: APIService = UITestingHelper.isBreedsNetworkingSuccessful ? APIServiceBreedsResponseSuccessMock() : APIServiceBreedsResponseFailureMock()
             _viewModel = StateObject(wrappedValue: BreedsViewModel(apiService: mock))
         } else {
             _viewModel = StateObject(wrappedValue: BreedsViewModel())

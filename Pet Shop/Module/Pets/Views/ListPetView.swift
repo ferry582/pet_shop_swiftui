@@ -9,11 +9,25 @@ import SwiftUI
 
 struct ListPetView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var viewModel = ListPetViewModel()
+    @StateObject private var viewModel: ListPetViewModel
     @State private var hasAppeared = false
     
     let breed: Breed
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 2)
+    
+    init(breed: Breed) {
+        self.breed = breed
+        #if DEBUG
+        if UITestingHelper.isUITesting {
+            let mock: APIService = UITestingHelper.isPetsNetworkingSuccessful ? APIServicePetsResponseSuccessMock() : APIServicePetsResponseFailureMock()
+            _viewModel = StateObject(wrappedValue: ListPetViewModel(apiService: mock))
+        } else {
+            _viewModel = StateObject(wrappedValue: ListPetViewModel())
+        }
+        #else
+            _viewModel = StateObject(wrappedValue: ListPetViewModel())
+        #endif
+    }
     
     var body: some View {
         GeometryReader { reader in
@@ -43,6 +57,7 @@ struct ListPetView: View {
                                     PetDetailView(pet: pet)
                                 } label: {
                                     PetCellView(pet: pet, cellWidth: (reader.size.width-46) / 2)
+                                        .accessibilityIdentifier("item_\(pet.id)")
                                         .task {
                                             if viewModel.hasReachedEnd(of: pet) && !viewModel.isFetching{
                                                 await viewModel.getNextPetsData(breedId: breed.id)
@@ -51,6 +66,7 @@ struct ListPetView: View {
                                 }
                             }
                         }
+                        .accessibilityIdentifier("petsGrid")
                         .padding(.bottom, 16)
                     }
                 }

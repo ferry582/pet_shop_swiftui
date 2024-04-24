@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class BreedsScreenUITests: XCTestCase {
+final class BreedsSuccessUITests: XCTestCase {
 
     private var app: XCUIApplication!
     
@@ -15,7 +15,7 @@ final class BreedsScreenUITests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         app.launchArguments = ["-ui-testing"]
-        app.launchEnvironment = ["-networking-success":"1"]
+        app.launchEnvironment = ["-breeds-networking-success":"1"]
         app.launch()
     }
     

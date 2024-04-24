@@ -1,5 +1,5 @@
 //
-//  BreedsFailureUITests.swift
+//  ListPetsFailureUITest.swift
 //  Pet ShopUITests
 //
 //  Created by Ferry Dwianta P on 24/04/24.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class BreedsFailureUITests: XCTestCase {
+final class ListPetsFailureUITest: XCTestCase {
 
     private var app: XCUIApplication!
     
@@ -15,7 +15,10 @@ final class BreedsFailureUITests: XCTestCase {
         continueAfterFailure = false
         app = XCUIApplication()
         app.launchArguments = ["-ui-testing"]
-        app.launchEnvironment = ["-breeds-networking-success":"0"]
+        app.launchEnvironment = [
+            "-breeds-networking-success":"1",
+            "-pets-networking-success":"0"
+        ]
         app.launch()
     }
     
@@ -24,8 +27,16 @@ final class BreedsFailureUITests: XCTestCase {
     }
     
     func test_alert_is_shown_when_screen_fails_to_loads() {
+        let breedsList = app.otherElements["breedsVStack"]
+        XCTAssertTrue(breedsList.waitForExistence(timeout: 15), "Breeds LazyVStack should be visible")
+        
+        let breedPredicate = NSPredicate(format: "identifier CONTAINS 'item_'")
+        let listItems = breedsList.buttons.containing(breedPredicate)
+        
+        listItems.firstMatch.tap()
+        
         let alert = app.alerts.firstMatch
-        XCTAssertTrue(alert.waitForExistence(timeout: 15), "There should be an alert on the screen")
+        XCTAssertTrue(alert.waitForExistence(timeout: 2), "There should be an alert on the screen")
         XCTAssertTrue(alert.staticTexts["Network Error! Error Occured with status code 404"].exists)
         XCTAssertTrue(alert.buttons["OK"].exists)
         

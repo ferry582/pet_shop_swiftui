@@ -14,9 +14,13 @@ class ListPetViewModel: ObservableObject {
     @Published private(set) var alertMessage = ""
     @Published var isAlertActive = false
     
-    private var page = 0
-    private var service = APIServiceImpl()
-    private var totalData = 0
+    private let apiService: APIService!
+    private(set) var page = 0
+    private(set) var totalData = 0
+    
+    init(apiService: APIService = APIServiceImpl.shared) {
+        self.apiService = apiService
+    }
     
     @MainActor
     func getPetsData(breedId: Int) async {
@@ -24,7 +28,7 @@ class ListPetViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            var result: (data: [Pet], paginationCount: Int) = try await service.makeRequest(for: PetAPI.pets(breedId: breedId, page: page))
+            var result: (data: [Pet], paginationCount: Int) = try await apiService.makeRequest(session: .shared, for: PetAPI.pets(breedId: breedId, page: page))
             
             for (index, _) in result.data.enumerated() {
                 result.data[index].price = Int.random(in: 50...200)
@@ -51,7 +55,7 @@ class ListPetViewModel: ObservableObject {
         page += 1
         
         do {
-            var result: [Pet] = try await service.makeRequest(for: PetAPI.pets(breedId: breedId, page: page))
+            var result: [Pet] = try await apiService.makeRequest(session: .shared, for: PetAPI.pets(breedId: breedId, page: page))
             
             for (index, _) in result.enumerated() {
                 result[index].price = Int.random(in: 50...200)
