@@ -24,8 +24,13 @@ final class BreedsSuccessUITests: XCTestCase {
     }
     
     func test_list_has_correct_number_of_items_when_screen_loads() {
+        let logInButton = app.buttons["logInButton"]
+        XCTAssertTrue(logInButton.waitForExistence(timeout: 5))
+        logInButton.tap()
+        
+        XCTAssertTrue(app.navigationBars["Discover"].waitForExistence(timeout: 5))
         let list = app.otherElements["breedsVStack"]
-        XCTAssertTrue(list.waitForExistence(timeout: 15), "Breeds LazyVStack should be visible")
+        XCTAssertTrue(list.waitForExistence(timeout: 5), "Breeds LazyVStack should be visible")
         
         let predicate = NSPredicate(format: "identifier CONTAINS 'item_'")
         let listItems = list.buttons.containing(predicate)

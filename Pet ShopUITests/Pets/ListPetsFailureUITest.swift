@@ -27,8 +27,12 @@ final class ListPetsFailureUITest: XCTestCase {
     }
     
     func test_alert_is_shown_when_screen_fails_to_loads() {
+        let logInButton = app.buttons["logInButton"]
+        XCTAssertTrue(logInButton.waitForExistence(timeout: 5))
+        logInButton.tap()
+        
         let breedsList = app.otherElements["breedsVStack"]
-        XCTAssertTrue(breedsList.waitForExistence(timeout: 15), "Breeds LazyVStack should be visible")
+        XCTAssertTrue(breedsList.waitForExistence(timeout: 5), "Breeds LazyVStack should be visible")
         
         let breedPredicate = NSPredicate(format: "identifier CONTAINS 'item_'")
         let listItems = breedsList.buttons.containing(breedPredicate)

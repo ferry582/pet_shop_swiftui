@@ -60,6 +60,7 @@ struct LoginView: View {
                         )
                         .padding(.top, 34)
                         .padding(.horizontal, 16)
+                        .accessibilityIdentifier("emailTextField")
                     
                     SecureField("Password", text: $passwordText)
                         .textContentType(.password)
@@ -75,6 +76,7 @@ struct LoginView: View {
                         )
                         .padding(.top, 16)
                         .padding(.horizontal, 16)
+                        .accessibilityIdentifier("passwordTextField")
                     
                     if !viewModel.isUserHasAccount {
                         SecureField("Comfirm Password", text: $confirmPasswordText)
@@ -91,11 +93,13 @@ struct LoginView: View {
                             )
                             .padding(.top, 16)
                             .padding(.horizontal, 16)
+                            .accessibilityIdentifier("confirmPasswordTextField")
                     }
                     
                     Button(viewModel.buttonTitle) {
                         viewModel.logInSignUpClicked(email: emailText, password: passwordText, confirmPassword: confirmPasswordText)
                     }
+                    .accessibilityIdentifier("logInButton")
                     .buttonStyle(PrimaryButton())
                     .padding(.top, 60)
                     .padding(.bottom, 12)
@@ -114,6 +118,7 @@ struct LoginView: View {
                                 .font(.body)
                                 .fontWeight(.semibold)
                         }
+                        .accessibilityIdentifier("haveAccountButton")
                         .alert(viewModel.alertMessage, isPresented: $viewModel.isAlertActive) {
                             Button("OK", role: .cancel) { }
                         }

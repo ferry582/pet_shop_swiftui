@@ -42,6 +42,14 @@ class LoginViewModel: ObservableObject {
     }
     
     func logInSignUpClicked(email: String, password: String, confirmPassword: String) {
+        
+        #if DEBUG
+        if UITestingHelper.isUITesting {
+            isNavigate = true
+            return
+        }
+        #endif
+        
         if !isUserHasAccount {
             do {
                 try validator.validateSignUp(email: email, password: password, confirmPassword: confirmPassword)
