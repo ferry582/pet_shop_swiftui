@@ -7,47 +7,47 @@
 
 import Foundation
 
-protocol LoginValidator {
+protocol AuthValidator {
     func validateLogIn(email: String, password: String) throws
     func validateSignUp(email: String, password: String, confirmPassword: String) throws
 }
 
-struct LoginValidatorImpl: LoginValidator {
+struct AuthValidatorImpl: AuthValidator {
     func validateLogIn(email: String, password: String) throws {
         if email.isEmpty {
-            throw LoginValidatoreError.invalidEmailEmpty
+            throw AuthValidatoreError.invalidEmailEmpty
         }
         
         if password.isEmpty {
-            throw LoginValidatoreError.invalidPasswordEmpty
+            throw AuthValidatoreError.invalidPasswordEmpty
         }
         
         if !email.isValidEmail {
-            throw LoginValidatoreError.invalidEmail
+            throw AuthValidatoreError.invalidEmail
         }
     }
     
     func validateSignUp(email: String, password: String, confirmPassword: String) throws {
         if email.isEmpty {
-            throw LoginValidatoreError.invalidEmailEmpty
+            throw AuthValidatoreError.invalidEmailEmpty
         }
         
         if password.isEmpty {
-            throw LoginValidatoreError.invalidPasswordEmpty
+            throw AuthValidatoreError.invalidPasswordEmpty
         }
         
         if confirmPassword.isEmpty {
-            throw LoginValidatoreError.invalidConfirmPasswordEmpty
+            throw AuthValidatoreError.invalidConfirmPasswordEmpty
         }
         
         if !email.isValidEmail {
-            throw LoginValidatoreError.invalidEmail
+            throw AuthValidatoreError.invalidEmail
         }
     }
 }
 
-extension LoginValidatorImpl {
-    enum LoginValidatoreError: LocalizedError {
+extension AuthValidatorImpl {
+    enum AuthValidatoreError: LocalizedError {
         case invalidEmailEmpty
         case invalidPasswordEmpty
         case invalidConfirmPasswordEmpty

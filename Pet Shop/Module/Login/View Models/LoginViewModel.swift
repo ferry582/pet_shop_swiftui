@@ -19,9 +19,9 @@ class LoginViewModel: ObservableObject {
     @Published var isNavigate = false
     @AppStorage("current_email") private var currentEmail = "test@gmail.com"
     
-    private let validator: LoginValidator!
+    private let validator: AuthValidator!
     
-    init(validator: LoginValidator = LoginValidatorImpl()) {
+    init(validator: AuthValidator = AuthValidatorImpl()) {
         self.validator = validator
     }
     
@@ -69,7 +69,7 @@ class LoginViewModel: ObservableObject {
                 }
             } catch {
                 isAlertActive = true
-                alertMessage = (error as! LoginValidatorImpl.LoginValidatoreError).localizedDescription
+                alertMessage = (error as! AuthValidatorImpl.AuthValidatoreError).localizedDescription
             }
         } else {
             do {
@@ -91,9 +91,8 @@ class LoginViewModel: ObservableObject {
                 }
             } catch {
                 isAlertActive = true
-                alertMessage = (error as! LoginValidatorImpl.LoginValidatoreError).localizedDescription
+                alertMessage = (error as! AuthValidatorImpl.AuthValidatoreError).localizedDescription
             }
         }
     }
-    
 }
