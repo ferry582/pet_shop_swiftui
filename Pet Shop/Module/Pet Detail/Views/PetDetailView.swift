@@ -58,24 +58,28 @@ struct PetDetailView: View {
                                 .fontWeight(.medium)
                             
                             HStack {
-                                Text("\(pet.breeds?[0].name ?? " ") dog can reach height between") 
+                                Text("\(pet.breeds?[0].name ?? " ") dog can reach height between")
+                                    .font(.system(size: 16))
                                     .foregroundColor(Color.textSecondaryColor) +
                                 
                                 Text(" \(pet.breeds?[0].height.imperial ?? "-") inches")
+                                    .font(.system(size: 16))
                                     .fontWeight(.medium)
                                     .foregroundColor(Color.appPrimaryColor) +
                                 
-                                Text(", and weight between") 
+                                Text(", and weight between")
+                                    .font(.system(size: 16))
                                     .foregroundColor(Color.textSecondaryColor) +
                                 
-                                Text(" \(pet.breeds?[0].weight.imperial ?? "-") lbs") 
+                                Text(" \(pet.breeds?[0].weight.imperial ?? "-") lbs")
+                                    .font(.system(size: 16))
                                     .fontWeight(.medium)
                                     .foregroundColor(Color.appPrimaryColor) +
                                 
                                 Text(". Here are more details about this dog:")
+                                    .font(.system(size: 16))
                                     .foregroundColor(Color.textSecondaryColor)
                             }
-                            .font(.system(size: 16))
                             .padding(.bottom, 16)
                             
                             HStack(spacing: 12) {
