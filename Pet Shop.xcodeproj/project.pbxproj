@@ -1073,7 +1073,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Pet Shop/Supporting Files/Pet-Shop-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Paw Shop";
+				INFOPLIST_KEY_CFBundleDisplayName = "Paw Store";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1107,7 +1107,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Pet Shop/Supporting Files/Pet-Shop-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Paw Shop";
+				INFOPLIST_KEY_CFBundleDisplayName = "Paw Store";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

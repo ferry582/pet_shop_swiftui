@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PetDetailView: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var viewModel = PetDetailViewModel()
     let pet: Pet
@@ -43,7 +44,7 @@ struct PetDetailView: View {
                             
                             Text("$\(pet.price ?? 0)")
                                 .font(.system(size: 22, weight: .semibold))
-                                .foregroundColor(Color.appSecondaryColor)
+                                .foregroundColor(Color.appPrimaryColor)
                                 .padding(.trailing, 16)
                         }
                         .frame(width: reader.size.width <= 0 ? 0 : reader.size.width-32)
@@ -140,6 +141,22 @@ struct PetDetailView: View {
             }
             .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
             .ignoresSafeArea(edges: .top)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .bold()
+                        Text("Back")
+                    }
+                    .shadow(color: .black, radius: 5)
+                    .foregroundColor(Color.white)
+                    .padding(.leading, -8)
+                    .onTapGesture {
+                        dismiss()
+                    }
+                }
+            }
             .alert(viewModel.alertMessage.localizedDescription, isPresented: $viewModel.isAlertActive) {
                 Button("OK", role: .cancel) { }
             }

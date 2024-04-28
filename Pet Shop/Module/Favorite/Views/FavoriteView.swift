@@ -165,7 +165,7 @@ struct FavoriteCellView: View {
             }
             
             Text("$\(favorite.pet.price ?? 0)")
-                .foregroundColor(Color.white)
+                .foregroundColor(Color.appPrimaryColor)
                 .font(.system(size: 16, weight: .bold))
                 .frame(width: 54, height: 26)
                 .shadow(color: .black, radius: 5)

@@ -204,7 +204,7 @@ struct CartItemCellView: View {
                 
                 Text("$\(item.pet.price ?? 0)")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(Color.textSecondaryColor)
+                    .foregroundColor(Color.appPrimaryColor)
                     .multilineTextAlignment(.leading)
             }
             .padding(12)
