@@ -1,5 +1,5 @@
 //
-//  ListPetsUITests.swift
+//  ListPetsFailureUITest.swift
 //  Pet ShopUITests
 //
 //  Created by Ferry Dwianta P on 24/04/24.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class ListPetsSuccessUITests: XCTestCase {
+final class ListPetFailureUITest: XCTestCase {
 
     private var app: XCUIApplication!
     
@@ -17,7 +17,7 @@ final class ListPetsSuccessUITests: XCTestCase {
         app.launchArguments = ["-ui-testing"]
         app.launchEnvironment = [
             "-breeds-networking-success":"1",
-            "-pets-networking-success":"1"
+            "-pets-networking-success":"0"
         ]
         app.launch()
     }
@@ -26,7 +26,7 @@ final class ListPetsSuccessUITests: XCTestCase {
         app = nil
     }
     
-    func test_list_has_correct_number_of_pet_items_when_screen_loads() {
+    func test_alert_is_shown_when_screen_fails_to_loads() {
         let logInButton = app.buttons["logInButton"]
         XCTAssertTrue(logInButton.waitForExistence(timeout: 5))
         logInButton.tap()
@@ -39,11 +39,13 @@ final class ListPetsSuccessUITests: XCTestCase {
         
         listItems.firstMatch.tap()
         
-        let petsGrid = app.otherElements["petsGrid"]
-        XCTAssertTrue(petsGrid.waitForExistence(timeout: 5), "Pets LazyVGrid should be visible")
+        let alert = app.alerts.firstMatch
+        XCTAssertTrue(alert.waitForExistence(timeout: 2), "There should be an alert on the screen")
+        XCTAssertTrue(alert.staticTexts["Network Error! Error Occured with status code 404"].exists)
+        XCTAssertTrue(alert.buttons["OK"].exists)
         
-        let petsPredicate = NSPredicate(format: "identifier CONTAINS 'item_'")
-        let petGridItems = petsGrid.buttons.containing(petsPredicate)
-        XCTAssertGreaterThan(petGridItems.count, 0, "pets data should exist at initial load")
+        alert.buttons.firstMatch.tap()
+        
+        XCTAssertTrue(app.staticTexts["No Data! \nRefresh by pulling down"].exists)
     }
 }

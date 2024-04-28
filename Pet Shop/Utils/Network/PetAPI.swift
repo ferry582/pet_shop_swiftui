@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PetAPI {
+enum PetAPI: Equatable {
     case breeds(page: Int)
     case pet(petId: String)
     case pets(breedId: Int, page: Int)
@@ -63,7 +63,7 @@ extension PetAPI: Endpoint {
         case .pets(breedId: let breedId, page: let page):
             return [
                 URLQueryItem(name: "breed_ids", value: String(breedId)),
-                URLQueryItem(name: "limit", value: String(10)),
+                URLQueryItem(name: "limit", value: String(5)),
                 URLQueryItem(name: "page", value: String(page)),
             ]
         case .favorites(userId: let userId):

@@ -30,10 +30,10 @@ final class BreedsViewModelSuccessTests: XCTestCase {
         }
         await viewModel.getBreedsData()
         XCTAssertEqual(viewModel.breeds.count, 10, "There should be 10 breeds data within breeds array")
-        XCTAssertGreaterThan(viewModel.totalData, 0, "There should be more than zero of total pagination data")
+        XCTAssertGreaterThan(viewModel.totalData, 0, "There should be more than zero of total data")
     }
 
-    func test_with_successful_paginated_response_users_array_is_set() async throws {
+    func test_with_successful_paginated_response_breeds_array_is_set() async throws {
         XCTAssertFalse(viewModel.isLoading, "View Model shouldn't load any data yet")
         defer {
             XCTAssertFalse(viewModel.isLoading, "View Model shouldn't be loading any data")
@@ -41,7 +41,7 @@ final class BreedsViewModelSuccessTests: XCTestCase {
         
         await viewModel.getBreedsData()
         XCTAssertEqual(viewModel.breeds.count, 10, "There should be 10 breeds data within breeds array")
-        XCTAssertGreaterThan(viewModel.totalData, 0, "There should be more than zero of total pagination data")
+        XCTAssertGreaterThan(viewModel.totalData, 0, "There should be more than zero of total data")
         
         await viewModel.getNextBreedsData()
         XCTAssertEqual(viewModel.breeds.count, 20, "There should be 20 breeds data within breeds array")
@@ -56,7 +56,7 @@ final class BreedsViewModelSuccessTests: XCTestCase {
         
         await viewModel.getBreedsData()
         XCTAssertEqual(viewModel.breeds.count, 10, "There should be 10 breeds data within breeds array")
-        XCTAssertGreaterThan(viewModel.totalData, 0, "There should be more than zero of total pagination data")
+        XCTAssertGreaterThan(viewModel.totalData, 0, "There should be more than zero of total data")
         
         await viewModel.getNextBreedsData()
         XCTAssertEqual(viewModel.breeds.count, 20, "There should be 20 breeds data within breeds array")
@@ -65,7 +65,7 @@ final class BreedsViewModelSuccessTests: XCTestCase {
         viewModel.refreshedTriggered()
         XCTAssertEqual(viewModel.breeds.count, 0, "There should be 0 breeds data within breeds array")
         XCTAssertEqual(viewModel.page, 0, "Page should be equal to 0")
-        XCTAssertEqual(viewModel.totalData, 0, "There should be more than zero of total pagination data")
+        XCTAssertEqual(viewModel.totalData, 0, "There should be more than zero of total data")
     }
     
     func test_with_last_breed_func_return_true() async {

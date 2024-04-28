@@ -28,9 +28,9 @@ class BreedsViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            let result: (data: [Breed], paginationCount: Int) = try await apiService.makeRequest(session: .shared, for: PetAPI.breeds(page: page))
+            let result: (data: [Breed], totalData: Int) = try await apiService.makeRequest(session: .shared, for: PetAPI.breeds(page: page))
             self.breeds = result.data
-            self.totalData = result.paginationCount
+            self.totalData = result.totalData
         } catch {
             isAlertActive = true
             alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"

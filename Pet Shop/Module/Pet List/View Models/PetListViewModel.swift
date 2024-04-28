@@ -1,5 +1,5 @@
 //
-//  ListPetViewModel.swift
+//  PetListViewModel.swift
 //  Pet Shop
 //
 //  Created by Ferry Dwianta P on 18/04/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ListPetViewModel: ObservableObject {
+class PetListViewModel: ObservableObject {
     @Published private(set) var pets = [Pet]()
     @Published private(set) var isLoading = false
     @Published private(set) var isFetching = false
@@ -28,14 +28,14 @@ class ListPetViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            var result: (data: [Pet], paginationCount: Int) = try await apiService.makeRequest(session: .shared, for: PetAPI.pets(breedId: breedId, page: page))
+            var result: (data: [Pet], totalData: Int) = try await apiService.makeRequest(session: .shared, for: PetAPI.pets(breedId: breedId, page: page))
             
             for (index, _) in result.data.enumerated() {
                 result.data[index].price = Int.random(in: 50...200)
             }
 
             self.pets = result.data
-            self.totalData = result.paginationCount
+            self.totalData = result.totalData
         } catch {
             isAlertActive = true
             alertMessage = (error as? NetworkError)?.description ?? "Network Error! Something went wrong"

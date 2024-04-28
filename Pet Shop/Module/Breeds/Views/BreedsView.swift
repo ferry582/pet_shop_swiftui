@@ -49,7 +49,7 @@ struct BreedsView: View {
                     LazyVStack {
                         ForEach(viewModel.breeds, id: \.id) { breed in
                             NavigationLink {
-                                ListPetView(breed: breed)
+                                PetListView(breed: breed)
                             } label: {
                                 BreedCellView(breed: breed, viewModel: viewModel)
                                     .accessibilityIdentifier("item_\(breed.id)")

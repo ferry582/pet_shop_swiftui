@@ -38,7 +38,7 @@ enum NetworkError: Error, Equatable {
 
 protocol APIService {
     func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> T
-    func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> (data: T, paginationCount: Int)
+    func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> (data: T, totalData: Int)
 }
 
 struct APIServiceImpl: APIService {
@@ -79,7 +79,7 @@ struct APIServiceImpl: APIService {
         }
     }
     
-    func makeRequest<T: Codable>(session: URLSession = .shared, for endpoint: Endpoint) async throws -> (data: T, paginationCount: Int) {
+    func makeRequest<T: Codable>(session: URLSession = .shared, for endpoint: Endpoint) async throws -> (data: T, totalData: Int) {
         guard let request = endpoint.generateURLRequest() else {
             throw NetworkError.unableToGenerateRequest
         }
@@ -99,13 +99,13 @@ struct APIServiceImpl: APIService {
         }
         
         guard let countString = httpResponse.allHeaderFields["pagination-count"] as? String,
-              let paginationCount = Int(countString) else {
+              let total = Int(countString) else {
             throw NetworkError.invalidResponseHeader
         }
         
         do {
             let result = try JSONDecoder().decode(T.self, from: data)
-            return (result, paginationCount)
+            return (result, total)
         } catch {
             print(error)
             throw NetworkError.parsingError

@@ -40,7 +40,7 @@ final class PetAPIEndpointTests: XCTestCase {
     }
     
     func test_with_pets_endpoint_request_is_valid(){
-        let breedId = 1
+        let breedId = 2
         let page = 0
         let endpoint = PetAPI.pets(breedId: breedId, page: page)
         
@@ -49,12 +49,12 @@ final class PetAPIEndpointTests: XCTestCase {
         XCTAssertEqual(endpoint.method, "get")
         XCTAssertEqual(endpoint.queryItems, [
             URLQueryItem(name: "breed_ids", value: "\(breedId)"),
-            URLQueryItem(name: "limit", value: "10"),
+            URLQueryItem(name: "limit", value: "5"),
             URLQueryItem(name: "page", value: "\(page)"),
         ])
         XCTAssertNil(endpoint.body)
         
-        XCTAssertEqual(endpoint.generateURLRequest()?.url?.absoluteString, "https://api.thedogapi.com/v1/images/search?breed_ids=\(breedId)&limit=10&page=\(page)")
+        XCTAssertEqual(endpoint.generateURLRequest()?.url?.absoluteString, "https://api.thedogapi.com/v1/images/search?breed_ids=\(breedId)&limit=5&page=\(page)")
     }
     
     func test_with_addFavorite_endpoint_request_is_valid(){

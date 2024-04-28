@@ -1,5 +1,5 @@
 //
-//  ListPetView.swift
+//  PetListView.swift
 //  Pet Shop
 //
 //  Created by Ferry Dwianta P on 17/04/24.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ListPetView: View {
+struct PetListView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var viewModel: ListPetViewModel
+    @StateObject private var viewModel: PetListViewModel
     @State private var hasAppeared = false
     
     let breed: Breed
@@ -20,12 +20,12 @@ struct ListPetView: View {
         #if DEBUG
         if UITestingHelper.isUITesting {
             let mock: APIService = UITestingHelper.isPetsNetworkingSuccessful ? APIServicePetsResponseSuccessMock() : APIServicePetsResponseFailureMock()
-            _viewModel = StateObject(wrappedValue: ListPetViewModel(apiService: mock))
+            _viewModel = StateObject(wrappedValue: PetListViewModel(apiService: mock))
         } else {
-            _viewModel = StateObject(wrappedValue: ListPetViewModel())
+            _viewModel = StateObject(wrappedValue: PetListViewModel())
         }
         #else
-            _viewModel = StateObject(wrappedValue: ListPetViewModel())
+            _viewModel = StateObject(wrappedValue: PetListViewModel())
         #endif
     }
     
@@ -112,7 +112,7 @@ struct ListPetView: View {
 }
 
 #Preview {
-    ListPetView(breed: Breed(weight: Size(imperial: "", metric: ""), height: Size(imperial: "", metric: ""), id: 1, name: "", lifeSpan: "", breedGroup: "", bredFor: "", origin: "", temperament: "", referenceImageID: ""))
+    PetListView(breed: Breed(weight: Size(imperial: "", metric: ""), height: Size(imperial: "", metric: ""), id: 1, name: "", lifeSpan: "", breedGroup: "", bredFor: "", origin: "", temperament: "", referenceImageID: ""))
 }
 
 

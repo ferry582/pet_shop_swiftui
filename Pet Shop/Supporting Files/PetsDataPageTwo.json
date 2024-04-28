@@ -1,0 +1,138 @@
+[
+    {
+        "breeds": [
+            {
+                "weight": {
+                    "imperial": "50 - 60",
+                    "metric": "23 - 27"
+                },
+                "height": {
+                    "imperial": "25 - 27",
+                    "metric": "64 - 69"
+                },
+                "id": 2,
+                "name": "Afghan Hound",
+                "country_code": "AG",
+                "bred_for": "Coursing and hunting",
+                "breed_group": "Hound",
+                "life_span": "10 - 13 years",
+                "temperament": "Aloof, Clownish, Dignified, Independent, Happy",
+                "origin": "Afghanistan, Iran, Pakistan",
+                "reference_image_id": "hMyT4CDXR"
+            }
+        ],
+        "id": "VTbymwKqG",
+        "url": "https://cdn2.thedogapi.com/images/VTbymwKqG.jpg",
+        "width": 2560,
+        "height": 1953
+    },
+    {
+        "breeds": [
+            {
+                "weight": {
+                    "imperial": "50 - 60",
+                    "metric": "23 - 27"
+                },
+                "height": {
+                    "imperial": "25 - 27",
+                    "metric": "64 - 69"
+                },
+                "id": 2,
+                "name": "Afghan Hound",
+                "country_code": "AG",
+                "bred_for": "Coursing and hunting",
+                "breed_group": "Hound",
+                "life_span": "10 - 13 years",
+                "temperament": "Aloof, Clownish, Dignified, Independent, Happy",
+                "origin": "Afghanistan, Iran, Pakistan",
+                "reference_image_id": "hMyT4CDXR"
+            }
+        ],
+        "id": "WIf5o1E8h",
+        "url": "https://cdn2.thedogapi.com/images/WIf5o1E8h.jpg",
+        "width": 998,
+        "height": 790
+    },
+    {
+        "breeds": [
+            {
+                "weight": {
+                    "imperial": "50 - 60",
+                    "metric": "23 - 27"
+                },
+                "height": {
+                    "imperial": "25 - 27",
+                    "metric": "64 - 69"
+                },
+                "id": 2,
+                "name": "Afghan Hound",
+                "country_code": "AG",
+                "bred_for": "Coursing and hunting",
+                "breed_group": "Hound",
+                "life_span": "10 - 13 years",
+                "temperament": "Aloof, Clownish, Dignified, Independent, Happy",
+                "origin": "Afghanistan, Iran, Pakistan",
+                "reference_image_id": "hMyT4CDXR"
+            }
+        ],
+        "id": "k4vWnFdL2",
+        "url": "https://cdn2.thedogapi.com/images/k4vWnFdL2.jpg",
+        "width": 645,
+        "height": 380
+    },
+    {
+        "breeds": [
+            {
+                "weight": {
+                    "imperial": "50 - 60",
+                    "metric": "23 - 27"
+                },
+                "height": {
+                    "imperial": "25 - 27",
+                    "metric": "64 - 69"
+                },
+                "id": 2,
+                "name": "Afghan Hound",
+                "country_code": "AG",
+                "bred_for": "Coursing and hunting",
+                "breed_group": "Hound",
+                "life_span": "10 - 13 years",
+                "temperament": "Aloof, Clownish, Dignified, Independent, Happy",
+                "origin": "Afghanistan, Iran, Pakistan",
+                "reference_image_id": "hMyT4CDXR"
+            }
+        ],
+        "id": "12nMI642l",
+        "url": "https://cdn2.thedogapi.com/images/12nMI642l.jpg",
+        "width": 960,
+        "height": 846
+    },
+    {
+        "breeds": [
+            {
+                "weight": {
+                    "imperial": "50 - 60",
+                    "metric": "23 - 27"
+                },
+                "height": {
+                    "imperial": "25 - 27",
+                    "metric": "64 - 69"
+                },
+                "id": 2,
+                "name": "Afghan Hound",
+                "country_code": "AG",
+                "bred_for": "Coursing and hunting",
+                "breed_group": "Hound",
+                "life_span": "10 - 13 years",
+                "temperament": "Aloof, Clownish, Dignified, Independent, Happy",
+                "origin": "Afghanistan, Iran, Pakistan",
+                "reference_image_id": "hMyT4CDXR"
+            }
+        ],
+        "id": "4WiUpv_4W",
+        "url": "https://cdn2.thedogapi.com/images/4WiUpv_4W.jpg",
+        "width": 1024,
+        "height": 640
+    }
+]
+
