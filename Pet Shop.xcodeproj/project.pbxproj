@@ -656,6 +656,7 @@
 		E6C680582BCEB67F00A5A4E9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E62909552BCFBB0600BEDC6A /* API-Info.plist */,
 				E68424462BD9682300C9FAA7 /* PetsData.json */,
 				E68422D72BD8185B00C9FAA7 /* BreedsData.json */,
 				E68423442BD8C50200C9FAA7 /* FavoriteResponseData.json */,
@@ -670,7 +671,6 @@
 		E6C6805B2BCEB6F200A5A4E9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				E62909552BCFBB0600BEDC6A /* API-Info.plist */,
 				E62909572BCFBB1300BEDC6A /* PetAPI.swift */,
 				E62909592BCFBBC900BEDC6A /* Endpoint.swift */,
 				E629095B2BCFBC9C00BEDC6A /* APIService.swift */,
