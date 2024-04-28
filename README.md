@@ -2,7 +2,7 @@
 A simple pet store iOS app built with SwiftUI that allows customers to find dogs and buy them.
 
 ## Build With
-- SwifUI
+- SwiftUI
 - URLSession (Used in APIService.swift)
 - The Dog Api (https://thedogapi.com)
 - MVVM Architecture Pattern
@@ -31,7 +31,7 @@ A simple pet store iOS app built with SwiftUI that allows customers to find dogs
     ├── Pet Shop
     │   ├── App                 # App and AppDelegate files
     │   ├── Module              # Grouping files by feature
-    │   │   └── Feature         # Contain views, viewmodel, and validator files
+    │   │   └── Features        # Contain views, viewmodel, and validator files
     │   ├── Models              # Model files
     │   ├── Utils               # Contain all core files, such as Networking, extension, view components, helper, etc
     │   └── Supporting Files    # Contains files such as assets, mock JSON, .plist, and font files

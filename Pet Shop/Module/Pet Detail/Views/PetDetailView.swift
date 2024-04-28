@@ -29,17 +29,9 @@ struct PetDetailView: View {
                                     .fontWeight(.semibold)
                                 
                                 HStack {
-                                    let petOrigins = if let origin = pet.breeds?[0].origin {
-                                        if origin.isEmpty {
-                                            "-"
-                                        } else {
-                                            origin
-                                        }
-                                    } else {
-                                        "-"
-                                    }
+                                    let petOrigins = pet.breeds?[0].origin ?? "-"
                                     Image("location")
-                                    Text(petOrigins)
+                                    Text(!petOrigins.isEmpty ? petOrigins : "-")
                                         .font(.system(size: 16))
                                         .foregroundColor(Color.textSecondaryColor)
                                 }
@@ -82,7 +74,6 @@ struct PetDetailView: View {
                                 Text(". Here are more details about this dog:")
                                     .foregroundColor(Color.textSecondaryColor)
                             }
-                            
                             .font(.system(size: 16))
                             .padding(.bottom, 16)
                             
