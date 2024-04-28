@@ -20,7 +20,10 @@ struct MainView: View {
                     .navigationBarBackButtonHidden()
             }
             .tabItem {
-                Label("Pets", systemImage: "dog")
+                Image("dog.fill")
+                    .renderingMode(.template)
+                    .foregroundStyle(selectedTab == 0 ? Color.appPrimaryColor : Color.gray)
+                Text("Pets")
             }
             .tag(0)
             
