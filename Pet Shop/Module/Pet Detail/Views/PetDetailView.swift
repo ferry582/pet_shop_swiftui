@@ -10,8 +10,22 @@ import SwiftUI
 struct PetDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
-    @StateObject private var viewModel = PetDetailViewModel()
+    @StateObject private var viewModel: PetDetailViewModel
     let pet: Pet
+    
+    init(pet: Pet) {
+        self.pet = pet
+        #if DEBUG
+        if UITestingHelper.isUITesting {
+            let mock: APIService = UITestingHelper.isAddFavoriteNetworkingSuccessful ? APIServiceAddFavoriteResponseSuccessMock() : APIServiceAddFavoriteResponseFailureMock()
+            _viewModel = StateObject(wrappedValue: PetDetailViewModel(apiService: mock))
+        } else {
+            _viewModel = StateObject(wrappedValue: PetDetailViewModel())
+        }
+        #else
+            _viewModel = StateObject(wrappedValue: PetDetailViewModel())
+        #endif
+    }
     
     var body: some View {
         GeometryReader { reader in
@@ -133,6 +147,7 @@ struct PetDetailView: View {
                             Text("Add to Favorite")
                         }
                     }
+                    .accessibilityIdentifier("addFavoriteButton")
                     .padding(.bottom, 12)
                     .padding(.horizontal, 16)
                     .buttonStyle(PrimaryButton())

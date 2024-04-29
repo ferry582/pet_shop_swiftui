@@ -12,7 +12,6 @@ struct UITestingHelper {
     
     static var isUITesting: Bool {
         ProcessInfo.processInfo.arguments.contains("-ui-testing")
-        
     }
     
     static var isBreedsNetworkingSuccessful: Bool {
@@ -23,6 +22,9 @@ struct UITestingHelper {
         ProcessInfo.processInfo.environment["-pets-networking-success"] == "1"
     }
     
+    static var isAddFavoriteNetworkingSuccessful: Bool {
+        ProcessInfo.processInfo.environment["-add-favorite-networking-success"] == "1"
+    }
 }
 
 #endif

@@ -33,6 +33,6 @@ final class PetDetailViewModelFailureTests: XCTestCase {
         await viewModel.addToFavorite(pet: pet)
         
         XCTAssertTrue(viewModel.isAlertActive, "View Model alert should be active")
-        XCTAssertEqual(viewModel.alertMessage, .networkError(message: NetworkError.serverError(statusCode: 404).description), "View Model message should return network error of server error with 404 status code")
+        XCTAssertEqual(viewModel.alertMessage, .networkError(message: NetworkError.duplicateFavorite.description), "View Model message should return network error of duplicate data")
     }
 }
