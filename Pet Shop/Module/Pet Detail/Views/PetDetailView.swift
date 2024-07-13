@@ -1,0 +1,215 @@
+//
+//  PetDetailView.swift
+//  Pet Shop
+//
+//  Created by Ferry Dwianta P on 18/04/24.
+//
+
+import SwiftUI
+
+struct PetDetailView: View {
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
+    @StateObject private var viewModel: PetDetailViewModel
+    let pet: Pet
+    
+    init(pet: Pet) {
+        self.pet = pet
+        #if DEBUG
+        if UITestingHelper.isUITesting {
+            let mock: APIService = UITestingHelper.isAddFavoriteNetworkingSuccessful ? APIServiceAddFavoriteResponseSuccessMock() : APIServiceAddFavoriteResponseFailureMock()
+            _viewModel = StateObject(wrappedValue: PetDetailViewModel(apiService: mock))
+        } else {
+            _viewModel = StateObject(wrappedValue: PetDetailViewModel())
+        }
+        #else
+            _viewModel = StateObject(wrappedValue: PetDetailViewModel())
+        #endif
+    }
+    
+    var body: some View {
+        GeometryReader { reader in
+            ZStack {
+                ScrollView {
+                    VStack {
+                        AsyncImageView(url: pet.url)
+                            .frame(width: reader.size.width, height: reader.size.height / 2)
+                            .roundedCorner(34, corners: [.bottomLeft, .bottomRight])
+                            .padding(.horizontal, -16)
+                        
+                        HStack {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("\(pet.breeds?[0].name ?? " ")")
+                                    .font(.custom("LeckerliOne-Regular", size: 20))
+                                    .fontWeight(.semibold)
+                                
+                                HStack {
+                                    Image("location")
+                                    Text(pet.breeds?[0].origin?.isEmpty == true ? "New York" : pet.breeds?[0].origin ?? "New York")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(Color.textSecondaryColor)
+                                }
+                            }
+                            .padding(.vertical, 16)
+                            .padding(.leading, 16)
+                            
+                            Spacer()
+                            
+                            Text("$\(pet.price ?? 0)")
+                                .font(.system(size: 22, weight: .semibold))
+                                .foregroundColor(Color.appPrimaryColor)
+                                .padding(.trailing, 16)
+                        }
+                        .frame(width: reader.size.width <= 0 ? 0 : reader.size.width-32)
+                        .background(Color.cardBgColor)
+                        .cornerRadius(20)
+                        .padding(.top, -50)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Details")
+                                .font(.custom("LeckerliOne-Regular", size: 18))
+                                .fontWeight(.medium)
+                            
+                            HStack {
+                                Text("\(pet.breeds?[0].name ?? " ") dog can reach height between")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(Color.textSecondaryColor) +
+                                
+                                Text(" \(pet.breeds?[0].height.imperial ?? "-") inches")
+                                    .font(.system(size: 16))
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color.appPrimaryColor) +
+                                
+                                Text(", and weight between")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(Color.textSecondaryColor) +
+                                
+                                Text(" \(pet.breeds?[0].weight.imperial ?? "-") lbs")
+                                    .font(.system(size: 16))
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color.appPrimaryColor) +
+                                
+                                Text(". Here are more details about this dog:")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(Color.textSecondaryColor)
+                            }
+                            .padding(.bottom, 16)
+                            
+                            HStack(spacing: 12) {
+                                let cellWidth = (reader.size.width - 32 - 24) / 3
+                                
+                                DetailCellView(data: "\(pet.breeds?[0].lifeSpan.dropLast(5) ?? "-")", desctiption: "Age", cellWidth: cellWidth)
+                                
+                                DetailCellView(data: "\((pet.width ?? 0) / 100) inch", desctiption: "Width", cellWidth: cellWidth)
+                                
+                                DetailCellView(data: "\((pet.height ?? 0) / 100) inch", desctiption: "Height", cellWidth: cellWidth)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 16)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Temprament")
+                                .font(.custom("LeckerliOne-Regular", size: 18))
+                                .fontWeight(.medium)
+                            Text(pet.breeds?[0].temperament ?? "-")
+                                .font(.system(size: 16))
+                                .foregroundColor(Color.textSecondaryColor)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 16)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Breed For")
+                                .font(.custom("LeckerliOne-Regular", size: 18))
+                                .fontWeight(.medium)
+                            Text(pet.breeds?[0].bredFor ?? "-")
+                                .font(.system(size: 16))
+                                .foregroundColor(Color.textSecondaryColor)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 16)
+                        .padding(.bottom, 90)
+                    }
+                    .padding(.horizontal, 16)
+                }
+                .scrollIndicators(.hidden)
+                
+                VStack {
+                    Spacer()
+                    Button {
+                        Task {
+                            await viewModel.addToFavorite(pet: pet)
+                        }
+                    } label: {
+                        HStack {
+                            Image(systemName: "star.fill")
+                            Text("Add to Favorite")
+                        }
+                    }
+                    .accessibilityIdentifier("addFavoriteButton")
+                    .padding(.bottom, 12)
+                    .padding(.horizontal, 16)
+                    .buttonStyle(PrimaryButton())
+                }
+                
+                if viewModel.isLoading {
+                    LoadingView()
+                }
+            }
+            .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
+            .ignoresSafeArea(edges: .top)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .bold()
+                        Text("Back")
+                    }
+                    .shadow(color: .black, radius: 5)
+                    .foregroundColor(Color.white)
+                    .padding(.leading, -8)
+                    .onTapGesture {
+                        dismiss()
+                    }
+                }
+            }
+            .alert(viewModel.alertMessage.localizedDescription, isPresented: $viewModel.isAlertActive) {
+                Button("OK", role: .cancel) { }
+            }
+        }
+    }
+}
+
+#Preview {
+    PetDetailView(pet: Pet(id: "BJa4kxc4X", url: "https://cdn2.thedogapi.com/images/BJa4kxc4X_1280.jpg", breeds: [Breed(weight: Size(imperial: "6 - 13", metric: ""), height: Size(imperial: "9 - 11.5", metric: ""), id: 1, name: "American bull", lifeSpan: "10 - 12 years", breedGroup: "", bredFor: "Small rodent hunting, lapdog", origin: "Germany, France", temperament: "Stubborn, Curious, Playful, Adventurous, Active, Fun-loving", referenceImageID: "")], width: 1600, height: 1199))
+}
+
+struct DetailCellView: View {
+    let data: String
+    let desctiption: String
+    let cellWidth: CGFloat
+    
+    var body: some View {
+        ZStack {
+            Image(systemName: "pawprint.fill")
+                .foregroundColor(Color.textSecondaryColor.opacity(0.07))
+                .font(.system(size: 50))
+                .rotationEffect(Angle(degrees: -30))
+                .offset(x: 33, y: 21)
+            
+            VStack(spacing: 4) {
+                Text(data)
+                    .font(.system(size: 16, weight: .medium))
+                
+                Text(desctiption)
+                    .font(.system(size: 14))
+                    .foregroundColor(Color.textSecondaryColor)
+            }
+        }
+        .frame(width: cellWidth <= 0 ? 0 : cellWidth, height: 80)
+        .background(Color.cardBgColor)
+        .cornerRadius(12)
+    }
+}

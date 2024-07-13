@@ -13,11 +13,11 @@ struct SecondaryButton: ButtonStyle {
             .frame(maxWidth: .infinity, maxHeight: 54, alignment: .center)
             .font(.system(size: 17, weight: .bold))
             .background(Color.clear)
-            .foregroundColor(Color.primaryColor)
+            .foregroundColor(Color.appPrimaryColor)
             .cornerRadius(16)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.primaryColor, lineWidth: 1)
+                    .stroke(Color.appPrimaryColor, lineWidth: 1)
             )
     }
 }

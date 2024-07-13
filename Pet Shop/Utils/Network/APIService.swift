@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: Error, Equatable {
     case unableToGenerateRequest
     case invalidEndpoint
     case parsingError
@@ -36,14 +36,21 @@ enum NetworkError: Error {
     }
 }
 
-struct APIService {
+protocol APIService {
+    func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> T
+    func makeRequest<T: Codable>(session: URLSession, for endpoint: Endpoint) async throws -> (data: T, totalData: Int)
+}
+
+struct APIServiceImpl: APIService {
     
-    func makeRequest<T: Codable>(for endpoint: Endpoint) async throws -> T {
+    static let shared = APIServiceImpl()
+    
+    func makeRequest<T: Codable>(session: URLSession = .shared, for endpoint: Endpoint) async throws -> T {
         guard let request = endpoint.generateURLRequest() else {
             throw NetworkError.unableToGenerateRequest
         }
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidEndpoint
@@ -72,12 +79,12 @@ struct APIService {
         }
     }
     
-    func makeRequest<T: Codable>(for endpoint: Endpoint) async throws -> (data: T, paginationCount: Int) {
+    func makeRequest<T: Codable>(session: URLSession = .shared, for endpoint: Endpoint) async throws -> (data: T, totalData: Int) {
         guard let request = endpoint.generateURLRequest() else {
             throw NetworkError.unableToGenerateRequest
         }
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw NetworkError.invalidEndpoint
@@ -92,13 +99,13 @@ struct APIService {
         }
         
         guard let countString = httpResponse.allHeaderFields["pagination-count"] as? String,
-              let paginationCount = Int(countString) else {
+              let total = Int(countString) else {
             throw NetworkError.invalidResponseHeader
         }
         
         do {
             let result = try JSONDecoder().decode(T.self, from: data)
-            return (result, paginationCount)
+            return (result, total)
         } catch {
             print(error)
             throw NetworkError.parsingError

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PetAPI {
+enum PetAPI: Equatable {
     case breeds(page: Int)
     case pet(petId: String)
     case pets(breedId: Int, page: Int)
@@ -63,7 +63,7 @@ extension PetAPI: Endpoint {
         case .pets(breedId: let breedId, page: let page):
             return [
                 URLQueryItem(name: "breed_ids", value: String(breedId)),
-                URLQueryItem(name: "limit", value: String(10)),
+                URLQueryItem(name: "limit", value: String(5)),
                 URLQueryItem(name: "page", value: String(page)),
             ]
         case .favorites(userId: let userId):
@@ -89,8 +89,12 @@ extension PetAPI: Endpoint {
     var body: Data? {
         switch self {
         case .addFavorite(petId: let petId, userId: let userId):
-            let params = "{\n\t\"image_id\":\"\(petId)\",\n\t\"sub_id\": \"\(userId)\"\n}"
-            return params.data(using: .utf8)
+            let body: [String: Any] = [
+                "image_id": "\(petId)",
+                "sub_id": "\(userId)"
+            ]
+            let bodyData = try? JSONSerialization.data(withJSONObject: body)
+            return bodyData
         default:
             return nil
         }
