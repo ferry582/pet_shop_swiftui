@@ -69,7 +69,7 @@ class LoginViewModel: ObservableObject {
                 }
             } catch {
                 isAlertActive = true
-                alertMessage = (error as! AuthValidatorImpl.AuthValidatoreError).localizedDescription
+                alertMessage = (error as! AuthValidatorImpl.AuthValidatorError).localizedDescription
             }
         } else {
             do {
@@ -91,7 +91,7 @@ class LoginViewModel: ObservableObject {
                 }
             } catch {
                 isAlertActive = true
-                alertMessage = (error as! AuthValidatorImpl.AuthValidatoreError).localizedDescription
+                alertMessage = (error as! AuthValidatorImpl.AuthValidatorError).localizedDescription
             }
         }
     }

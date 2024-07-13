@@ -15,39 +15,39 @@ protocol AuthValidator {
 struct AuthValidatorImpl: AuthValidator {
     func validateLogIn(email: String, password: String) throws {
         if email.isEmpty {
-            throw AuthValidatoreError.invalidEmailEmpty
+            throw AuthValidatorError.invalidEmailEmpty
         }
         
         if password.isEmpty {
-            throw AuthValidatoreError.invalidPasswordEmpty
+            throw AuthValidatorError.invalidPasswordEmpty
         }
         
         if !email.isValidEmail {
-            throw AuthValidatoreError.invalidEmail
+            throw AuthValidatorError.invalidEmail
         }
     }
     
     func validateSignUp(email: String, password: String, confirmPassword: String) throws {
         if email.isEmpty {
-            throw AuthValidatoreError.invalidEmailEmpty
+            throw AuthValidatorError.invalidEmailEmpty
         }
         
         if password.isEmpty {
-            throw AuthValidatoreError.invalidPasswordEmpty
+            throw AuthValidatorError.invalidPasswordEmpty
         }
         
         if confirmPassword.isEmpty {
-            throw AuthValidatoreError.invalidConfirmPasswordEmpty
+            throw AuthValidatorError.invalidConfirmPasswordEmpty
         }
         
         if !email.isValidEmail {
-            throw AuthValidatoreError.invalidEmail
+            throw AuthValidatorError.invalidEmail
         }
     }
 }
 
 extension AuthValidatorImpl {
-    enum AuthValidatoreError: LocalizedError {
+    enum AuthValidatorError: LocalizedError {
         case invalidEmailEmpty
         case invalidPasswordEmpty
         case invalidConfirmPasswordEmpty

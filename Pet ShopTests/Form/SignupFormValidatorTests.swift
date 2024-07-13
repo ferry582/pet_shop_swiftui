@@ -26,12 +26,12 @@ final class SignupFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validateSignUp(email: "", password: "123", confirmPassword: "123")
         } catch {
-            guard let validatorError = error as? AuthValidatorImpl.AuthValidatoreError else {
+            guard let validatorError = error as? AuthValidatorImpl.AuthValidatorError else {
                 XCTFail("Wrong type of error, expecting auth validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, AuthValidatorImpl.AuthValidatoreError.invalidEmailEmpty, "Expecting an error of invalid empty email")
+            XCTAssertEqual(validatorError, AuthValidatorImpl.AuthValidatorError.invalidEmailEmpty, "Expecting an error of invalid empty email")
         }
     }
     
@@ -41,12 +41,12 @@ final class SignupFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validateSignUp(email: "test@mail.com", password: "", confirmPassword: "123")
         } catch {
-            guard let validatorError = error as? AuthValidatorImpl.AuthValidatoreError else {
+            guard let validatorError = error as? AuthValidatorImpl.AuthValidatorError else {
                 XCTFail("Wrong type of error, expecting auth validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, AuthValidatorImpl.AuthValidatoreError.invalidPasswordEmpty, "Expecting an error of invalid empty password")
+            XCTAssertEqual(validatorError, AuthValidatorImpl.AuthValidatorError.invalidPasswordEmpty, "Expecting an error of invalid empty password")
         }
     }
     
@@ -56,12 +56,12 @@ final class SignupFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validateSignUp(email: "test@mail.com", password: "123", confirmPassword: "")
         } catch {
-            guard let validatorError = error as? AuthValidatorImpl.AuthValidatoreError else {
+            guard let validatorError = error as? AuthValidatorImpl.AuthValidatorError else {
                 XCTFail("Wrong type of error, expecting auth validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, AuthValidatorImpl.AuthValidatoreError.invalidConfirmPasswordEmpty, "Expecting an error of invalid empty confirm password")
+            XCTAssertEqual(validatorError, AuthValidatorImpl.AuthValidatorError.invalidConfirmPasswordEmpty, "Expecting an error of invalid empty confirm password")
         }
     }
     
@@ -71,12 +71,12 @@ final class SignupFormValidatorTests: XCTestCase {
         do {
             _ = try validator.validateSignUp(email: "test@mail.com", password: "", confirmPassword: "123")
         } catch {
-            guard let validatorError = error as? AuthValidatorImpl.AuthValidatoreError else {
+            guard let validatorError = error as? AuthValidatorImpl.AuthValidatorError else {
                 XCTFail("Wrong type of error, expecting auth validation error")
                 return
             }
             
-            XCTAssertEqual(validatorError, AuthValidatorImpl.AuthValidatoreError.invalidPasswordEmpty, "Expecting an error of invalid email entry")
+            XCTAssertEqual(validatorError, AuthValidatorImpl.AuthValidatorError.invalidPasswordEmpty, "Expecting an error of invalid email entry")
         }
     }
 
